@@ -127,6 +127,24 @@ body > header {
   #news footer .author:before{
     content: "By ";
   }
+
+  #news footer .likes {
+    margin-left: 1em;
+  }
+  
+  #news footer .likes:after {
+    content: ' 👍';
+  }
+
+  #news footer .dislikes {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  
+  #news footer .dislikes:after {
+    content: ' 👎';
+  }
+  
   
   /* related */
   
