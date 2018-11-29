@@ -28,6 +28,13 @@ body > header {
     padding-left: 0;
   }
   
+  body > header #signup .avatar {
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  
   /* navigation */
   
   #menu ul {
@@ -64,30 +71,33 @@ body > header {
   /* article */
   
   #news header {
-    max-width: 10em;
-    padding: 1em;
-    position: absolute;
+    color: white;
+    background-color: #2a2f33;
+  
+    padding: 0 1em 0 1em;
+
   }
-  
   #news header h1{
-    margin: 0;
-  
-    text-shadow: .2em .2em .2em black;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
   }
   
   #news header a{
+      
     color: white;
     text-decoration: none;
   }
   
   #news img {
     width: 100%;
+    /* interessante isto aqui */
+    /* filter: blur(8px); */
   }
   
   #news > article {
     background-color: white;
   
-    margin: 1em 1em 1em 0;
+    margin: 1em 1.5em 1em 1.5em;
   }
   
   #news > article > p{
@@ -100,7 +110,7 @@ body > header {
   
   #news footer {
     color: white;
-    background-color: #f4655f;
+    background-color: #2a2f33;
   
     padding: 1em;
   }
@@ -231,39 +241,3 @@ body > header {
   #menu li:nth-child(6) {
     border-top: 5px solid #e84c8b;
   }
-
-  body {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: 1fr 2fr 1fr;
-    grid-template-areas: 
-      "green green green"
-      "yellow red blue"
-      "orange orange blue";
-  }
-  
-  #green {
-    grid-area: green;
-  }
-  
-  #yellow {
-    grid-area: yellow;
-  }
-  
-  #orange {
-    grid-area: orange;
-  }
-  
-  #red {
-    grid-area: red;
-  }
-  
-  #blue {
-    grid-area: blue;
-  }
-  
-  #yellow ul, #red ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 1fr;
-  }  

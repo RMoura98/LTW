@@ -4,7 +4,7 @@ body {
     background-color: #edeff0;
   
     margin: 0 auto;
-    width: 60em;
+    width: auto;
   
     display: grid;
     grid-template-columns: [start] 4fr [middle] 1fr [end];
