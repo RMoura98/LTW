@@ -23,6 +23,32 @@ function getNewsById($id) {
   return $stmt->fetch();
 }
 
+function time_elapsed_string($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+    $string = array(
+        'y' => 'year',
+        'm' => 'month',
+        'w' => 'week',
+        'd' => 'day',
+        'h' => 'hour',
+        'i' => 'minute',
+        's' => 'second',
+    );
+    foreach ($string as $k => &$v) {
+        if ($diff->$k) {
+            $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+        } else {
+            unset($string[$k]);
+        }
+    }
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? implode(', ', $string) . ' ago' : 'just now';
+}
+
 ?>
 
  
@@ -43,8 +69,8 @@ function getNewsById($id) {
   </head>
   <body>
     <header>
-      <h1><a href="index.html">Super Legit News</a></h1>
-      <h2><a href="index.html">Where fake news are born!</a></h2>
+      <h1><a href="news.php">Super Legit News</a></h1>
+      <h2><a href="news.php">Where fake news are born!</a></h2>
       <div id="signup">
         <img class="avatar" src="../res/avatar.png" alt="Avatar" >
         <a href="../html/register.html">Register</a>
@@ -69,13 +95,11 @@ function getNewsById($id) {
     <?php 
     $articles = getAllNews();
     foreach($articles as $article) { ?>
-           
-
         <article>
             <header>
                 <h1><a href="news_item.php?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
             </header>
-            <img src="https://dummyimage.com/600x300/008ebd/fff.jpg&text=business" alt="">
+            <a href="../html/news_item.php?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
             <footer>
                 <span class="author"><?=$article['username']?></span>
                 <span class="likes"><?=$article['upvotes']?></span> 
@@ -84,10 +108,11 @@ function getNewsById($id) {
                 <?php
                 $fulltags = explode(',', $article['tags']);
                 foreach($fulltags as $tag) {
-                    echo "<a href='index.html'>#$tag</a> ";
+                    echo "<a href='index.php'>#$tag</a> ";
                 }
                 ?>
                 </span>
+                <span class="date"><?=time_elapsed_string('@' . $article['published'])?></span>
                 <a class="comments" href="../html/item.html#comments"><?=$article['comments']?></a>
             </footer>
         </article>

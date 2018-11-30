@@ -91,6 +91,9 @@ body > header {
   
   #news img {
     width: 100%;
+    height: 600px;
+    object-position: center;
+    object-fit: cover;
     /* interessante isto aqui */
     /* filter: blur(8px); */
   }
