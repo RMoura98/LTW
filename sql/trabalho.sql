@@ -55,7 +55,7 @@ INSERT INTO news VALUES (0,
   'Nulla sem non feugiat pharetra.',
   'sod jiejr',1,2,0,datetime('now'));
   
-INSERT INTO news VALUES (NULL,
+INSERT INTO news VALUES (1,
   'Donec placerat tempor ex sit amet',
   1508074451,
   'local,life',

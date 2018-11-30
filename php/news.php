@@ -1,14 +1,19 @@
 <?php
 
+include_once('./connection.php'); //era istoooooooo aiiiiii 3 horas!!!
+
 function getAllNews() {
-  global $db;
-  $stmt = $db->prepare('SELECT news.*, users.*, COUNT(comments.id) AS comments FROM news JOIN
-                                      users USING (username) LEFT JOIN
-                                      comments ON comments.news_id = news.id
-                        GROUP BY news.id, users.username
-                        ORDER BY published DESC');
-  $stmt->execute();
-  return $stmt->fetchAll();
+    global $db;
+    $stmt = $db->prepare('
+    SELECT news.*, users.*, COUNT(comments.id) AS comments
+    FROM news JOIN
+        users USING (username) LEFT JOIN
+        comments ON comments.news_id = news.id
+    GROUP BY news.id, users.username
+    ORDER BY published DESC
+    ');
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
 
 function getNewsById($id) {
@@ -20,65 +25,31 @@ function getNewsById($id) {
 
 ?>
 
- <?php
-    $db = new PDO('sqlite:news.db');
-    $stmt = $db->prepare('
-    SELECT news.*, users.*, COUNT(comments.id) AS comments
-    FROM news JOIN
-        users USING (username) LEFT JOIN
-        comments ON comments.news_id = news.id
-    GROUP BY news.id, users.username
-    ORDER BY published DESC
-    ');
-    $stmt->execute();
-    $articles = $stmt->fetchAll();
-//   foreach( $articles as $article) {
-//     echo '<h1>' . $article['title'] . '</h1>';
-//     echo '<p>' . $article['introduction'] . '</p>';
-//   }
-    function time_elapsed_string($datetime, $full = false) {
-        $now = new DateTime;
-        $ago = new DateTime($datetime);
-        $diff = $now->diff($ago);
-        $diff->w = floor($diff->d / 7);
-        $diff->d -= $diff->w * 7;
-        $string = array(
-            'y' => 'year',
-            'm' => 'month',
-            'w' => 'week',
-            'd' => 'day',
-            'h' => 'hour',
-            'i' => 'minute',
-            's' => 'second',
-        );
-        foreach ($string as $k => &$v) {
-            if ($diff->$k) {
-                $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-            } else {
-                unset($string[$k]);
-            }
-        }
-        if (!$full) $string = array_slice($string, 0, 1);
-        return $string ? implode(', ', $string) . ' ago' : 'just now';
-    }
-?> 
+ 
 
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
     <title>Super LTW News 2018</title>    
     <meta charset="UTF-8">
+    <title>Super Legit News</title>    
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
-    <link href="layout.css" rel="stylesheet">
-    <link href="responsive.css" rel="stylesheet">
-    <link href="comments.css" rel="stylesheet">
-    <link href="forms.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/layout.css" rel="stylesheet">
+    <link href="../css/responsive.css" rel="stylesheet">
+    <link href="../css/comments.css" rel="stylesheet">
+    <link href="../css/forms.css" rel="stylesheet">
   </head>
   <body>
     <header>
       <h1><a href="index.html">Super Legit News</a></h1>
       <h2><a href="index.html">Where fake news are born!</a></h2>
+      <div id="signup">
+        <img class="avatar" src="../res/avatar.png" alt="Avatar" >
+        <a href="../html/register.html">Register</a>
+        <a href="../html/login.html">Login</a>
+      </div>
     </header>
     <aside id="related">
       <article>
@@ -95,17 +66,20 @@ function getNewsById($id) {
       </article>
     </aside>
     <section id="news">
+    <?php 
+    $articles = getAllNews();
+    foreach($articles as $article) { ?>
+           
 
-    <?php foreach($articles as $article) { ?>
         <article>
             <header>
                 <h1><a href="news_item.php?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
             </header>
             <img src="https://dummyimage.com/600x300/008ebd/fff.jpg&text=business" alt="">
-            <p class='intro'><?=$article['introduction']?></p>
-            <p class='fulltext'><?=$article['fulltext']?></p>
             <footer>
                 <span class="author"><?=$article['username']?></span>
+                <span class="likes"><?=$article['upvotes']?></span> 
+                <span class="dislikes"><?=$article['downvotes']?></span> 
                 <span class="tags">
                 <?php
                 $fulltags = explode(',', $article['tags']);
@@ -114,8 +88,7 @@ function getNewsById($id) {
                 }
                 ?>
                 </span>
-                <span class="date"><?=time_elapsed_string('@' . $article['published'])?></span>
-                <a class="comments" href="item.html#comments"><?=$article['comments']?></a>
+                <a class="comments" href="../html/item.html#comments"><?=$article['comments']?></a>
             </footer>
         </article>
     <?php } ?>
