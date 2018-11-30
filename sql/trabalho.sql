@@ -1,15 +1,16 @@
 CREATE TABLE users (
   username VARCHAR PRIMARY KEY,
   password VARCHAR,
-  name VARCHAR
+  name VARCHAR,
+  email VARCHAR
 );
 
--- All passwords are 1234 in SHA-1 format
-INSERT INTO users VALUES ("dominic", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Dominic Woods");
-INSERT INTO users VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Zachary Young");
+-- All passwords are  1234in SHA-1 format
+INSERT INTO users VALUES ("dominic", "$2y$12$8WypB2UCcB6rsSiwXu3KkOxW3r9KInvKIX1/z8U2RWMBrPltjug2K", "Dominic Woods", 'dominic@gmail.com'); --dominic123
+/* INSERT INTO users VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Zachary Young");
 INSERT INTO users VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Alicia Hamilton");
 INSERT INTO users VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Abril Cooley");
-INSERT INTO users VALUES ("nofilmynofucky", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Ze Manel");
+INSERT INTO users VALUES ("nofilmynofucky", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Ze Manel"); */
 
 -----------------------------------------------------------------------------------------------------
 

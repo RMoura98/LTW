@@ -15,7 +15,6 @@ function getAllNews() {
     $stmt->execute();
     return $stmt->fetchAll();
 }
-
 function getNewsById($id) {
   global $db;
   $stmt = $db->prepare('SELECT * FROM news JOIN users USING (username) WHERE id = ?');
@@ -72,9 +71,20 @@ function time_elapsed_string($datetime, $full = false) {
       <h1><a href="news.php">Super Legit News</a></h1>
       <h2><a href="news.php">Where fake news are born!</a></h2>
       <div id="signup">
-        <img class="avatar" src="../res/avatar.png" alt="Avatar" >
-        <a href="../html/register.html">Register</a>
-        <a href="../html/login.html">Login</a>
+        <?php 
+        include('../includes/session.php');
+        if (isset($_SESSION['username']) ){
+            echo '<a href="../html/profile.html">' . $_SESSION['username'] . '</a>';
+            echo '<a href="../html/profile.html"><img class="avatar" src="../res/avatar.png" alt="Avatar" ></a>';
+            echo '<a href="../php/logout.php"><img class="avatar" src="../res/logout.png" alt="Logout" ></a>';
+        }
+        else{
+            echo '<a href="../html/register.html">Register</a>';
+            echo '<a href="../html/login.html">Login</a>';
+        }
+        ?>
+       
+        
       </div>
     </header>
     <aside id="related">
@@ -97,9 +107,9 @@ function time_elapsed_string($datetime, $full = false) {
     foreach($articles as $article) { ?>
         <article>
             <header>
-                <h1><a href="news_item.php?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
+                <h1><a href="item.php?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
             </header>
-            <a href="../html/news_item.php?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
+            <a href="../html/item.php?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
             <footer>
                 <span class="author"><?=$article['username']?></span>
                 <span class="likes"><?=$article['upvotes']?></span> 

@@ -6,15 +6,26 @@
    */
   function checkUserPassword($username, $password) {
     global $db;
-    $stmt = $db->prepare('SELECT * FROM user WHERE username = ?');
+    $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
     $stmt->execute(array($username));
     $user = $stmt->fetch();
     return $user !== false && password_verify($password, $user['password']);
   }
-  function insertUser($username, $password) {
+  /**
+   * insere um user na base de dados
+   */
+  function insertUser($username, $password, $name, $email) {
     global $db;
     $options = ['cost' => 12];
-    $stmt = $db->prepare('INSERT INTO user VALUES(?, ?)');
-    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options)));
+    $passwordhashed = password_hash($password, PASSWORD_DEFAULT, $options);
+    $stmt = $db->prepare("INSERT INTO users(username, password, name, email) VALUES (?, ?, ?, ?)");
+    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options)));     
   }
+
+    function getAllUsernames() {
+        global $db;
+        $stmt = $db->prepare('SELECT * from users');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }   
 ?>
