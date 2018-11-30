@@ -109,7 +109,7 @@ function time_elapsed_string($datetime, $full = false) {
             <header>
                 <h1><a href="item.php?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
             </header>
-            <a href="../html/item.php?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
+            <a href="item.php?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
             <footer>
                 <span class="author"><?=$article['username']?></span>
                 <span class="likes"><?=$article['upvotes']?></span> 

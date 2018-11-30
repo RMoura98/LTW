@@ -17,9 +17,8 @@
   function insertUser($username, $password, $name, $email) {
     global $db;
     $options = ['cost' => 12];
-    $passwordhashed = password_hash($password, PASSWORD_DEFAULT, $options);
-    $stmt = $db->prepare("INSERT INTO users(username, password, name, email) VALUES (?, ?, ?, ?)");
-    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options)));     
+    $stmt = $db->prepare('INSERT INTO users VALUES(?, ?, ? ,?)');
+    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $name, $email));
   }
 
     function getAllUsernames() {

@@ -36,14 +36,10 @@ if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
 
 try {
     insertUser($username, $password, $_POST['realName'], $_POST['email']);
-    $users1 = getAllUsernames();
 
-    foreach($users1 as $user){echo ' ';
-        echo $user['username'];
-    }
     $_SESSION['username'] = $username;
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Signed up and logged in!');
-    //header('Location: news.php');
+    header('Location: news.php');
 } catch (PDOException $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
