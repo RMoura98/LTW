@@ -5,12 +5,10 @@ CREATE TABLE users (
   email VARCHAR
 );
 
--- All passwords are  1234in SHA-1 format
+
 INSERT INTO users VALUES ("dominic", "$2y$12$8WypB2UCcB6rsSiwXu3KkOxW3r9KInvKIX1/z8U2RWMBrPltjug2K", "Dominic Woods", 'dominic@gmail.com'); --dominic123
-/* INSERT INTO users VALUES ("zachary", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Zachary Young");
-INSERT INTO users VALUES ("alicia", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Alicia Hamilton");
-INSERT INTO users VALUES ("abril", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Abril Cooley");
-INSERT INTO users VALUES ("nofilmynofucky", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", "Ze Manel"); */
+INSERT INTO users VALUES ('abril','$2y$12$KUUoacqjA6UzY4K1os1Qy.BFtoBg4TSBGp6goI7BuaHqWli4lsRZ2','Abril Cooley','ACooley@gmail.com'); --abril123
+INSERT INTO users VALUES ("nofilmynofucky", "$2y$12$UcsUKYAqBb.4xyyQA8fHCeCjtDESj3aCgmLtC8nMalTVq2BzBwfDq", "Ze Manel", "manelZe@gmail.com"); --nofilmynofucky
 
 -----------------------------------------------------------------------------------------------------
 
@@ -40,7 +38,7 @@ INSERT INTO news VALUES (NULL,
   
 INSERT INTO news VALUES (NULL,
   'sei la',
-  1507901651,
+  1507901652,
   'politics,HMMMM',
   'dominic',
   "https://dummyimage.com/600x300/008ebd/fff.jpg&text=business",
@@ -49,7 +47,7 @@ INSERT INTO news VALUES (NULL,
 
 INSERT INTO news VALUES (NULL,
   'Macaque is huge',
-  1507901651,
+  1543619157,
   'WTF,HMMMM',
   'nofilmynofucky',
   "https://images.unsplash.com/photo-1516956431828-b10b67f654d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1abfd58b74a89775f1c75a22cc8b1605&w=1000&q=80",

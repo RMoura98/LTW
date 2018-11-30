@@ -1,14 +1,14 @@
 <?php 
 include_once('./news.php');
-    echo $_GET['id'];
     $post = getNewsById($_GET['id']);
-
-    echo $post;
+    echo $post['title'];
 ?>
 
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
+    <title>Super LTW News 2018</title>    
+    <meta charset="UTF-8">
     <title>Super Legit News</title>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,8 +20,8 @@ include_once('./news.php');
   </head>
   <body>
     <header>
-      <h1><a href="../index.php">Super Legit News</a></h1>
-      <h2><a href="../index.php">Where fake news are born!</a></h2>
+      <h1><a href="news.php">Super Legit News</a></h1>
+      <h2><a href="news.php">Where fake news are born!</a></h2>
       <div id="signup">
         <?php 
         include('../includes/session.php');
@@ -39,16 +39,6 @@ include_once('./news.php');
         
       </div>
     </header>
-    <nav id="menu">
-      <ul>
-        <li><a href="../index.php">Local</a></li>
-        <li><a href="../index.php">World</a></li>
-        <li><a href="../index.php">Politics</a></li>
-        <li><a href="../index.php">Sports</a></li>
-        <li><a href="../index.php">Science</a></li>
-        <li><a href="../index.php">Weather</a></li>
-      </ul>
-    </nav>
     <aside id="related">
       <article>
         <h1><a href="#">Duis arcu purus</a></h1>
@@ -63,6 +53,7 @@ include_once('./news.php');
         <p>Proin lectus felis, fringilla nec magna ut, vestibulum volutpat elit. Suspendisse in quam sed tellus fringilla luctus quis non sem. Aenean varius molestie justo, nec tincidunt massa congue vel. Sed tincidunt interdum laoreet. Vivamus vel odio bibendum, tempus metus vel.</p>
       </article>
     </aside>
+
     <section id="news">
       <article>
         <header>
