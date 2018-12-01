@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <title>Super Legit News</title>    
+
+<head>
+    <title>Super Legit News</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/style.css" rel="stylesheet">
@@ -9,38 +10,40 @@
     <link href="../css/responsive.css" rel="stylesheet">
     <link href="../css/comments.css" rel="stylesheet">
     <link href="../css/forms.css" rel="stylesheet">
-  </head>
-  <body>
+</head>
+
+<body>
     <header>
-      <h1><a href="../php/news.php">Super Legit News</a></h1>
-      <h2><a href="../php/news.php">Where fake news are born!</a></h2>
+        <h1><a href="../php/news.php">Super Legit News</a></h1>
+        <h2><a href="../php/news.php">Where fake news are born!</a></h2>
 
     </header>
 
 
     <section id="register">
-      <h1>Register</h1>
-      <form action="../php/register.php" method="POST">
-        <label>
-          Username <input type="text" name="username">
-        </label>
-        <label>
-            Real Name <input type="text" name="realName">
-        </label>
-        <!-- <label>
-            Profile Picture <input type="file" name="fileToUpload" id="fileToUpload">
-        </label> -->
-        <label>
-          E-mail <input type="email" name="email">
-        </label>
-        <label>
-          Password <input type="password" name="password">
-        </label>
-        <label>
-            Confirm Password <input type="password" name="passwordConfirm">
-        </label>
-        <input type="submit" value="Register">
-      </form>
+        <h1>Register</h1>
+            <form action="../php/register.php" enctype="multipart/form-data" method="POST">
+            <label>
+                Username <input type="text" name="username">
+            </label>
+            <label>
+                Real Name <input type="text" name="realName">
+            </label>
+            <label>
+                Choose Image : <input name="img" size="35" type="file" />
+            </label>
+            <label>
+                E-mail <input type="email" name="email">
+            </label>
+            <label>
+                Password <input type="password" name="password">
+            </label>
+            <label>
+                Confirm Password <input type="password" name="passwordConfirm">
+            </label>
+            <input type="submit" value="Register">
+        </form>
     </section>
-  </body>
+</body>
+
 </html>

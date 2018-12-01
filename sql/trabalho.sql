@@ -2,13 +2,14 @@ CREATE TABLE users (
   username VARCHAR PRIMARY KEY,
   password VARCHAR,
   name VARCHAR,
-  email VARCHAR
+  email VARCHAR,
+  profImgUrl VARCHAR
 );
 
 
-INSERT INTO users VALUES ("dominic", "$2y$12$8WypB2UCcB6rsSiwXu3KkOxW3r9KInvKIX1/z8U2RWMBrPltjug2K", "Dominic Woods", 'dominic@gmail.com'); --dominic123
-INSERT INTO users VALUES ('abril','$2y$12$KUUoacqjA6UzY4K1os1Qy.BFtoBg4TSBGp6goI7BuaHqWli4lsRZ2','Abril Cooley','ACooley@gmail.com'); --abril123
-INSERT INTO users VALUES ("nofilmynofucky", "$2y$12$UcsUKYAqBb.4xyyQA8fHCeCjtDESj3aCgmLtC8nMalTVq2BzBwfDq", "Ze Manel", "manelZe@gmail.com"); --nofilmynofucky
+INSERT INTO users VALUES ("dominic", "$2y$12$8WypB2UCcB6rsSiwXu3KkOxW3r9KInvKIX1/z8U2RWMBrPltjug2K", "Dominic Woods", 'dominic@gmail.com','https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/President_Vladimir_Putin.jpg/220px-President_Vladimir_Putin.jpg'); --dominic123
+INSERT INTO users VALUES ('abril','$2y$12$KUUoacqjA6UzY4K1os1Qy.BFtoBg4TSBGp6goI7BuaHqWli4lsRZ2','Abril Cooley','ACooley@gmail.com','https://ssli.ulximg.com/image/740x493/gallery/1516391814_86a3f68511bf3f10321b56a10b997365.jpg/73b0e90570cc1ca5d38c500d7fd2b983/1516391814_a5e260896c61125fdae94033d2c2e636.jpg'); --abril123
+INSERT INTO users VALUES ("nofilmynofucky", "$2y$12$UcsUKYAqBb.4xyyQA8fHCeCjtDESj3aCgmLtC8nMalTVq2BzBwfDq", "Ze Manel", "manelZe@gmail.com",'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Sir_Andrew_Noble_c1907.jpg/220px-Sir_Andrew_Noble_c1907.jpg'); --nofilmynofucky
 
 -----------------------------------------------------------------------------------------------------
 

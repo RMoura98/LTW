@@ -1,7 +1,8 @@
 <?php
-include('connection.php');
-include('../includes/session.php');
-include('../sql/db_user.php');
+include_once('connection.php');
+include_once('../includes/session.php');
+include_once('../sql/db_user.php');
+include_once('functions.php');
 
 
 
@@ -34,15 +35,19 @@ if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
     header('Location: ../html/register.html');   
 }
 
+$profilePicUrl = upload_img($_FILES['img']);
+echo $profilePicUrl;
 try {
-    insertUser($username, $password, $_POST['realName'], $_POST['email']);
+    insertUser($username, $password, $_POST['realName'], $_POST['email'], $profilePicUrl);
 
     $_SESSION['username'] = $username;
+    $_SESSION['profilePic'] = $profilePicUrl;
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Signed up and logged in!');
     header('Location: news.php');
 } catch (PDOException $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
     header('Location: register.php');
-}
+} 
+
 ?>

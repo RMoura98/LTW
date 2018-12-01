@@ -7,7 +7,7 @@ if(empty($_POST['comment'])){
     exit();
 }
 
-insertComment($_SESSION['username'],$_POST['comment'], $_POST['postId'])
+insertComment($_SESSION['username'],$_POST['comment'], $_POST['postId']);
 
-
+header('Location: ./news.php');
 ?>

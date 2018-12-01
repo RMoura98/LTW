@@ -59,7 +59,7 @@
         
       <article>
         <header>
-          <h1><a href="item.html"><?=$post['title']?></a></h1>
+          <h1><a href="item.php?id=<?=$post['id']?>"><?=$post['title']?></a></h1>
         </header>
         <img id="byId" src=<?=$post['imageUrl']?> alt="">
         <p><?=$post['fulltext']?></p>
@@ -93,6 +93,7 @@
             foreach($comments as $comment) { ?>
                 <article class="comment">
                     <span class="user"><?=$comment['username']?></span>
+                    <a href="../res/reply.png"><img src="../res/reply.png" alt="reply" width="50" height="50"></a>
                     <span class="likes"><?=$comment['upvotes']?></span> 
                     <span class="dislikes"><?=$comment['downvotes']?></span> 
                     <span class="date"><?=time_ago($comment['published'])?></span>
