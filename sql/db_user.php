@@ -14,11 +14,11 @@
   /**
    * insere um user na base de dados
    */
-  function insertUser($username, $password, $name, $email) {
+  function insertUser($username, $password, $name, $email, $profilePicUrl) {
     global $db;
     $options = ['cost' => 12];
-    $stmt = $db->prepare('INSERT INTO users VALUES(?, ?, ? ,?)');
-    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $name, $email));
+    $stmt = $db->prepare('INSERT INTO users VALUES(?, ?, ?, ?, ?)');
+    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $name, $email, $profilePicUrl));
   }
 
   function insertComment($username, $text, $postId) {
@@ -32,6 +32,13 @@
         global $db;
         $stmt = $db->prepare('SELECT * from users');
         $stmt->execute();
+        return $stmt->fetchAll();
+    }   
+
+    function getProfPicFromUsername($username) {
+        global $db;
+        $stmt = $db->prepare('SELECT profImgUrl from users where username = ?');
+        $stmt->execute(array($username));
         return $stmt->fetchAll();
     }   
 
