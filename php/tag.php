@@ -5,7 +5,7 @@ include_once('../includes/session.php');
 
 $tagId = $_GET['id'];
 
-$_SESSION["previousPage"] = '../php/tag.php';
+$_SESSION["previousPage"] = '../php/tag.php?id='.$_GET['id'];
 
 draw_header();
 draw_aside();

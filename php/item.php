@@ -83,7 +83,7 @@ draw_aside();
             <?php
             }
             else{
-                 echo '<form action="../php/login.html">
+                 echo '<form action="../php/login.php">
                     <h2>You need to be logged in to comment!</h2>
                     <input type="submit" value="loggin">
                 </form>';

@@ -53,7 +53,7 @@ try {
         exit();
     }
     else {
-        header('Location: '.$_SESSION['previousPage']);
+        header('Location: news.php');
         exit();
     }
 } catch (PDOException $e) {

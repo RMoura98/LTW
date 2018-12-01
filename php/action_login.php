@@ -20,7 +20,7 @@ if (checkUserPassword($username, $password)) {
         exit();
     }
     else {
-        header('Location: '.$_SESSION['previousPage']);
+        header('Location: news.php');
         exit();
     }
         
