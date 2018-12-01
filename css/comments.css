@@ -59,8 +59,6 @@
   #comments form h2 {
     font-size: 1em;
   }
-
-  #reply p {
-    background-color: #31eff0;
-    padding: 1em;
+  .reply{
+    padding-left: 3em !important;
   }

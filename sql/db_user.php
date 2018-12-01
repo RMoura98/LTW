@@ -1,5 +1,5 @@
 <?php
-    include('../php/connection.php');
+    include('../php/functions.php');
   /**
    * Verifies if a certain username, password combination
    * exists in the database. Use the sha1 hashing function.

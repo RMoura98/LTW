@@ -1,5 +1,5 @@
 <?php 
-include_once('./news.php');
+include_once('./functions.php');
     $tagId = $_GET['id'];
 ?>
 
@@ -55,12 +55,16 @@ include_once('./news.php');
       </article>
     </aside>
     <section id="news">
+    <div id="tag">
+        <h1>#<?=$tagId?></h1>
+    </div>
+    
     <?php 
     $articles = getAllNews();
     foreach($articles as $article) { 
         $fulltags = explode(',', $article['tags']);
         foreach($fulltags as $tag) {
-            if ($tagId == $tag){    ?>
+            if (strcasecmp($tagId, $tag) == 0){    ?>
                 <article>
                 <header>
                     <h1><a href="item.php/?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
