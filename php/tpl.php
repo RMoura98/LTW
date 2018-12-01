@@ -29,7 +29,7 @@ include '../includes/session.php';
 if (isset($_SESSION['username'])) {
     echo '<a href="../html/profile.html">' . $_SESSION['username'] . '</a>';
     echo '<a href="../html/profile.html"><img class="avatar" src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
-    echo '<a href="../php/logout.php"><img class="avatar" src="../res/logout.png" alt="Logout" ></a>';
+    echo '<a href="../php/action_logout.php"><img class="avatar" src="../res/logout.png" alt="Logout" ></a>';
 } else {
     echo '<a href="../html/register.html">Register</a>';
     echo '<a href="../html/login.html">Login</a>';

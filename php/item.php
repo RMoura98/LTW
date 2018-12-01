@@ -69,7 +69,7 @@ draw_aside();
 
             include('../includes/session.php');
             if (isset($_SESSION['username']) ){ ?>
-                <form action="comment.php" method="POST">
+                <form action="action_comment.php" method="POST">
                     <h2>Add your voice...</h2>
                     <label>Comment
                     <textarea name="comment"></textarea>            
