@@ -1,7 +1,6 @@
     #comments {
     margin: 1em;
-  }
-  
+  }  
   
   #comments .user {
     font-style: italic;
@@ -59,4 +58,9 @@
   
   #comments form h2 {
     font-size: 1em;
+  }
+
+  #reply p {
+    background-color: #31eff0;
+    padding: 1em;
   }

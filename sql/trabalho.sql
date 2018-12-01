@@ -88,3 +88,11 @@ CREATE TABLE if not exists  reply
     upvotes integer default 0,
     downvotes integer default 0
 );
+
+INSERT INTO reply VALUES (NULL,
+  1,
+  'abril',
+  1508244444,
+  'Aliquam maximus commodo dui, ut viverra urna vulputate et. Donec posuere vitae sem sed vehicula. Sed in erat eu diam fringilla sodales. Aenean lacinia vulputate nisl, dignissim dignissim nisl. Nam at nibh mollis, facilisis nibh sit amet, mattis urna. Maecenas.',
+  2,1
+);

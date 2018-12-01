@@ -142,23 +142,28 @@ body > header {
     content: "By ";
   }
 
-  #news footer .likes {
+  #news .likes {
     margin-left: 1em;
   }
   
-  #news footer .likes:after {
+  #news .likes:after {
     content: ' 👍';
   }
 
-  #news footer .dislikes {
+  #news .dislikes {
     margin-left: 1em;
     margin-right: 1em;
   }
   
-  #news footer .dislikes:after {
+  #news .dislikes:after {
     content: ' 👎';
   }
   
+  /* Comments */
+
+article .dislikes{
+    text-decoration: #046dd5;
+}
   
   /* related */
   

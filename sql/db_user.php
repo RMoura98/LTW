@@ -21,10 +21,19 @@
     $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $name, $email));
   }
 
+  function insertComment($username, $text, $postId) {
+    global $db;
+    $now = time();
+    $stmt = $db->prepare('INSERT INTO comments VALUES(NULL,?, ?, ? ,?,0,0)');
+    $stmt->execute(array($postId,$username, $now, $text));
+  }
+
     function getAllUsernames() {
         global $db;
         $stmt = $db->prepare('SELECT * from users');
         $stmt->execute();
         return $stmt->fetchAll();
     }   
+
+
 ?>
