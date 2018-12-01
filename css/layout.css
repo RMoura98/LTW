@@ -14,7 +14,10 @@ body {
   body > header {
     grid-column: start / end;
   }
-
+  
+  #menu {
+    grid-column: start;
+  }
   
   aside {
     grid-column: middle;
@@ -52,7 +55,17 @@ body {
     grid-row: 2;
   }
   
-
+  /* navigation layout */
+  
+  #menu ul {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #menu li {
+    display: block;
+    flex: 1;
+  }
   
   /* article footer layout */
   
