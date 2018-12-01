@@ -9,6 +9,7 @@ include_once('functions.php');
 if(empty($_POST['username']) || empty($_POST['password'])|| empty($_POST['passwordConfirm'])|| empty($_POST['email'])|| empty($_POST['realName'])){
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'register failed!');
     header('Location: ../html/register.html');
+    exit();
 }
 
 $username = $_POST['username'];
@@ -19,6 +20,7 @@ foreach($users as $user){
     if($user['username'] == $username){
         $_SESSION['messages'][] = array('type' => 'error', 'content' => 'That username is already taken!');
         header('Location: ../html/register.html');   
+        exit();
     }
 }
        
@@ -26,6 +28,7 @@ foreach($users as $user){
 if($_POST['password'] != $_POST['passwordConfirm']){
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Those passwords didn\'t match. Try again.');
     header('Location: ../html/register.html');   
+    exit();
 }
 
 
@@ -33,6 +36,7 @@ if($_POST['password'] != $_POST['passwordConfirm']){
 if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Username can only contain letters and numbers!');
     header('Location: ../html/register.html');   
+    exit();
 }
 
 $profilePicUrl = upload_img($_FILES['img']);
@@ -43,11 +47,20 @@ try {
     $_SESSION['username'] = $username;
     $_SESSION['profilePic'] = $profilePicUrl;
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Signed up and logged in!');
-    header('Location: news.php');
+    
+    if(isset($_SESSION['previousPage'])){
+        header('Location: '. $_SESSION['previousPage']);
+        exit();
+    }
+    else {
+        header('Location: '.$_SESSION['previousPage']);
+        exit();
+    }
 } catch (PDOException $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
     header('Location: ../html/register.html');   
+    exit();
 } 
 
 ?>

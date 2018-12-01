@@ -25,14 +25,15 @@ function draw_header() {
       <h2><a href="news.php">Where fake news are born!</a></h2>
       <div id="signup">
         <?php
-include '../includes/session.php';
+        include_once('../includes/session.php');
+        
 if (isset($_SESSION['username'])) {
-    echo '<a href="../html/profile.html">' . $_SESSION['username'] . '</a>';
-    echo '<a href="../html/profile.html"><img class="avatar" src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
+    echo '<a href="../php/profile.php">' . $_SESSION['username'] . '</a>';
+    echo '<a href="../php/profile.php"><img class="avatar" src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
     echo '<a href="../php/action_logout.php"><img class="avatar" src="../res/logout.png" alt="Logout" ></a>';
 } else {
-    echo '<a href="../html/register.html">Register</a>';
-    echo '<a href="../html/login.html">Login</a>';
+    echo '<a href="../php/register.php">Register</a>';
+    echo '<a href="../php/login.php">Login</a>';
 }?></div>
 </header>
       <!-- <?php if (isset($_SESSION['messages'])) {?>
@@ -76,3 +77,9 @@ function draw_footer() {  ?>
         </body>
     </html>
 <?php } ?>
+
+
+
+
+
+

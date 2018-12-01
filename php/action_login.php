@@ -4,7 +4,7 @@ include_once('../includes/session.php');
 include_once('../sql/db_user.php');
 
 if(empty($_POST['username']) || empty($_POST['password'])){
-    header('Location: ../html/login.html');
+    header('Location: ../php/login.php');
     exit();
 }
 $username = $_POST['username'];
@@ -14,9 +14,20 @@ if (checkUserPassword($username, $password)) {
     $user = getProfPicFromUsername($username);
     $_SESSION['profilePic'] = $user[0]["profImgUrl"];
     $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Logged in successfully!');
-    header('Location: news.php');
-} else {
+    var_dump($_SESSION);
+    if(isset($_SESSION['previousPage'])){
+        header('Location: ' . $_SESSION['previousPage']);
+        exit();
+    }
+    else {
+        header('Location: '.$_SESSION['previousPage']);
+        exit();
+    }
+        
+} 
+else {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!');
-    header('Location: ../html/login.html'); 
+    header('Location: ../php/login.php'); 
+    exit();
 }
 ?>

@@ -2,8 +2,11 @@
 
 include_once('./functions.php'); 
 include_once('./tpl.php');
+include_once('../includes/session.php');
 
 $post = getNewsById($_GET['id']);
+
+$_SESSION['previousPage'] = '../php/item.php?id='.$_GET['id'];
 
 draw_header();
 draw_aside();
@@ -80,7 +83,7 @@ draw_aside();
             <?php
             }
             else{
-                 echo '<form action="../html/login.html">
+                 echo '<form action="../php/login.html">
                     <h2>You need to be logged in to comment!</h2>
                     <input type="submit" value="loggin">
                 </form>';
