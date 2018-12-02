@@ -18,6 +18,7 @@ function draw_header() {
     <link href="../css/responsive.css" rel="stylesheet">
     <link href="../css/comments.css" rel="stylesheet">
     <link href="../css/forms.css" rel="stylesheet">
+    
   </head>
   <body>
     <header>
@@ -53,7 +54,7 @@ if (isset($_SESSION['username'])) {
 function draw_aside($isFrontPage = FALSE) {  ?>
     <aside id="related">
         <?php if($isFrontPage) { ?>
-            <a href="createPost"><button class="button" style="vertical-align:middle"><span>Create Post </span></button></a>
+            <a href="../php/createPost"><button class="button" style="vertical-align:middle"><span>Create Post</span></button></a>
         <?php } ?>
         <article>
             <h1><a href="#">Duis arcu purus</a></h1>
