@@ -1,7 +1,6 @@
 <?php
 include_once './tpl.php';
 include_once '../includes/session.php';
-include_once('../includes/session.php');
 
 draw_header();
 draw_aside();

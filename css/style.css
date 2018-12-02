@@ -181,6 +181,31 @@ article .dislikes{
   #related p {
     color: white;
   }
+
+  #related button {
+    display: inline-block;
+    padding: 15px 25px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 4px #999;
+    margin-bottom: 1em;
+  }
+  
+  #related button:hover {background-color: #3e8e41}
+  
+  #related button:active {
+    background-color: #295e2b;
+    box-shadow: 0 1px #666;
+    transform: translateY(3px);
+  }
   
   /* footer */
   

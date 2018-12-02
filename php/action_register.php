@@ -53,13 +53,13 @@ try {
         exit();
     }
     else {
-        header('Location: news.php');
+        header('Location: frontpage');
         exit();
     }
 } catch (PDOException $e) {
     die($e->getMessage());
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
-    header('Location: ../html/register.html');   
+    header('Location: ../php/register.php');   
     exit();
 } 
 

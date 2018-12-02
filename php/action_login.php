@@ -4,11 +4,12 @@ include_once('../includes/session.php');
 include_once('../sql/db_user.php');
 
 if(empty($_POST['username']) || empty($_POST['password'])){
-    header('Location: ../php/login.php');
+    header('Location: ../php/login');
     exit();
 }
 $username = $_POST['username'];
 $password = $_POST['password'];
+
 if (checkUserPassword($username, $password)) {
     $_SESSION['username'] = $username;
     $user = getProfPicFromUsername($username);
@@ -20,14 +21,14 @@ if (checkUserPassword($username, $password)) {
         exit();
     }
     else {
-        header('Location: news.php');
+        header('Location: frontpage');
         exit();
     }
         
 } 
 else {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!');
-    header('Location: ../php/login.php'); 
+    header('Location: ../php/login'); 
     exit();
 }
 ?>

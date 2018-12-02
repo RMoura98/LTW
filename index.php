@@ -1,4 +1,4 @@
 <?php
-  header('Location: php/news');
+  header('Location: php/frontpage');
   exit();
 ?>

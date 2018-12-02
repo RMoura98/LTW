@@ -6,7 +6,7 @@ include_once('../includes/session.php');
 
 $post = getNewsById($_GET['id']);
 
-$_SESSION['previousPage'] = '../php/item.php?id='.$_GET['id'];
+$_SESSION['previousPage'] = '../php/item?id='.$_GET['id'];
 
 draw_header();
 draw_aside();
@@ -16,7 +16,7 @@ draw_aside();
         
       <article>
         <header>
-          <h1><a href="item.php?id=<?=$post['id']?>"><?=$post['title']?></a></h1>
+          <h1><a href="item?id=<?=$post['id']?>"><?=$post['title']?></a></h1>
         </header>
         <img id="byId" src=<?=$post['imageUrl']?> alt="">
         <p><?=$post['fulltext']?></p>
@@ -28,7 +28,7 @@ draw_aside();
                 <?php
                 $fulltags = explode(',', $post['tags']);
                 foreach($fulltags as $tag) {
-                    echo "<a href='tag.php?id=$tag'>#$tag</a> ";
+                    echo "<a href='tag?id=$tag'>#$tag</a> ";
                 }
                 ?>
                 </span>

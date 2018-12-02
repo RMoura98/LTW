@@ -21,19 +21,19 @@ function draw_header() {
   </head>
   <body>
     <header>
-      <h1><a href="news.php">Super Legit News</a></h1>
-      <h2><a href="news.php">Where fake news are born!</a></h2>
+      <h1><a href="frontpage">Super Legit News</a></h1>
+      <h2><a href="frontpage">Where fake news are born!</a></h2>
       <div id="signup">
         <?php
         include_once('../includes/session.php');
         
 if (isset($_SESSION['username'])) {
-    echo '<a href="../php/profile.php">' . $_SESSION['username'] . '</a>';
-    echo '<a href="../php/profile.php"><img class="avatar" src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
-    echo '<a href="../php/action_logout.php"><img class="avatar" src="../res/logout.png" alt="Logout" ></a>';
+    echo '<a href="../php/profile">' . $_SESSION['username'] . '</a>';
+    echo '<a href="../php/profile"><img class="avatar" src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
+    echo '<a href="../php/action_logout"><img class="avatar" src="../res/logout.png" alt="Logout" ></a>';
 } else {
-    echo '<a href="../php/register.php">Register</a>';
-    echo '<a href="../php/login.php">Login</a>';
+    echo '<a href="../php/register">Register</a>';
+    echo '<a href="../php/login">Login</a>';
 }?></div>
 </header>
       <!-- <?php if (isset($_SESSION['messages'])) {?>
@@ -46,11 +46,15 @@ if (isset($_SESSION['username'])) {
 <?php } ?>
 
 <?php 
+
 /**
  * Draws the aside for all pages.
  */
-function draw_aside() {  ?>
+function draw_aside($isFrontPage = FALSE) {  ?>
     <aside id="related">
+        <?php if($isFrontPage) { ?>
+            <a href="createPost"><button class="button" style="vertical-align:middle"><span>Create Post </span></button></a>
+        <?php } ?>
         <article>
             <h1><a href="#">Duis arcu purus</a></h1>
             <p>Etiam mattis convallis orci eu malesuada. Donec odio ex, facilisis ac blandit vel, placerat ut lorem. Ut id sodales purus. Sed ut ex sit amet nisi ultricies malesuada. Phasellus magna diam, molestie nec quam a, suscipit finibus dui. Phasellus a.</p>

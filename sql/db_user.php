@@ -27,6 +27,18 @@
     $stmt = $db->prepare('INSERT INTO comments VALUES(NULL,?, ?, ? ,?,0,0)');
     $stmt->execute(array($postId,$username, $now, $text));
   }
+  
+  function insertPost($title, $tags, $username, $text, $picUrl) {
+    global $db;
+    $now = time();
+    $stmt = $db->prepare('INSERT INTO news VALUES (NULL, ?, ?, ?, ?, ?, "", ?,0,0,0)');
+    $stmt->execute(array($title,$now,$tags, $username, $picUrl, $text));
+    $stmt2 = $db->prepare('SELECT last_insert_rowid()');
+    $stmt2->execute();
+    return $stmt2->fetch()['last_insert_rowid()'];
+
+    var_dump($stmt->idlastrowid);
+  }
 
     function getAllUsernames() {
         global $db;
