@@ -7,7 +7,7 @@ draw_aside();
 ?>
 
 <h1> Profile</h1>
-    <img src="../res/avatar.png" alt="Photo">
+    <img src="<?=$_SESSION['profilePic']?>" alt="Photo">
     <h2>Username: ...</h2>
     <form>
         <label>

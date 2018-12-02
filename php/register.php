@@ -42,8 +42,8 @@ draw_aside();
             <input type="email" name="email" placeholder="Email">
             <input type="password" placeholder="password" name="password"/>
             <input type="password" name="passwordConfirm" placeholder="Confirm Password">
-            <button>login</button>
-            <p class="message">Not registered? <a href="../php/register">Create an account</a></p>
+            <button>Register</button>
+            <p class="message">Already have an Account?<a href="../php/login">Log In</a></p>
         </form>
     </div>
 </div>
