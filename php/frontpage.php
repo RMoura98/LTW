@@ -10,7 +10,23 @@ draw_aside(TRUE);
 ?>
     <section id="news">
 <?php
+
 $articles = getAllNews();
+
+if(isset($_GET['s'])){
+    switch ($_GET['s']) {
+        case 'top':
+            $articles = getAllNewsSortedBylikes();
+            break;
+        case 'controversial':
+            $articles = getAllNewsSortedByControversial();
+            break;
+        
+        default:
+            break;
+    }
+}
+
 foreach ($articles as $article) { ?>
         <article>
             <header>

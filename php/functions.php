@@ -16,6 +16,34 @@ function getAllNews() {
     return $stmt->fetchAll();
 }
 
+function getAllNewsSortedBylikes() {
+    global $db;
+    $stmt = $db->prepare('
+    SELECT news.*, users.*, COUNT(comments.id) AS comments
+    FROM news JOIN
+        users USING (username) LEFT JOIN
+        comments ON comments.news_id = news.id
+    GROUP BY news.id, users.username
+    ORDER BY upvotes DESC
+    ');
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+function getAllNewsSortedByControversial() {
+    global $db;
+    $stmt = $db->prepare('
+    SELECT news.*, users.*, COUNT(comments.id) AS comments
+    FROM news JOIN
+        users USING (username) LEFT JOIN
+        comments ON comments.news_id = news.id
+    GROUP BY news.id, users.username
+    ORDER BY downvotes DESC
+    ');
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+
 function getCommentsFromNewsId($newsId) {
     global $db;
     $stmt = $db->prepare('select * from comments where news_id = ? ORDER BY published DESC');

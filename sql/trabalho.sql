@@ -35,7 +35,7 @@ INSERT INTO news VALUES (NULL,
   'abril',
   "https://i.redd.it/0j5y38xz2f121.jpg",
   'Nulla sem non feugiat pharetra.',
-  'sod jiejr',1,2,0);
+  'sod jiejr',1,2,1);
   
 INSERT INTO news VALUES (NULL,
   'sei la',
@@ -44,7 +44,7 @@ INSERT INTO news VALUES (NULL,
   'dominic',
   "https://dummyimage.com/600x300/008ebd/fff.jpg&text=business",
   'Nulla sem non feugiat pharetra.',
-  'sod jiejr',1000,6,1);
+  'sod jiejr',1000,6,0);
 
 INSERT INTO news VALUES (NULL,
   'Macaque is huge',
@@ -53,7 +53,7 @@ INSERT INTO news VALUES (NULL,
   'nofilmynofucky',
   "https://images.unsplash.com/photo-1516956431828-b10b67f654d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1abfd58b74a89775f1c75a22cc8b1605&w=1000&q=80",
   '',
-  'sod jiejr',16932,1014,1000);
+  'sod jiejr',16932,1014,0);
 
 
 --------------------------------------------------------------------------------------------------------------------

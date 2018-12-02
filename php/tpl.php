@@ -56,11 +56,11 @@ function draw_aside($isFrontPage = FALSE) {  ?>
         <?php if($isFrontPage) { ?>
             <a href="../php/createPost"><button class="buttonCreate" style="vertical-align:middle"><span>Create Post</span></button></a>
             <div class="dropdown">
-                <button class="dropbtn">Sort By</button>
+                <button class="dropbtn">Sort</button>
                 <div class="dropdown-content">
-                    <a href="#">Recent</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    <a href="../php/frontpage">New</a>
+                    <a href="../php/frontpage?s=top">Top</a>
+                    <a href="../php/frontpage?s=controversial">Controversial</a>
                 </div>
             </div>
         <?php } ?>
