@@ -182,7 +182,7 @@ article .dislikes{
     color: white;
   }
 
-  #related button {
+  #related .buttonCreate {
     display: inline-block;
     padding: 15px 25px;
     font-size: 24px;
@@ -199,14 +199,54 @@ article .dislikes{
     margin-bottom: 1em;
   }
   
-  #related button:hover {background-color: #3e8e41}
+  #related .buttonCreate:hover {background-color: #3e8e41}
   
-  #related button:active {
+  #related .buttonCreate:active {
     background-color: #295e2b;
     box-shadow: 0 1px #666;
     transform: translateY(3px);
   }
   
+  .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
   /* footer */
   
   body > footer {

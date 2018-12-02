@@ -54,7 +54,15 @@ if (isset($_SESSION['username'])) {
 function draw_aside($isFrontPage = FALSE) {  ?>
     <aside id="related">
         <?php if($isFrontPage) { ?>
-            <a href="../php/createPost"><button class="button" style="vertical-align:middle"><span>Create Post</span></button></a>
+            <a href="../php/createPost"><button class="buttonCreate" style="vertical-align:middle"><span>Create Post</span></button></a>
+            <div class="dropdown">
+                <button class="dropbtn">Sort By</button>
+                <div class="dropdown-content">
+                    <a href="#">Recent</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
         <?php } ?>
         <article>
             <h1><a href="#">Duis arcu purus</a></h1>
