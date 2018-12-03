@@ -130,11 +130,13 @@ body > header {
 
   /* Pagination */
 
+
 .pagination a {
     color: black !important;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    font-weight: bold;
     transition: background-color .3s;
     border: 1px solid #ccc !important;
 }
@@ -242,6 +244,7 @@ article .dislikes{
   
     padding: 1em;
     margin-right: 1em;
+    text-align: center;
   
     height: 1em;
     position: relative;
@@ -251,6 +254,13 @@ article .dislikes{
   
   body > footer p {
     margin: 0;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  body > footer a {
+    text-decoration: none;
+    color: #fff;
   }
   
   /* fonts */ 

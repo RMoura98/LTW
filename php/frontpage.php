@@ -5,7 +5,7 @@ include_once('../includes/session.php');
 
 define("MAXPOSTPPAGE", "5");
 
-$_SESSION["previousPage"] = '../php/frontpage';
+$_SESSION["previousPage"] = $_SERVER['REQUEST_URI'];
 
 draw_header();
 draw_aside(TRUE);

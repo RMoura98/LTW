@@ -90,7 +90,7 @@ for ($i=1; $i < $maxPage + 1; $i++) {
     $c = '';
     $s = '../php/frontpage?p=' . $i;
     if($sort != '') 
-        $s = '&s=' . $sort;
+        $s .= '&s=' . $sort;
     if($page == $i)
         $c = 'class="active" ';
     echo '<a '.$c.'href="' . $s . '">' . $i . '</a>';
@@ -104,7 +104,9 @@ for ($i=1; $i < $maxPage + 1; $i++) {
  */
 function draw_footer() {  ?>
             <footer>
-                <p>&copy; Fake News, 2017</p>
+                <p>Copyright &copy; </p>
+                <a href="fe.up.pt">FEUP</a>
+                <p> | 2018</p>
             </footer>
         </body>
     </html>
