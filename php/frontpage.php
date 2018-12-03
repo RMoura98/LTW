@@ -3,7 +3,7 @@ include_once './functions.php';
 include_once './tpl.php';
 include_once('../includes/session.php');
 
-define("MAXPOSTPPAGE", "2");
+define("MAXPOSTPPAGE", "4");
 
 $_SESSION["previousPage"] = $_SERVER['REQUEST_URI'];
 
@@ -46,9 +46,7 @@ if(isset($_GET['p'])){
     }
     elseif($page == $maxPage){
         $page -= 1;
-        $iMax = count($articles);
-        var_dump($iMax);
-        
+        $iMax = count($articles);        
     }
     else
         header('Location: ../php/PageNotFound');
