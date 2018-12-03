@@ -6,6 +6,10 @@ include_once('../includes/session.php');
 
 $post = getNewsById($_GET['id']);
 
+if(!$post){
+    header('Location: ../php/error_404.php');
+}
+
 $_SESSION['previousPage'] = '../php/item?id='.$_GET['id'];
 
 draw_header();

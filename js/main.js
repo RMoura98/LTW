@@ -5,7 +5,7 @@ let signupForm = document.querySelector('.register-page');
 if (signupForm) {
     /* Handle signup submission trough AJAX */
     console.log(':D')
-    /* let loginAjaxContainer = document.querySelector('#ajax-form-container');
+    let loginAjaxContainer = document.querySelector('#ajax-form-container');
     let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
     let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
     let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
@@ -45,7 +45,7 @@ if (signupForm) {
     // Close failure ajax box button handler.
     ajaxFailBox.querySelector('button').onclick = () => {
         ajaxFailBox.style.display = 'none';
-    } */
+    } 
 }
 
 /* Login page functions */
