@@ -78,6 +78,25 @@ function draw_aside($isFrontPage = FALSE) {  ?>
         </article>
     </aside>
 <?php } ?>
+  
+<?php 
+/**
+ * Draws the footer for all pages.
+ */
+function draw_pagination($page, $maxPage, $sort) {  ?>
+<div class="pagination">
+<?php 
+for ($i=1; $i < $maxPage + 1; $i++) { 
+    $c = '';
+    $s = '../php/frontpage?p=' . $i;
+    if($sort != '') 
+        $s = '&s=' . $sort;
+    if($page == $i)
+        $c = 'class="active" ';
+    echo '<a '.$c.'href="' . $s . '">' . $i . '</a>';
+    } ?>
+</div>
+<?php } ?>
 
 <?php 
 /**

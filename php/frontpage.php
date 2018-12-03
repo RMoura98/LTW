@@ -3,6 +3,8 @@ include_once './functions.php';
 include_once './tpl.php';
 include_once('../includes/session.php');
 
+define("MAXPOSTPPAGE", "5");
+
 $_SESSION["previousPage"] = '../php/frontpage';
 
 draw_header();
@@ -14,7 +16,8 @@ draw_aside(TRUE);
 $articles = getAllNews();
 
 if(isset($_GET['s'])){
-    switch ($_GET['s']) {
+    $sort = $_GET['s'];
+    switch ($sort) {
         case 'top':
             $articles = getAllNewsSortedBylikes();
             break;
@@ -23,34 +26,64 @@ if(isset($_GET['s'])){
             break;
         
         default:
+            header('Location: ../php/PageNotFound');
             break;
     }
 }
+else $sort = '';
 
-foreach ($articles as $article) { ?>
-        <article>
+
+$maxPage = ceil(count($articles)/5);
+
+if(isset($_GET['p'])){
+    $page = $_GET['p'];
+    if($page < $maxPage && $page > 0){
+        $iMax = ($page * MAXPOSTPPAGE);
+        $page -= 1;
+    }
+    elseif($page == $maxPage){
+        $page -= 1;
+        $iMax = count($articles);
+    }
+    else
+        header('Location: ../php/PageNotFound');
+}
+else{
+   $page = 0; 
+   $iMax = 5;
+} 
+
+
+
+
+for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { ?>
+    
+    <article>
             <header>
-                <h1><a href="item?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
+                <h1><a href="item?id=<?=$articles[$i]['id']?>"><?=$articles[$i]['title']?></a></h1>
             </header>
-            <a href="item?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
+            <a href="item?id=<?=$articles[$i]['id']?>"><img src=<?=$articles[$i]['imageUrl']?> alt=""></a>
             <footer>
-                <span class="author"><?=$article['username']?></span>
-                <span class="likes"><?=$article['upvotes']?></span>
-                <span class="dislikes"><?=$article['downvotes']?></span>
+                <span class="author"><?=$articles[$i]['username']?></span>
+                <span class="likes"><?=$articles[$i]['upvotes']?></span>
+                <span class="dislikes"><?=$articles[$i]['downvotes']?></span>
                 <span class="tags">
 <?php
-$fulltags = explode(',', $article['tags']);
+$fulltags = explode(',', $articles[$i]['tags']);
 foreach ($fulltags as $tag) {
     echo "<a href='tag?id=$tag'>#$tag</a> ";
 }
 ?>              </span>
-                <span class="date"><?=time_ago($article['published'])?></span>
-                <a class="comments" href="item?id=<?=$article['id']?>#comments"><?=$article['comments']?></a>
+                <span class="date"><?=time_ago($articles[$i]['published'])?></span>
+                <a class="comments" href="item?id=<?=$articles[$i]['id']?>#comments"><?=$articles[$i]['comments']?></a>
             </footer>
         </article>
-        <?php }?>
-    </section>
+<?php }?>
+</section>
+
+
     
 <?php    
+draw_pagination($page + 1, $maxPage, $sort);
 draw_footer();
 ?>

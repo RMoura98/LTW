@@ -71,7 +71,7 @@ a {
     </span>
 	  <span style="display:block">}</span>
 	  <span style="color: #777;font-style:italic;">
-		  // <a href="../php/frontpage">Go home!</a>
+		  // <a href="/ltw/php/frontpage">Go home!</a>
 	  </span>
   </span>
 </div>
