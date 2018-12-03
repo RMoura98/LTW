@@ -133,7 +133,7 @@ body > header {
 
 .pagination a {
     color: black !important;
-    float: left;
+    float: left;    
     padding: 8px 16px;
     text-decoration: none;
     font-weight: bold;

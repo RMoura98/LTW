@@ -14,9 +14,10 @@ draw_aside(TRUE);
 <?php
 
 $articles = getAllNews();
-
 if(isset($_GET['s'])){
     $sort = $_GET['s'];
+    if(is_numeric($sort))
+        header('Location: ../php/PageNotFound');
     switch ($sort) {
         case 'top':
             $articles = getAllNewsSortedBylikes();
@@ -37,6 +38,8 @@ $maxPage = ceil(count($articles)/5);
 
 if(isset($_GET['p'])){
     $page = $_GET['p'];
+    if(!is_numeric($page))
+        header('Location: ../php/PageNotFound');
     if($page < $maxPage && $page > 0){
         $iMax = ($page * MAXPOSTPPAGE);
         $page -= 1;
