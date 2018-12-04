@@ -2,6 +2,12 @@
 include_once './tpl.php';
 include_once('../includes/session.php');
 
+if (!isset($_SESSION)){
+    header('Location: ../php/error_404');
+    exit();
+}
+
+
 draw_header();
 draw_aside();
 ?>

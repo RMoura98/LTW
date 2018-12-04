@@ -2,6 +2,9 @@
 include_once './tpl.php';
 include_once '../includes/session.php';
 
+if(!isset($_SESSION['previousPage']))
+    $_SESSION['previousPage'] = '../php/frontpage';
+
 draw_header();
 draw_aside();
 ?>
@@ -11,8 +14,8 @@ draw_aside();
     <div class="form">
         <h1>Login</h1>
         <form action="../php/action_login.php" method="POST" id="loginForm">
-            <input type="text" placeholder="username" name="username"/>
-            <input type="password" placeholder="password" name="password"/>
+            <input type="text" placeholder="username" name="username" required/>
+            <input type="password" placeholder="password" name="password" required/>
             <input type="hidden" name="previousPage" value="<?=$_SESSION['previousPage']?>"/>
             <button>login</button>
             <p class="message">Not registered? <a href="../php/register">Create an account</a></p>

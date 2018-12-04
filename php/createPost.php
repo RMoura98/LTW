@@ -35,11 +35,11 @@ draw_aside();
     <div class="form">
         <h1>Create a Post</h1>
         <form action="../php/action_create_post.php" enctype="multipart/form-data" method="POST">
-            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="title" placeholder="Title" required>
             <textarea name="text" placeholder="Text (Optional)"></textarea>
             <p>Profile Picture</p>  
-            <input name="img" size="35" type="file" placeholder="Profile Picture"/>
-            <input type="text" name="tags" placeholder="Tags (use #)">
+            <input name="img" size="35" type="file" placeholder="Profile Picture" required/>
+            <input type="text" name="tags" placeholder="Tags (use #)" required>
             <button>Submit</button>
         </form>
     </div>

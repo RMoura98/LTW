@@ -6,7 +6,7 @@ include_once('functions.php');
 
 
 
-if(empty($_POST['username']) || empty($_POST['password'])|| empty($_POST['passwordConfirm'])|| empty($_POST['email'])|| empty($_POST['realName'])){
+/* if(empty($_POST['username']) || empty($_POST['password'])|| empty($_POST['passwordConfirm'])|| empty($_POST['email'])|| empty($_POST['realName'])){
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'register failed!');
     header('Location: ../php/register.php');
     exit();
@@ -61,6 +61,79 @@ try {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
     header('Location: ../php/register.php');   
     exit();
-} 
+}  */
 
+/* para ajax */
+
+/* if(empty($_POST['username']) || empty($_POST['password'])|| empty($_POST['passwordConfirm'])|| empty($_POST['email'])|| empty($_POST['realName'])){
+    echo 'empty';
+}
+else{ */
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    /* $users = getAllUsernames(); */
+
+    $ready = true;
+    
+    /* foreach($users as $user){
+        if($user['username'] == $username){
+            echo 'That username is already taken!';
+            $ready = false;
+            break;
+        }
+    } */
+    if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
+        /* Username can only contain letters and numbers! */
+        echo 'Username can only contain letters and numbers!';
+        $ready = false;
+    }
+    else if(getUser($username)){
+        echo 'That username is already taken!';
+        $ready = false;
+    }
+    else if(strlen($_POST['password']) < 6){
+        /* Those passwords didn't match. Try again. */
+        echo 'Password must be at least 6 characters long.';
+        $ready = false;
+    }
+    else if($_POST['password'] != $_POST['passwordConfirm']){
+        /* Those passwords didn't match. Try again. */
+        echo 'Those passwords didn\'t match. Try again.';
+        $ready = false;
+    }    
+
+    $filename = (string) $_POST['img'];
+    $filename = substr( $filename ,9, strlen($filename) - 1);
+    $filename = substr( $filename, 0, -2);
+    $fileSize = (string) $_POST['imgS'];
+    $fileSize = substr( $fileSize ,8, strlen($fileSize) - 1);
+    $fileSize = substr( $fileSize, 0, -1);
+
+    if($ready){
+        try {
+
+            $profilePicUrl = upload_img('../uploads/'. $filename, intval($fileSize));
+
+            $Pfiles = glob('../uploads/*'); // get all file names
+            foreach($Pfiles as $Pfile){ // iterate files
+                if(is_file($Pfile))
+                    unlink($Pfile); // delete file
+            }
+
+            /* unlink('../uploads/'. $filename); */
+            insertUser($username, $password, $_POST['realName'], $_POST['email'], $profilePicUrl);
+
+            $_SESSION['username'] = $username;
+            $_SESSION['profilePic'] = $profilePicUrl;
+
+            echo 'ok';    
+        } 
+        catch (PDOException $e) {
+            echo '404';
+        }  
+    }
+    
+    
+/* } */
 ?>

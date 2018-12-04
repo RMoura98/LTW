@@ -8,6 +8,10 @@ if(empty($_POST['title']) || empty($_POST['text']) || empty($_FILES['img']) || e
     exit();
 } 
 
+
+
+
+
 $picUrl = upload_img($_FILES['img']);
 
 $fulltags = str_replace(' ', '', $_POST['tags']);

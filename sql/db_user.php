@@ -47,6 +47,13 @@
         return $stmt->fetchAll();
     }   
 
+    function getUser($username) {
+        global $db;
+        $stmt = $db->prepare('SELECT * from users WHERE  users.username = ?');
+        $stmt->execute(array($username));
+        return $stmt->fetchAll();
+    }   
+
     function getProfPicFromUsername($username) {
         global $db;
         $stmt = $db->prepare('SELECT profImgUrl from users where username = ?');

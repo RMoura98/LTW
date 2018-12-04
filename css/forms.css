@@ -148,6 +148,7 @@
     margin: 0%;
     display:block;
     width: 50% !important;
+    background-color: #EF3B3A;
 }
 
 #ajax-form-success-fill{
@@ -326,4 +327,11 @@
         position: absolute;
         top: 50px;
         width: 20px;
+        /* margin-left: 170px;
+        margin-top: 260px; */
     }
+    #checkmarkR:after{
+        margin-left: 170px;
+        margin-top: 260px;  
+    }
+    

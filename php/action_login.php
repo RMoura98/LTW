@@ -32,10 +32,12 @@ else {
     exit();
 } */
 
-if(empty($_POST['username']) || empty($_POST['password'])){
+/* para ajax */
+
+/* if(empty($_POST['username']) || empty($_POST['password'])){
     echo 'fail1'; 
 }
-else{
+else{ */
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -48,7 +50,7 @@ else{
     else {
         echo 'fail2'; 
     }
-}
+/* } */
 
 
 

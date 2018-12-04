@@ -107,11 +107,12 @@ function getCommentsByNewId($id) {
 /**
  * returns a url from the uploaded image (imgur.com)
  */
-function upload_img($img) {
-    $filename = $img['tmp_name'];
+function upload_img($filename, $fileSize) {
+    /* debug_to_console($img);
+    $filename = $img['tmp_name']; */
     $client_id = "58c99d37e158363";
     $handle = fopen($filename, "r");
-    $data = fread($handle, filesize($filename));
+    $data = fread($handle, $fileSize);
     $pvars   = array('image' => base64_encode($data));
     $timeout = 30;
     $curl = curl_init();
@@ -124,8 +125,16 @@ function upload_img($img) {
     $out = curl_exec($curl);
     curl_close ($curl);
     $pms = json_decode($out,true);
-    $url=$pms['data']['link'];
+    $url= $pms['data']['link'];
     return $url;
+}
+
+function debug_to_console( $data ) {
+    $output = $data;
+    if ( is_array( $output ) )
+        $output = implode( ',', $output);
+
+    echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
 }
 
 ?>
