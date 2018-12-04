@@ -4,7 +4,6 @@
 let signupForm = document.querySelector('.register-page');
 if (signupForm) {
     /* Handle signup submission trough AJAX */
-    console.log(':D')
     let loginAjaxContainer = document.querySelector('#ajax-form-container');
     let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
     let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
@@ -49,10 +48,10 @@ if (signupForm) {
 }
 
 /* Login page functions */
-let loginForm = document.querySelector('#login-form');
+let loginForm = document.querySelector('#loginForm');
 if (loginForm) {
     /* Handle login submission trough AJAX */
-    let loginAjaxContainer = document.querySelector('#ajax-form-container');
+    let loginAjaxContainer = document.querySelector('.form');
     let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
     let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
     let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
@@ -60,21 +59,27 @@ if (loginForm) {
     let usernameField = loginForm.querySelector('input[name="username"]');
     let passwordField = loginForm.querySelector('input[name="password"]');
 
+    let previousPageField = loginForm.querySelector('input[name="previousPage"]');
+    let previousPage = previousPageField.value;
+
     // Submit form handler.
     loginForm.onsubmit = (e) => {
         e.preventDefault();
         ajaxRequestBox.style.display = 'flex';
         // Ajax request
-        makeHTTPRequest('../actions/action_login.php', 
+        makeHTTPRequest('../php/action_login.php',
             'post', 
-            {username: usernameField.value, password: passwordField.value}, 
-            (response) => { /* callback */
+            {username: usernameField.value, password: passwordField.value},
+            (response) => { 
                 if(response === 'ok') { 
                     ajaxSuccessBox.style.display = 'flex';
                     // Redirect user after 0.5s.
-                    setTimeout(function(){ window.location.replace("./main"); }, 500);
+                    setTimeout(function(){ window.location.replace(previousPage); }, 1100);
                 }
-                else if(response === 'fail') { 
+                else if(response === 'fail1') { 
+                    ajaxFailBox.style.display = 'flex';
+                }
+                else if(response === 'fail2') { 
                     ajaxFailBox.style.display = 'flex';
                 }
                 ajaxRequestBox.style.display = 'none';

@@ -3,7 +3,7 @@ include_once('connection.php');
 include_once('../includes/session.php');
 include_once('../sql/db_user.php');
 
-if(empty($_POST['username']) || empty($_POST['password'])){
+/* if(empty($_POST['username']) || empty($_POST['password'])){
     header('Location: ../php/login');
     exit();
 }
@@ -30,5 +30,26 @@ else {
     $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Login failed!');
     header('Location: ../php/login'); 
     exit();
+} */
+
+if(empty($_POST['username']) || empty($_POST['password'])){
+    echo 'fail1'; 
 }
+else{
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if (checkUserPassword($username, $password)) {
+        $_SESSION['username'] = $username;
+        $user = getProfPicFromUsername($username);
+        $_SESSION['profilePic'] = $user[0]["profImgUrl"];
+        echo 'ok';
+    } 
+    else {
+        echo 'fail2'; 
+    }
+}
+
+
+
 ?>

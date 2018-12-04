@@ -9,8 +9,7 @@ function draw_header() {
 <html lang="en-US">
   <head>
     <title>Super LTW News 2018</title>
-    <meta charset="UTF-8">
-    <title>Super Legit News</title>
+    <!-- <link rel="icon" href="../assets/favicon.ico"> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/style.css" rel="stylesheet">
@@ -18,6 +17,7 @@ function draw_header() {
     <link href="../css/responsive.css" rel="stylesheet">
     <link href="../css/comments.css" rel="stylesheet">
     <link href="../css/forms.css" rel="stylesheet">
+    <script src="../js/main.js" defer=""></script>
     
   </head>
   <body>
@@ -103,7 +103,7 @@ for ($i=1; $i < $maxPage + 1; $i++) {
  * Draws the footer for all pages.
  */
 function draw_footer() {  ?>
-            <footer>
+            <footer class="_footer">
                 <p>Copyright &copy; </p>
                 <a href="fe.up.pt">FEUP</a>
                 <p> | 2018</p>

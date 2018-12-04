@@ -43,7 +43,7 @@ draw_aside();
             <input type="password" placeholder="password" name="password"/>
             <input type="password" name="passwordConfirm" placeholder="Confirm Password">
             <button>Register</button>
-            <p class="message">Already have an Account?<a href="../php/login">Log In</a></p>
+            <p class="message">Already have an Account? <a href="../php/login">Log In</a></p>
         </form>
     </div>
 </div>

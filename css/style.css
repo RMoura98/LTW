@@ -84,7 +84,7 @@ body > header {
   #news footer {
     color: white;
     background-color: #2a2f33;
-  
+    flex:0;
     padding: 1em;
   }
   
@@ -241,6 +241,8 @@ article .dislikes{
   body > footer {
     background-color: #2a2f33;
     color: white;
+
+    flex:0;
   
     padding: 1em;
     margin-right: 1em;
@@ -267,6 +269,7 @@ article .dislikes{
   
   body {
     font-family: 'Verdana', sans-serif;
+    min-height: 100vh;
   }
   
   p {

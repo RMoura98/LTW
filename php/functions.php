@@ -73,7 +73,7 @@ define( 'TIMEBEFORE_HOUR',        '{num} hour ago' );
 define( 'TIMEBEFORE_HOURS',       '{num} hours ago' );
 define( 'TIMEBEFORE_YESTERDAY',   'yesterday' );
 define( 'TIMEBEFORE_FORMAT',      '%e %b' );
-define('TIMEBEFORE_FORMAT_YEAR', '%e %b, %Y' );
+define( 'TIMEBEFORE_FORMAT_YEAR', '%e %b, %Y' );
 
 function time_ago( $time )
 {
