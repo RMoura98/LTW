@@ -25,6 +25,9 @@ if(isset($_GET['s'])){
         case 'controversial':
             $articles = getAllNewsSortedByControversial();
             break;
+        case 'comments':
+            $articles = getAllNewsSortedByComments();
+            break;
         
         default:
             header('Location: ../php/PageNotFound');
