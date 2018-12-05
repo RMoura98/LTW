@@ -137,4 +137,18 @@ function debug_to_console( $data ) {
     echo "<script>console.log( 'Debug Objects: " . $output . "' );</script>";
 }
 
+function getFilePath($filename){
+    $filename = substr( $filename ,9, strlen($filename) - 1);
+    $filename = substr( $filename, 0, -2);
+    return $filename;
+} 
+
+function getFileSize($fileSize){
+    $fileSize = substr( $fileSize ,8, strlen($fileSize) - 1);
+    $fileSize = substr( $fileSize, 0, -1);
+    return intval($fileSize);
+} 
+
+
+
 ?>

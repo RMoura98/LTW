@@ -34,7 +34,7 @@ draw_aside();
 <div class="createPost-page">
     <div class="form">
         <h1>Create a Post</h1>
-        <form action="../php/action_create_post.php" enctype="multipart/form-data" method="POST">
+        <form action="../php/action_create_post.php" enctype="multipart/form-data" method="POST" id="createPageForm">
             <input type="text" name="title" placeholder="Title" required>
             <textarea name="text" placeholder="Text (Optional)"></textarea>
             <p>Profile Picture</p>  
@@ -42,6 +42,19 @@ draw_aside();
             <input type="text" name="tags" placeholder="Tags (use #)" required>
             <button>Submit</button>
         </form>
+        <div id="ajax-form-request-fill">
+            <div id="loader">
+                <div id="box"></div>
+                <div id="hill"></div>
+            </div>
+        </div>
+        <div id="ajax-form-failure-fill">
+            <strong id="error">Incorrect username or password</strong><br>
+            <button>Retry</button>
+        </div>
+        <div id="ajax-form-success-fill">
+            <div class="checkmark" ></div>
+        </div>
     </div>
 </div>
 

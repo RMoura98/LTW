@@ -103,17 +103,15 @@ else{ */
         $ready = false;
     }    
 
-    $filename = (string) $_POST['img'];
-    $filename = substr( $filename ,9, strlen($filename) - 1);
-    $filename = substr( $filename, 0, -2);
-    $fileSize = (string) $_POST['imgS'];
-    $fileSize = substr( $fileSize ,8, strlen($fileSize) - 1);
-    $fileSize = substr( $fileSize, 0, -1);
+    
+
+    $filename = getFilePath((string) $_POST['img']);
+    $fileSize = getFileSize((string) $_POST['imgS']);
 
     if($ready){
         try {
 
-            $profilePicUrl = upload_img('../uploads/'. $filename, intval($fileSize));
+            $profilePicUrl = upload_img('../uploads/'. $filename, $fileSize);
 
             $Pfiles = glob('../uploads/*'); // get all file names
             foreach($Pfiles as $Pfile){ // iterate files

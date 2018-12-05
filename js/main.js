@@ -43,13 +43,71 @@ if (signupForm) {
             }, 
             (response) => { /* callback */
                 if(response === 'ok') { 
-                    console.log('1');
                     ajaxSuccessBox.style.display = 'flex';
                     // Redirect user after 1.1s.
                     setTimeout(function(){ window.location.replace('../php/frontpage'); }, 1100);
                 }
                 else if (response === '404'){
-                    console.log('2');
+                    window.location.replace("./error_404");
+                }
+                else { // Error.
+                    ajaxFailBox.style.display = 'flex';
+                    ajaxFailBox.querySelector('#error').innerHTML = response;
+                }
+                ajaxRequestBox.style.display = 'none';
+            }
+        );
+    }
+
+    // Close failure ajax box button handler.
+    ajaxFailBox.querySelector('button').onclick = () => {
+        ajaxFailBox.style.display = 'none';
+    } 
+}
+
+/* Create Post page functions */
+let createPostForm = document.querySelector('#createPageForm');
+if (createPostForm) {
+    /* Handle signup submission trough AJAX */
+    let loginAjaxContainer = document.querySelector('.form');
+    let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
+    let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
+    let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
+
+    let titleField = createPostForm.querySelector('input[name="title"]');
+    let textField = createPostForm.querySelector('textarea');
+    let imgField = createPostForm.querySelector('input[name="img"]');
+    let tagsField = createPostForm.querySelector('input[name="tags"]');
+
+    imgField.onchange = function(e) { 
+        setTimeout(processImage(), 50);
+    };
+    
+    // Submit form handler.
+    createPostForm.onsubmit = (e) => {
+        e.preventDefault();
+        ajaxRequestBox.style.display = 'flex';
+
+        /* console.log(imgField.files); */
+
+        /* setTimeout(processImage(), 50); */
+
+        // Ajax request
+        makeHTTPRequest('../php/action_create_post.php', 
+            'post', 
+            {   title: titleField.value, 
+                text: textField.value,
+                img: JSON.stringify({name:imgField.files[0].name}),
+                imgS: JSON.stringify({name:imgField.files[0].size}),
+                tags: tagsField.value
+            }, 
+            (response) => { /* callback */
+                if (response.substring(0, 2) == 'ok') { 
+                    ajaxSuccessBox.style.display = 'flex';
+                    // Redirect user after 1.1s.
+                    setTimeout(function(){ window.location.replace('../php/item?id=' + response.substring(2, response.length)); }, 1100);
+                }
+                else if (response === '404'){
                     window.location.replace("./error_404");
                 }
                 else { // Error.
