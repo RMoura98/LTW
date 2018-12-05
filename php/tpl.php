@@ -61,6 +61,7 @@ function draw_aside($isFrontPage = FALSE) {  ?>
                     <a href="../php/frontpage">New</a>
                     <a href="../php/frontpage?s=top">Top</a>
                     <a href="../php/frontpage?s=controversial">Controversial</a>
+                    <a href="../php/random">Random</a>
                 </div>
             </div>
         <?php } ?>
