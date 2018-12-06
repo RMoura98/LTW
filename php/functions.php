@@ -95,6 +95,89 @@ function setOpinionUserNews($newsId, $username, $upvote, $dv) {
     }
 }
 
+function getOpinionUserComments($commId, $username) {
+    global $db;
+    $stmt = $db->prepare('
+    select * from userlikecomments where comment_id = ? and username = ?
+    ');
+    $stmt->execute(array($commId, $username));
+    return $stmt->fetchAll();
+}
+
+function setOpinionUserComments($commId, $username, $upvote, $dv) {
+    $opinion = getOpinionUserComments($commId, $username);
+    global $db;
+
+    print_r(':D');
+
+    $stmt1 = $db->prepare('
+    UPDATE comments SET upvotes = upvotes + ?, downvotes = downvotes + ? WHERE id = ?
+    ');
+    $stmt1->execute(array($upvote, $dv, $commId));
+
+    if($dv == -1) {
+        $dv  = '0';
+    }
+    if($upvote == -1){
+        $upvote = '0';
+    }
+    
+        
+    if(!$opinion){
+        $stmt2 = $db->prepare('
+        INSERT INTO userlikecomments VALUES (NULL, ?, ?, ?, ?)
+        ');
+        $stmt2->execute(array($username, $commId, $upvote, $dv ));
+    }
+    else {
+        $stmt3 = $db->prepare('
+        UPDATE userlikecomments SET upvote = ?, downvote = ? WHERE username = ? and comment_id = ?
+        ');
+        $stmt3->execute(array($upvote, $dv , $username, $commId));
+    }
+}
+
+function getOpinionUserReplys($replyId, $username) {
+    global $db;
+    $stmt = $db->prepare('
+    select * from userlikereply where reply_id = ? and username = ?
+    ');
+    $stmt->execute(array($replyId, $username));
+    return $stmt->fetchAll();
+}
+
+function setOpinionUserReplys($replyId, $username, $upvote, $dv) {
+    $opinion = getOpinionUserReplys($replyId, $username);
+    global $db;
+
+    print_r($username);
+
+    $stmt1 = $db->prepare('
+    UPDATE reply SET upvotes = upvotes + ?, downvotes = downvotes + ? WHERE id = ?
+    ');
+    $stmt1->execute(array($upvote, $dv, $replyId));
+
+    if($dv == -1) {
+        $dv  = '0';
+    }
+    if($upvote == -1){
+        $upvote = '0';
+    }
+    
+        
+    if(!$opinion){
+        $stmt2 = $db->prepare('
+        INSERT INTO userlikereply VALUES (NULL, ?, ?, ?, ?)
+        ');
+        $stmt2->execute(array($username, $replyId, $upvote, $dv ));
+    }
+    else {
+        $stmt3 = $db->prepare('
+        UPDATE userlikereply SET upvote = ?, downvote = ? WHERE username = ? and reply_id = ?
+        ');
+        $stmt3->execute(array($upvote, $dv , $username, $replyId));
+    }
+}
 
 function getCommentsFromNewsId($newsId) {
     global $db;

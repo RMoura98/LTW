@@ -68,7 +68,19 @@ INSERT INTO news VALUES (NULL,
   'sod jiejr',16932,1014,0);
 
 
---------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+CREATE TABLE if not exists userlikecomments (
+    id INTEGER PRIMARY KEY,
+    username VARCHAR REFERENCES users,
+    comment_id INTEGER REFERENCES comments,
+    upvote integer default 0,
+    downvote integer default 0
+);
+
+INSERT INTO userlikecomments VALUES (NULL, "dominic", 1, 1, 0);
+
+-----------------------------------------------------------------------------------------------------
 
 CREATE TABLE if not exists  comments (
     id INTEGER PRIMARY KEY,
@@ -89,7 +101,19 @@ INSERT INTO comments VALUES (NULL,
 );
 
 
--------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+CREATE TABLE if not exists userlikereply (
+    id INTEGER PRIMARY KEY,
+    username VARCHAR REFERENCES users,
+    reply_id INTEGER REFERENCES comments,
+    upvote integer default 0,
+    downvote integer default 0
+);
+
+INSERT INTO userlikereply VALUES (NULL, "dominic", 1, 1, 0);
+
+-----------------------------------------------------------------------------------------------------
 
 CREATE TABLE if not exists  reply
 (

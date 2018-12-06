@@ -26,12 +26,16 @@ draw_aside();
         <p><?=$post['fulltext']?></p>
         <footer>
         <span class="author"><?=$post['username']?></span>
+                <?php if (isset($_SESSION['username'])) { 
+                $opinion = getOpinionUserNews($post['id'], $_SESSION['username']);
+                ?>
                 <div class="newsLikeDiv">
-                    <input type="hidden" id="custId" name="id" value="<?=$_GET['id']?>">
-                    <i class="fas fa-thumbs-up"></i>
+                    <input type="hidden" name="id" value="<?=$post['id']?>">
+                    <i class="fas fa-thumbs-up" <?php if ($opinion && $opinion[0]['upvote']) echo 'style="color: green;"';?>></i>                   
                     <span class="likes"><?=$post['upvotes'] - $post['downvotes']?></span>
-                    <i class="fas fa-thumbs-down"></i>
+                    <i class="fas fa-thumbs-down" <?php if ($opinion && $opinion[0]['downvote']) echo 'style="color: red;"';?>></i>
                 </div>
+                <?php } ?>
                 <span class="tags">
                 <?php
                 $fulltags = explode(',', $post['tags']);
@@ -59,12 +63,16 @@ draw_aside();
                 <article class="comment">
                     <span class="user"><?=$comment['username']?></span>
                     <i class="fas fa-reply"></i>
+                    <?php if (isset($_SESSION['username'])) { 
+                    $opinion1 = getOpinionUserComments($comment['id'], $_SESSION['username']);
+                    ?>
                     <div class="commLikeDiv">
                         <input type="hidden" name="id" value="<?=$comment['id']?>">
-                        <i class="fas fa-thumbs-up"></i>
+                        <i class="fas fa-thumbs-up" <?php if ($opinion1 && $opinion1[0]['upvote']) echo 'style="color: green;"';?>></i>                   
                         <span class="likes"><?=$comment['upvotes'] - $comment['downvotes']?></span>
-                        <i class="fas fa-thumbs-down"></i>
-                    </div> 
+                        <i class="fas fa-thumbs-down" <?php if ($opinion1 && $opinion1[0]['downvote']) echo 'style="color: red;"';?>></i>
+                    </div>
+                    <?php } ?>
                     <i class="fas fa-reply"></i>
                     <span class="date"><?=time_ago($comment['published'])?></span>
                     <p><?=$comment['text']?></p>
@@ -72,12 +80,16 @@ draw_aside();
                     foreach($replys as $reply) { ?>
                         <article class="reply">
                             <span class="user"><?=$reply['username']?></span>
+                            <?php if (isset($_SESSION['username'])) { 
+                            $opinion2 = getOpinionUserReplys($reply['id'], $_SESSION['username']);
+                            ?>
                             <div class="replyLikeDiv">
                                 <input type="hidden" name="id" value="<?=$reply['id']?>">
-                                <i class="fas fa-thumbs-up"></i>
+                                <i class="fas fa-thumbs-up" <?php if ($opinion2 && $opinion2[0]['upvote']) echo 'style="color: green;"';?>></i>                   
                                 <span class="likes"><?=$reply['upvotes'] - $reply['downvotes']?></span>
-                                <i class="fas fa-thumbs-down"></i>
-                            </div> 
+                                <i class="fas fa-thumbs-down" <?php if ($opinion2 && $opinion2[0]['downvote']) echo 'style="color: red;"';?>></i>
+                            </div>
+                            <?php } ?>
                             <i class="fas fa-reply"></i>
                             <span class="date"><?=time_ago($reply['published'])?></span>
                             <p><?=$reply['text']?></p>
