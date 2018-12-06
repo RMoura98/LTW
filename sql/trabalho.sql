@@ -13,6 +13,18 @@ INSERT INTO users VALUES ("nofilmynofucky", "$2y$12$UcsUKYAqBb.4xyyQA8fHCeCjtDES
 
 -----------------------------------------------------------------------------------------------------
 
+CREATE TABLE if not exists userlikenews (
+    id INTEGER PRIMARY KEY,
+    username VARCHAR REFERENCES users,
+    news_id INTEGER REFERENCES news,
+    upvote integer default 0,
+    downvote integer default 0
+);
+
+INSERT INTO userlikenews VALUES (NULL, "dominic", 1, 1, 0);
+
+-----------------------------------------------------------------------------------------------------
+
 CREATE TABLE if not exists news (
     id INTEGER PRIMARY KEY,
     title VARCHAR,
@@ -24,7 +36,7 @@ CREATE TABLE if not exists news (
     fulltext VARCHAR,
     upvotes integer,
     downvotes integer,----default ou depois inicializa
-    count integer default 0 --wtf 
+    count integer default 0 -- aqui e para o contador de comentarios
 );
 
 

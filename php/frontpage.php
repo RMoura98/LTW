@@ -5,6 +5,7 @@ include_once('../includes/session.php');
 
 define("MAXPOSTPPAGE", "4");
 
+
 $_SESSION["previousPage"] = $_SERVER['REQUEST_URI'];
 
 draw_header();
@@ -55,8 +56,17 @@ if(isset($_GET['p'])){
         header('Location: ../php/PageNotFound');
 }
 else{
-   $page = 0; 
-   $iMax = MAXPOSTPPAGE;
+    $page = 1; 
+    if($page == $maxPage){
+        $page -= 1;
+        $iMax = count($articles);        
+    }
+    else{
+        $page -= 1;
+        $iMax = MAXPOSTPPAGE;
+    }
+    
+  
 } 
 
 for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { ?>
@@ -68,12 +78,16 @@ for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { ?>
             <a href="item?id=<?=$articles[$i]['id']?>"><img src=<?=$articles[$i]['imageUrl']?> alt=""></a>
             <footer>
                 <span class="author"><?=$articles[$i]['username']?></span>
+                <?php if (isset($_SESSION['username'])) { 
+                $opinion = getOpinionUserNews($articles[$i]['id'], $_SESSION['username']);
+                ?>
                 <div class="newsLikeDiv">
-                    <input type="hidden" name="id" value="<?=$articles[$i]['downvotes']?>">
-                    <i class="fas fa-thumbs-up"></i>
+                    <input type="hidden" name="id" value="<?=$articles[$i]['id']?>">
+                    <i class="fas fa-thumbs-up" <?php if ($opinion && $opinion[0]['upvote']) echo 'style="color: green;"';?>></i>                   
                     <span class="likes"><?=$articles[$i]['upvotes'] - $articles[$i]['downvotes']?></span>
-                    <i class="fas fa-thumbs-down"></i>
+                    <i class="fas fa-thumbs-down" <?php if ($opinion && $opinion[0]['downvote']) echo 'style="color: red;"';?>></i>
                 </div>
+                <?php } ?>
                 
                 <span class="tags">
 <?php

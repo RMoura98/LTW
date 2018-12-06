@@ -55,6 +55,46 @@ function getAllNewsSortedByComments() {
     return $stmt->fetchAll();
 }
 
+function getOpinionUserNews($newsId, $username) {
+    global $db;
+    $stmt = $db->prepare('
+    select * from userlikenews where news_id = ? and username = ?
+    ');
+    $stmt->execute(array($newsId, $username));
+    return $stmt->fetchAll();
+}
+
+function setOpinionUserNews($newsId, $username, $upvote, $dv) {
+    $opinion = getOpinionUserNews($newsId, $username);
+    global $db;
+
+    $stmt1 = $db->prepare('
+    UPDATE news SET upvotes = upvotes + ?, downvotes = downvotes + ? WHERE id = ?
+    ');
+    $stmt1->execute(array($upvote, $dv, $newsId));
+
+    if($dv == -1) {
+        $dv  = '0';
+    }
+    if($upvote == -1){
+        $upvote = '0';
+    }
+    
+        
+    if(!$opinion){
+        $stmt2 = $db->prepare('
+        INSERT INTO userlikenews VALUES (NULL, ?, ?, ?, ?)
+        ');
+        $stmt2->execute(array($username, $newsId, $upvote, $dv ));
+    }
+    else {
+        $stmt3 = $db->prepare('
+        UPDATE userlikenews SET upvote = ?, downvote = ? WHERE username = ? and news_id = ?
+        ');
+        $stmt3->execute(array($upvote, $dv , $username, $newsId));
+    }
+}
+
 
 function getCommentsFromNewsId($newsId) {
     global $db;
@@ -113,8 +153,8 @@ function getCommentsByNewId($id) {
     global $db;
     $stmt = $db->prepare('SELECT * FROM comments JOIN users USING (username) WHERE news_id = ?');
     $stmt->execute(array($id));
-    return $stmt->fetchAll();
-  }
+    return $stmt->fetch();
+}
 
 /**
  * returns a url from the uploaded image (imgur.com)

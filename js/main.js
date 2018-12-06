@@ -218,30 +218,52 @@ for(let likeD of NewslikeDiv) {
 
     thumbsUpField.onclick = () => {
         if (thumbsUpField.style.color == '') {
+            let downvotestmp = '0';
             thumbsUpField.style.color = "green";
             if (thumbsDownField.style.color == "red"){
                 likesField.textContent++;
                 thumbsDownField.style.color = "";
+                downvotestmp = '-1';
             }
             likesField.textContent++;
+            makeHTTPRequest('../php/action_like_news.php',
+            'post', 
+            {newsid: inputField.value, upvotes:'1',  downvotes: downvotestmp},
+            (response) => {/* console.log(response) */});
+
         }
         else {
             thumbsUpField.style.color = "";
             likesField.textContent--;
+            makeHTTPRequest('../php/action_like_news.php',
+            'post', 
+            {newsid: inputField.value, upvotes: '-1',  downvotes: '0'},
+            (response) => {/* console.log(response) */});
         }
     }
     thumbsDownField.onclick = () => {
+        let upvotestmp = '0'
         if (thumbsDownField.style.color == '') {
             thumbsDownField.style.color = "red";
             if (thumbsUpField.style.color == "green"){
                 likesField.textContent--;
                 thumbsUpField.style.color = "";
+                upvotestmp = '-1';
             }
             likesField.textContent--;
+            makeHTTPRequest('../php/action_like_news.php',
+            'post', 
+            {newsid: inputField.value, upvotes: upvotestmp,  downvotes: '1'},
+            (response) => {/* console.log(response)  */});
+            
         }
         else {
             thumbsDownField.style.color = "";
             likesField.textContent++;
+            makeHTTPRequest('../php/action_like_news.php',
+            'post', 
+            {newsid: inputField.value, upvotes: '0',  downvotes: '-1'},
+            (response) => {/* console.log(response) */});
         }
     }
 
