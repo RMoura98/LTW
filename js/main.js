@@ -111,7 +111,6 @@ if (createPostForm) {
                     window.location.replace("./error_404");
                 }
                 else { // Error.
-                    console.log(response);
                     ajaxFailBox.style.display = 'flex';
                     ajaxFailBox.querySelector('#error').innerHTML = response;
                 }
@@ -126,6 +125,7 @@ if (createPostForm) {
     } 
 }
 
+/* Process image */
 function processImage() {
     const files = document.querySelector('[type=file]').files;
     const formData = new FormData();
@@ -150,7 +150,7 @@ let loginForm = document.querySelector('#loginForm');
 if (loginForm) {
     /* Handle login submission trough AJAX */
     let loginAjaxContainer = document.querySelector('.form');
-    let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
+    /* let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill'); */
     let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
     let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
 
@@ -208,3 +208,122 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
+/* post likes*/
+let NewslikeDiv = document.getElementsByClassName('newsLikeDiv');
+for(let likeD of NewslikeDiv) {
+    let inputField = likeD.querySelector('input');
+    let thumbsUpField = likeD.querySelector('.fa-thumbs-up');
+    let thumbsDownField = likeD.querySelector('.fa-thumbs-down');
+    let likesField = likeD.querySelector('span');
+
+    thumbsUpField.onclick = () => {
+        if (thumbsUpField.style.color == '') {
+            thumbsUpField.style.color = "green";
+            if (thumbsDownField.style.color == "red"){
+                likesField.textContent++;
+                thumbsDownField.style.color = "";
+            }
+            likesField.textContent++;
+        }
+        else {
+            thumbsUpField.style.color = "";
+            likesField.textContent--;
+        }
+    }
+    thumbsDownField.onclick = () => {
+        if (thumbsDownField.style.color == '') {
+            thumbsDownField.style.color = "red";
+            if (thumbsUpField.style.color == "green"){
+                likesField.textContent--;
+                thumbsUpField.style.color = "";
+            }
+            likesField.textContent--;
+        }
+        else {
+            thumbsDownField.style.color = "";
+            likesField.textContent++;
+        }
+    }
+
+    
+}
+
+/* comment likes */
+let CommlikeDiv = document.getElementsByClassName('commLikeDiv');
+for(let likeD of CommlikeDiv) {
+    let inputField = likeD.querySelector('input');
+    let thumbsUpField = likeD.querySelector('.fa-thumbs-up');
+    let thumbsDownField = likeD.querySelector('.fa-thumbs-down');
+    let likesField = likeD.querySelector('span');
+
+    thumbsUpField.onclick = () => {
+        if (thumbsUpField.style.color == '') {
+            thumbsUpField.style.color = "green";
+            if (thumbsDownField.style.color == "red"){
+                likesField.textContent++;
+                thumbsDownField.style.color = "";
+            }
+            likesField.textContent++;
+        }
+        else {
+            thumbsUpField.style.color = "";
+            likesField.textContent--;
+        }
+    }
+    thumbsDownField.onclick = () => {
+        if (thumbsDownField.style.color == '') {
+            thumbsDownField.style.color = "red";
+            if (thumbsUpField.style.color == "green"){
+                likesField.textContent--;
+                thumbsUpField.style.color = "";
+            }
+            likesField.textContent--;
+        }
+        else {
+            thumbsDownField.style.color = "";
+            likesField.textContent++;
+        }
+    }
+
+    
+}
+
+/* reply likes */
+let replylikeDiv = document.getElementsByClassName('replyLikeDiv');
+for(let likeD of replylikeDiv) {
+    let inputField = likeD.querySelector('input');
+    let thumbsUpField = likeD.querySelector('.fa-thumbs-up');
+    let thumbsDownField = likeD.querySelector('.fa-thumbs-down');
+    let likesField = likeD.querySelector('span');
+
+    thumbsUpField.onclick = () => {
+        if (thumbsUpField.style.color == '') {
+            thumbsUpField.style.color = "green";
+            if (thumbsDownField.style.color == "red"){
+                likesField.textContent++;
+                thumbsDownField.style.color = "";
+            }
+            likesField.textContent++;
+        }
+        else {
+            thumbsUpField.style.color = "";
+            likesField.textContent--;
+        }
+    }
+    thumbsDownField.onclick = () => {
+        if (thumbsDownField.style.color == '') {
+            thumbsDownField.style.color = "red";
+            if (thumbsUpField.style.color == "green"){
+                likesField.textContent--;
+                thumbsUpField.style.color = "";
+            }
+            likesField.textContent--;
+        }
+        else {
+            thumbsDownField.style.color = "";
+            likesField.textContent++;
+        }
+    }
+
+    
+}

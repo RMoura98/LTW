@@ -26,8 +26,12 @@ draw_aside();
         <p><?=$post['fulltext']?></p>
         <footer>
         <span class="author"><?=$post['username']?></span>
-                <span class="likes"><?=$post['upvotes']?></span> 
-                <span class="dislikes"><?=$post['downvotes']?></span> 
+                <div class="newsLikeDiv">
+                    <input type="hidden" id="custId" name="id" value="<?=$_GET['id']?>">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span class="likes"><?=$post['upvotes'] - $post['downvotes']?></span>
+                    <i class="fas fa-thumbs-down"></i>
+                </div>
                 <span class="tags">
                 <?php
                 $fulltags = explode(',', $post['tags']);
@@ -54,17 +58,27 @@ draw_aside();
             foreach($comments as $comment) { ?>
                 <article class="comment">
                     <span class="user"><?=$comment['username']?></span>
-                    <a href="../res/reply.png"><img src="../res/reply.png" alt="reply" width="50" height="50"></a>
-                    <span class="likes"><?=$comment['upvotes']?></span> 
-                    <span class="dislikes"><?=$comment['downvotes']?></span> 
+                    <i class="fas fa-reply"></i>
+                    <div class="commLikeDiv">
+                        <input type="hidden" name="id" value="<?=$comment['id']?>">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span class="likes"><?=$comment['upvotes'] - $comment['downvotes']?></span>
+                        <i class="fas fa-thumbs-down"></i>
+                    </div> 
+                    <i class="fas fa-reply"></i>
                     <span class="date"><?=time_ago($comment['published'])?></span>
                     <p><?=$comment['text']?></p>
                     <?php $replys = getReplyFromCommentId($comment['id']);
                     foreach($replys as $reply) { ?>
                         <article class="reply">
                             <span class="user"><?=$reply['username']?></span>
-                            <span class="likes"><?=$reply['upvotes']?></span> 
-                            <span class="dislikes"><?=$reply['downvotes']?></span> 
+                            <div class="replyLikeDiv">
+                                <input type="hidden" name="id" value="<?=$reply['id']?>">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span class="likes"><?=$reply['upvotes'] - $reply['downvotes']?></span>
+                                <i class="fas fa-thumbs-down"></i>
+                            </div> 
+                            <i class="fas fa-reply"></i>
                             <span class="date"><?=time_ago($reply['published'])?></span>
                             <p><?=$reply['text']?></p>
                         </article>

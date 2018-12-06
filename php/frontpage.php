@@ -68,8 +68,13 @@ for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { ?>
             <a href="item?id=<?=$articles[$i]['id']?>"><img src=<?=$articles[$i]['imageUrl']?> alt=""></a>
             <footer>
                 <span class="author"><?=$articles[$i]['username']?></span>
-                <span class="likes"><?=$articles[$i]['upvotes']?></span>
-                <span class="dislikes"><?=$articles[$i]['downvotes']?></span>
+                <div class="newsLikeDiv">
+                    <input type="hidden" name="id" value="<?=$articles[$i]['downvotes']?>">
+                    <i class="fas fa-thumbs-up"></i>
+                    <span class="likes"><?=$articles[$i]['upvotes'] - $articles[$i]['downvotes']?></span>
+                    <i class="fas fa-thumbs-down"></i>
+                </div>
+                
                 <span class="tags">
 <?php
 $fulltags = explode(',', $articles[$i]['tags']);

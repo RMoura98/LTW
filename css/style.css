@@ -113,21 +113,31 @@ body > header {
 
   #news .likes {
     margin-left: 1em;
-  }
-  
-  #news .likes:after {
-    content: ' 👍';
-  }
-
-  #news .dislikes {
-    margin-left: 1em;
     margin-right: 1em;
   }
-  
-  #news .dislikes:after {
-    content: ' 👎';
+
+  #news .fa-thumbs-down {
+    margin-right: 1em;
   }
 
+  #news .fa-thumbs-down {
+    margin-right: 1em;
+  }
+
+  .fa-thumbs-down:hover{
+    color: rgb(128, 128, 128);
+  }
+  .fa-thumbs-up:hover{
+    color: rgb(128, 128, 128);
+  }
+
+  .fa-thumbs-down:active{
+    transform: scale(1.5,1.5);
+  }
+  .fa-thumbs-up:active{
+    transform: scale(1.5,1.5);
+  }
+  
   /* Pagination */
 
 
