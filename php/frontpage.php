@@ -97,7 +97,7 @@ foreach ($fulltags as $tag) {
 }
 ?>              </span>
                 <span class="date"><?=time_ago($articles[$i]['published'])?></span>
-                <a class="comments" href="item?id=<?=$articles[$i]['id']?>#comments"><?=$articles[$i]['comments']?></a>
+                <a class="comments" href="item?id=<?=$articles[$i]['id']?>#comments"><?=$articles[$i]['count']?></a>
             </footer>
         </article>
 <?php }?>

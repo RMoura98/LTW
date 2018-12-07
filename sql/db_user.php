@@ -26,6 +26,10 @@
     $now = time();
     $stmt = $db->prepare('INSERT INTO comments VALUES(NULL,?, ?, ? ,?,0,0)');
     $stmt->execute(array($postId,$username, $now, $text));
+
+    $stmt = $db->prepare('update news set count = count + 1 where id = ?'); //rever isso
+    $stmt->execute(array($postId));
+
   }
   
   function insertPost($title, $tags, $username, $text, $picUrl) {

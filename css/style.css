@@ -303,3 +303,9 @@ article .dislikes{
     font-size: 0.8em;
   }
   
+
+  .part {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
