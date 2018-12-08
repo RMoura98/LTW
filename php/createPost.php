@@ -1,4 +1,5 @@
 <?php
+include_once './functions.php';
 include_once './tpl.php';
 include_once '../includes/session.php';
 

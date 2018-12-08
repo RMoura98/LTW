@@ -53,7 +53,10 @@ if (isset($_SESSION['username'])) {
 /**
  * Draws the aside for all pages.
  */
-function draw_aside($isFrontPage = FALSE) {  ?>
+function draw_aside($isFrontPage = FALSE) { 
+    $topDayPost = getTopPostDay();
+    $topWeekPost = getTopPostWeek();
+    $topMonthPost = getTopPostMonth();?>
     <aside id="related">
         <?php if($isFrontPage) { ?>
             <a href="../php/createPost">
@@ -62,29 +65,23 @@ function draw_aside($isFrontPage = FALSE) {  ?>
                 </button>
             </a><?php } ?>
             <div>
-            <?php if($isFrontPage) { ?>
-            <div class="dropdown">
-                <button class="dropbtn">Sort <i class="fas fa-sort-amount-down"style="margin-left: 10px; "></i></button>
-                <div class="dropdown-content">
-                    <a href="../php/frontpage">New</a>
-                    <a href="../php/frontpage?s=top">Top</a>
-                    <a href="../php/frontpage?s=controversial">Controversial</a>
-                    <a href="../php/frontpage?s=comments">Most Commented</a>
-                    <a href="../php/random">Random</a>
+                <?php if($isFrontPage) { ?>
+                <div class="dropdown">
+                    <button class="dropbtn">Sort <i class="fas fa-sort-amount-down"style="margin-left: 10px; "></i></button>
+                    <div class="dropdown-content">
+                        <a href="../php/frontpage">New</a>
+                        <a href="../php/frontpage?s=top">Top</a>
+                        <a href="../php/frontpage?s=controversial">Controversial</a>
+                        <a href="../php/frontpage?s=comments">Most Commented</a>
+                    </div>
                 </div>
+                <?php } ?>    
+                <a href="../php/random">
+                    <button class="dropbtn" style="max-width: 50%; margin-left: 77px;" >
+                        <span>Random <i class="fas fa-random" style="margin-left: 10px; "></i></span>
+                    </button>
+                </a>
             </div>
-            <?php } 
-            
-            $topDayPost = getTopPostDay();
-            $topWeekPost = getTopPostWeek();
-            $topMonthPost = getTopPostMonth();
-            ?>    
-            <a href="../php/random">
-                <button class="dropbtn" style="max-width: 50%; margin-left: 77px;" >
-                    <span>Random <i class="fas fa-random" style="margin-left: 10px; "></i></span>
-                </button>
-            </a>
-        </div>
         <article>
             <h2><i class="fab fa-hotjar"></i> TOP POST <i class="fab fa-hotjar"></i></h2>
             <?php if($topDayPost) ?>
