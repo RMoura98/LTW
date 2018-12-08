@@ -211,6 +211,7 @@
     transform: translate(0, -1em) rotate(-45deg);
     animation: push 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
   }
+
   
   @keyframes push {
     0% {
