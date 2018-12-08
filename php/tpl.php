@@ -71,9 +71,19 @@ function draw_aside($isFrontPage = FALSE) {  ?>
                     <a href="../php/random">Random</a>
                 </div>
             </div>
-        <?php } $topDayPost = getTopPostDay();?>
+        <?php } 
+        $topDayPost = getTopPostDay();
+        $topWeekPost = getTopPostWeek();
+        $topMonthPost = getTopPostMonth();
+        ?>
         <article>
-            <h1><a href="../php/item?id=<?=$topDayPost['id']?>"> <i class="fab fa-hotjar"></i> <?=$topDayPost['title']?></a></h1>
+            <h2><i class="fab fa-hotjar"></i> TOP POST <i class="fab fa-hotjar"></i></h2>
+            <?php if($topDayPost) ?>
+            <h1><a href="../php/item?id=<?=$topDayPost['id']?>"> DAY:  <?=$topDayPost['title']?></a></h1>
+            <?php if($topWeekPost) ?>
+            <h1><a href="../php/item?id=<?=$topWeekPost['id']?>"> WEEK:  <?=$topWeekPost['title']?></a></h1>
+            <?php if($topMonthPost) ?>
+            <h1><a href="../php/item?id=<?=$topMonthPost['id']?>"> MONTH:  <?=$topMonthPost['title']?></a></h1>
         </article>
     </aside>
 <?php } ?>

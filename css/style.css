@@ -255,6 +255,18 @@ article .dislikes{
     background-color: #3e8e41;
 }
 
+#related h2 {
+    color:white;
+    text-align: center;
+    margin-top: 10%;
+}
+
+#related h1 {
+    color:white;
+    margin-top: 10%;
+    margin-left: 2%;
+}
+
   /* footer */
   
   body > footer {

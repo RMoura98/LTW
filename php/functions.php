@@ -203,7 +203,7 @@ function getNewsById($id) {
 function getTopPostDay(){
     global $db;
     $now = time();
-    $stmt = $db->prepare('select * from news where ? - published < 86400 order by upvotes desc limit 1;');
+    $stmt = $db->prepare('select * from news where ? - published < 86400 order by (upvotes-downvotes) desc limit 1;');
     $stmt->execute(array($now));
     return $stmt->fetch();
 }
@@ -211,7 +211,15 @@ function getTopPostDay(){
 function getTopPostWeek(){
     global $db;
     $now = time();
-    $stmt = $db->prepare('select * from news where ? - published < 604800 order by upvotes desc limit 1;');
+    $stmt = $db->prepare('select * from news where ? - published < 604800 order by  (upvotes-downvotes) desc limit 1;');
+    $stmt->execute(array($now));
+    return $stmt->fetch();
+}
+
+function getTopPostMonth(){
+    global $db;
+    $now = time();
+    $stmt = $db->prepare('select * from news where ? - published < 2592000 order by  (upvotes-downvotes) desc limit 1;');
     $stmt->execute(array($now));
     return $stmt->fetch();
 }
