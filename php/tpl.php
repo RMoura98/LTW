@@ -60,9 +60,11 @@ function draw_aside($isFrontPage = FALSE) {  ?>
                 <button class="buttonCreate" style="vertical-align:middle">
                     <span>Create Post <i class="fas fa-pencil-alt" style="margin-left: 10px; font-size: large;"></i></span>
                 </button>
-            </a>
+            </a><?php } ?>
+            <div>
+            <?php if($isFrontPage) { ?>
             <div class="dropdown">
-                <button class="dropbtn">Sort <i class="fas fa-sort-amount-down"></i></button>
+                <button class="dropbtn">Sort <i class="fas fa-sort-amount-down"style="margin-left: 10px; "></i></button>
                 <div class="dropdown-content">
                     <a href="../php/frontpage">New</a>
                     <a href="../php/frontpage?s=top">Top</a>
@@ -71,11 +73,18 @@ function draw_aside($isFrontPage = FALSE) {  ?>
                     <a href="../php/random">Random</a>
                 </div>
             </div>
-        <?php } 
-        $topDayPost = getTopPostDay();
-        $topWeekPost = getTopPostWeek();
-        $topMonthPost = getTopPostMonth();
-        ?>
+            <?php } 
+            
+            $topDayPost = getTopPostDay();
+            $topWeekPost = getTopPostWeek();
+            $topMonthPost = getTopPostMonth();
+            ?>    
+            <a href="../php/random">
+                <button class="dropbtn" style="max-width: 50%; margin-left: 77px;" >
+                    <span>Random <i class="fas fa-random" style="margin-left: 10px; "></i></span>
+                </button>
+            </a>
+        </div>
         <article>
             <h2><i class="fab fa-hotjar"></i> TOP POST <i class="fab fa-hotjar"></i></h2>
             <?php if($topDayPost) ?>
