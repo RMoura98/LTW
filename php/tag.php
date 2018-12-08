@@ -14,7 +14,7 @@ draw_aside();
 
     <section id="news">
     <div id="tag">
-        <h1>#<?=$tagId?></h1>
+        <h1 style="margin-left: 25px;">#<?=$tagId?></h1>
     </div>
     
     <?php 
