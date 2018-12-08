@@ -51,6 +51,7 @@
 
   #news header h1 {
     text-shadow: none;
+    color: white;
   }
 
   #news header a{

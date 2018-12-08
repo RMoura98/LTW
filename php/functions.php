@@ -200,6 +200,14 @@ function getNewsById($id) {
   return $stmt->fetch();
 }
 
+function getTopPostDay(){
+    global $db;
+    $now = time();
+    $stmt = $db->prepare('select * from news where ? - published < 86400 order by upvotes desc limit 1;');
+    $stmt->execute(array($now));
+    return $stmt->fetch();
+}
+
 //very nice --> https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/
 define( 'TIMEBEFORE_NOW',         'just now' );
 define( 'TIMEBEFORE_MINUTE',      '{num} minute ago' );

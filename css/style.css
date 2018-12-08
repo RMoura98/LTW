@@ -28,11 +28,12 @@ body > header {
     padding-left: 0;
   }
   
-  body > header #signup .avatar {
+  .avatar {
     vertical-align: middle;
     width: 35px;
     height: 35px;
     border-radius: 50%;
+    object-fit: cover;
   }
   
 
@@ -50,6 +51,7 @@ body > header {
   #news header h1{
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    color: white;
   }
   
   #news header a{
@@ -144,8 +146,6 @@ body > header {
   
   /* Pagination */
 
-  .pagination {
-}
 
 
 .pagination a {
@@ -220,6 +220,7 @@ article .dislikes{
     border: none;
     cursor: pointer;
     border-radius: initial;
+    width: 180%;
 }
 
 .dropdown {
@@ -317,3 +318,72 @@ article .dislikes{
     flex-direction: row;
     justify-content: space-between;
   }
+
+  /* Profile */
+
+  .containerbox {
+    width: 900px;
+    padding: 2% 0 0;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    /* max-width: 360px; */
+    margin: 0 auto 100px;
+    padding-bottom: 80px;
+    padding-top: 45px;
+    padding-right: 45px;
+    padding-left: 45px;
+    margin-top: 100px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  .containerbox h1 {
+    text-align: center !important;
+    margin-top: 0%;
+    margin-bottom: 5%;
+    
+  }
+
+  .containerbox .media {
+    display: -webkit-inline-box;
+}
+
+.containerbox .personal_text{
+    padding-left: 50px;
+    text-align: left;
+    line-height: 2.3;
+}
+
+.containerbox .d-flex{
+  /* max-width: 200px; */
+  /* max-height: 200px; */
+  display: inline;
+}
+
+.containerbox .d-flex img{
+    max-width: 500px;
+  }
+
+  .containerbox i {
+    padding-right: 10px;  
+  } 
+
+  .containerbox  {
+    padding-right: 10px;  
+  } 
+
+  .containerbox button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.containerbox button:hover {
+    background-color: green;
+}
