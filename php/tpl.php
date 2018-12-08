@@ -28,15 +28,16 @@ function draw_header() {
       <div id="signup">
         <?php
         include_once('../includes/session.php');
-        
+
 if (isset($_SESSION['username'])) {
-    echo '<a href="../php/profile">' . $_SESSION['username'] . '</a>';
-    echo '<a href="../php/profile"><img class="avatar" src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
-    echo '<a href="../php/action_logout"><img class="avatar" src="../res/logout.png" alt="Logout" ></a>';
-} else {
-    echo '<a href="../php/register">Register</a>';
-    echo '<a href="../php/login">Login</a>';
-}?></div>
+    echo '<a href="../php/profile?user=' . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a>';
+    echo '<a href="../php/profile?user=' . $_SESSION['username'] . '"><img class="avatar" style=" margin-left: 10px; " src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
+    echo '<a href="../php/action_logout"><i class="fas fa-sign-out-alt"></i></a>';
+} else { ?>
+    <a href="../php/register"><i class="fas fa-user-plus"></i></a>
+    <a href="../php/login"> <i class="fas fa-sign-in-alt"></i></a>
+<?php }?>
+</div>
 </header>
       <!-- <?php if (isset($_SESSION['messages'])) {?>
         <section id="messages">
@@ -55,9 +56,13 @@ if (isset($_SESSION['username'])) {
 function draw_aside($isFrontPage = FALSE) {  ?>
     <aside id="related">
         <?php if($isFrontPage) { ?>
-            <a href="../php/createPost"><button class="buttonCreate" style="vertical-align:middle"><span>Create Post</span></button></a>
+            <a href="../php/createPost">
+                <button class="buttonCreate" style="vertical-align:middle">
+                    <span>Create Post <i class="fas fa-pencil-alt" style="margin-left: 10px; font-size: large;"></i></span>
+                </button>
+            </a>
             <div class="dropdown">
-                <button class="dropbtn">Sort</button>
+                <button class="dropbtn">Sort <i class="fas fa-sort-amount-down"></i></button>
                 <div class="dropdown-content">
                     <a href="../php/frontpage">New</a>
                     <a href="../php/frontpage?s=top">Top</a>

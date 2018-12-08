@@ -55,7 +55,7 @@
         global $db;
         $stmt = $db->prepare('SELECT * from users WHERE  users.username = ?');
         $stmt->execute(array($username));
-        return $stmt->fetchAll();
+        return $stmt->fetch();
     }   
 
     function getProfPicFromUsername($username) {

@@ -25,7 +25,7 @@ draw_aside();
         <img id="byId" src=<?=$post['imageUrl']?> alt="">
         <p><?=$post['fulltext']?></p>
         <footer>
-        <span class="author"><?=$post['username']?></span>
+        <span class="author"> <a href="../php/profile?user=<?= $post['username']?>"> <?= $post['username']?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 
                 $opinion = getOpinionUserNews($post['id'], $_SESSION['username']);
                 ?>

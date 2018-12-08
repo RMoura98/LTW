@@ -77,7 +77,7 @@ for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { ?>
             </header>
             <a href="item?id=<?=$articles[$i]['id']?>"><img src=<?=$articles[$i]['imageUrl']?> alt=""></a>
             <footer>
-                <span class="author"><?=$articles[$i]['username']?></span>
+                <span class="author"> <a href="../php/profile?user=<?= $articles[$i]['username']?>"> <?= $articles[$i]['username']?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 
                 $opinion = getOpinionUserNews($articles[$i]['id'], $_SESSION['username']);
                 ?>
