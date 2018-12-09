@@ -31,12 +31,12 @@ $userInfo = getUser($_GET['user']);
         </div>
         <div class="media-body">
             <div class="personal_text">
-                <h3><i class="fas fa-user" style="color:red;"></i> <?= $userInfo['name'] ?></h3>
+                <div style="display: flex;"><h3><i class="fas fa-user" style="color:red;"></i> <?= $userInfo['name'] ?></h3><?php if($canChange) {?><button type="button"><i class="fas fa-cog"></i></button><?php } ?></div>
                 <h3><i class="fas fa-user-tag" style="color:red;"></i><?= $userInfo['username'] ?></h3>
-                <h3><i class="fas fa-envelope" style="color:red;"></i> <?= $userInfo['email'] ?></h3>
+                <div style="display: flex;"><h3><i class="fas fa-envelope" style="color:red;"></i> <?= $userInfo['email'] ?></h3><?php if($canChange) {?><button type="button"><i class="fas fa-cog"></i></button><?php } ?></div>
                 <?php if($canChange) {?>
-                <h3><i class="fas fa-key" style="color:red;"></i> ***********</h3>
-                <button type="button">Change</button>
+                <div style="display: flex;"><h3><i class="fas fa-key" style="color:red;"></i> ***********</h3>
+                <button type="button"><i class="fas fa-cog"></i></button></div>
                 <?php } ?>
             </div>
         </div>

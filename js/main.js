@@ -146,7 +146,6 @@ function processImage() {
     });
 }
 
-
 /* Login page functions */
 let loginForm = document.querySelector('#loginForm');
 if (loginForm) {
@@ -192,6 +191,22 @@ if (loginForm) {
     }
 
 }
+
+let replys = document.getElementsByClassName('fa-reply');
+
+let handlerfunction = function (e) {
+    console.log('32')
+}
+
+if(replys){
+    for(let reply of replys){
+        reply.onclick = handlerfunction;
+    }
+
+    
+}
+
+
 
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {

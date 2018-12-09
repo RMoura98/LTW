@@ -72,8 +72,8 @@ draw_aside();
                             <span class="likes"><?=$comment['upvotes'] - $comment['downvotes']?></span>
                             <i class="fas fa-thumbs-down" <?php if ($opinion1 && $opinion1[0]['downvote']) echo 'style="color: red;"';?>></i>
                         </div>
-                        <?php } ?>
                         <i class="fas fa-reply"></i>
+                        <?php } ?>
                         <span class="date"><?=time_ago($comment['published'])?></span>
                     </div>
                     <p><?=$comment['text']?></p>
@@ -91,8 +91,8 @@ draw_aside();
                                     <span class="likes"><?=$reply['upvotes'] - $reply['downvotes']?></span>
                                     <i class="fas fa-thumbs-down" <?php if ($opinion2 && $opinion2[0]['downvote']) echo 'style="color: red;"';?>></i>
                                 </div>
-                                <?php } ?>
                                 <i class="fas fa-reply"></i>
+                                <?php } ?>
                                 <span class="date"><?=time_ago($reply['published'])?></span>
                             </div>
                             <p><?=$reply['text']?></p>

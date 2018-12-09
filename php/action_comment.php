@@ -9,6 +9,6 @@ if(empty($_POST['comment'])){
 
 insertComment($_SESSION['username'],$_POST['comment'], $_POST['postId']);
 
-header('Location: ./frontpage');
+header('Location: '.$_SESSION['previousPage']. '#comments');
 exit();
 ?>
