@@ -105,7 +105,7 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
             <header>
                 <h1><a href="item?id=<?=$id?>"><?=$title?></a></h1>
             </header>
-            <a href="item?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
+            <a style="height: 600px; display: block;" href="item?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
             <footer>
                 <span class="author"> <a href="../php/profile?user=<?= $username?>"> <?= $username?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 
