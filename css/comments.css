@@ -18,6 +18,10 @@
   #comments p {
     background-color: #edeff0;
     padding: 1em;
+    /* max-width: 100%; */
+    outline-width: medium;
+    /* overflow: hidden; */
+    word-break: break-word;
   }
   
   #comments p:before {

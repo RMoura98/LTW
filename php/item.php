@@ -12,17 +12,21 @@ if(!$post){
 
 $_SESSION['previousPage'] = '../php/item?id='.$_GET['id'];
 
+if($post['imageUrl'])
+    $postImgUrl = $post['imageUrl']; 
+else
+    $postImgUrl = 'https://s.imgur.com/images/logo-1200-630.jpg';
+
 draw_header();
 draw_aside();
 ?>
 
     <section id="news">
-        
       <article>
         <header>
           <h1><a href="item?id=<?=$post['id']?>"><?=$post['title']?></a></h1>
         </header>
-        <img id="byId" src=<?=$post['imageUrl']?> alt="">
+        <img id="byId" src="<?= $postImgUrl ?>" alt="">
         <p><?=$post['fulltext']?></p>
         <footer>
         <span class="author"> <a href="../php/profile?user=<?= $post['username']?>"> <?= $post['username']?>  </a></span>
@@ -47,7 +51,18 @@ draw_aside();
                 <span class="date"><?=time_ago($post['published'])?></span>
         </footer>
         <section id="comments">
-            <?php 
+            <?php if (isset($_SESSION['username'])) { ?>
+            <div class="hiddenBox" style="display:none;">
+                <form action="../php/action_reply.php" style="padding-right: 0px;" method="POST">
+                    <label>Reply to <a src="../php/profile?user="></a>
+                    <textarea name="reply" style="width: 430px; margin-right:10px;" required></textarea>
+                    </label>
+                    <input type='hidden' name='commId' /> 
+                    <input type="submit" style="margin-left: 30px;" value="Comment">
+                </form>
+                <i class="fas fa-times" style="padding-right: 10px; padding-top: 10px;"></i>
+            </div>
+            <?php }
             $comments = getCommentsFromNewsId($post['id']);
             $numberComments = $post['count'];
 
@@ -72,6 +87,7 @@ draw_aside();
                             <span class="likes"><?=$comment['upvotes'] - $comment['downvotes']?></span>
                             <i class="fas fa-thumbs-down" <?php if ($opinion1 && $opinion1[0]['downvote']) echo 'style="color: red;"';?>></i>
                         </div>
+                        <input type="hidden" name="id" value="<?=$comment['id']?>">
                         <i class="fas fa-reply"></i>
                         <?php } ?>
                         <span class="date"><?=time_ago($comment['published'])?></span>
@@ -91,7 +107,7 @@ draw_aside();
                                     <span class="likes"><?=$reply['upvotes'] - $reply['downvotes']?></span>
                                     <i class="fas fa-thumbs-down" <?php if ($opinion2 && $opinion2[0]['downvote']) echo 'style="color: red;"';?>></i>
                                 </div>
-                                <i class="fas fa-reply"></i>
+                                <!-- <i class="fas fa-reply"></i> -->
                                 <?php } ?>
                                 <span class="date"><?=time_ago($reply['published'])?></span>
                             </div>
@@ -108,7 +124,7 @@ draw_aside();
                 <form action="action_comment.php" method="POST">
                     <h2>Add your voice...</h2>
                     <label>Comment
-                    <textarea name="comment"></textarea>            
+                    <textarea name="comment" required></textarea>
                     </label>
                     <input type='hidden' name='postId' value='<?= $_GET['id']?>'/> 
                     <input type="submit" value="Comment">

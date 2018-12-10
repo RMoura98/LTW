@@ -47,7 +47,7 @@ INSERT INTO news VALUES (NULL,
   'abril',
   "https://i.redd.it/0j5y38xz2f121.jpg",
   'Nulla sem non feugiat pharetra.',
-  'sod jiejr',1,2,1);
+  'sod jiejr',1,2,2);
   
 INSERT INTO news VALUES (NULL,
   'sei la',

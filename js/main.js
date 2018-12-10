@@ -4,10 +4,10 @@
 let signupForm = document.querySelector('#registerForm');
 if (signupForm) {
     /* Handle signup submission trough AJAX */
-    let loginAjaxContainer = document.querySelector('.form');
-    let ajaxRequestBox = loginAjaxContainer.querySelector('#ajax-form-request-fill');
-    let ajaxFailBox = loginAjaxContainer.querySelector('#ajax-form-failure-fill');
-    let ajaxSuccessBox = loginAjaxContainer.querySelector('#ajax-form-success-fill');
+    let signupAjaxContainer = document.querySelector('.form');
+    let ajaxRequestBox = signupAjaxContainer.querySelector('#ajax-form-request-fill');
+    let ajaxFailBox = signupAjaxContainer.querySelector('#ajax-form-failure-fill');
+    let ajaxSuccessBox = signupAjaxContainer.querySelector('#ajax-form-success-fill');
 
     let usernameField = signupForm.querySelector('input[name="username"]');
     let realnameField = signupForm.querySelector('input[name="realName"]');
@@ -192,18 +192,65 @@ if (loginForm) {
 
 }
 
+/* replys */
+
 let replys = document.getElementsByClassName('fa-reply');
-
-let handlerfunction = function (e) {
-    console.log('32')
-}
-
 if(replys){
+    let hiddenBox = document.querySelector('.hiddenBox');
+    let handlerfunction = function (e) {
+        hiddenBox.querySelector('a').href = '../php/profile?user=' + e.target.parentElement.querySelector('.user').innerHTML;
+        hiddenBox.querySelector('a').innerHTML = e.target.parentElement.querySelector('.user').innerHTML;
+        hiddenBox.querySelector('input').value = e.target.parentElement.querySelector('input[name="id"]').value;
+        hiddenBox.style.display = 'flex';
+    }
     for(let reply of replys){
         reply.onclick = handlerfunction;
     }
+    hiddenBox.querySelector('.fa-times').onclick = (e) => {
+        hiddenBox.style.display = 'none';
+        hiddenBox.querySelector('textarea').value = '';
+    }  
+}
 
+/* profile */
+let ajaxRequestPasswordBox = document.querySelector('#passwordChange');   
+let ajaxRequestEmailBox = document.querySelector('#emailChange');   
+let ajaxRequestPicBox = document.querySelector('#picChange');   
+let ajaxRequestNameBox = document.querySelector('#realnameChange');   
+
+let btnsChange = document.querySelectorAll('.btnChange');
+
+if(btnsChange){
     
+    
+    let handlerfunction = function (e) {
+        e.target.parentElement;
+        if(e.target.parentElement.parentElement.id == 'name')  {ajaxRequestNameBox.style.display = 'flex';alert('1');}
+            
+        if(e.target.parentElement.parentElement.id == 'email')
+            ajaxRequestEmailBox.style.display = 'flex';
+        if(e.target.parentElement.parentElement.id == 'password')
+            ajaxRequestPasswordBox.style.display = 'flex';
+        if(e.target.parentElement.parentElement.id == 'pic')
+            ajaxRequestPicBox.style.display = 'flex';
+    }
+
+    for(let btn of btnsChange){
+        btn.onclick = handlerfunction;
+    }
+} 
+
+let btnsSubmit = document.getElementsByClassName('btnsubmit');
+if(btnsSubmit){
+    let handlerfunction = function (e) {
+        ajaxRequestNameBox.style.display = 'none';
+        ajaxRequestEmailBox.style.display = 'none';
+        ajaxRequestPasswordBox.style.display = 'none';
+        ajaxRequestPicBox.style.display = 'none';
+    }
+    for(let btn of btnsChange){
+        btn.onclick = handlerfunction;
+    }
 }
 
 

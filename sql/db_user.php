@@ -31,6 +31,20 @@
     $stmt->execute(array($postId));
 
   }
+  function insertReply($username, $text, $commId) {
+    global $db;
+    $now = time();
+    $stmt = $db->prepare('INSERT INTO reply VALUES(NULL,?, ?, ? ,?,0,0)');
+    $stmt->execute(array($commId,$username, $now, $text));
+
+    $stmt = $db->prepare('select * from comments where id = ?');
+    $stmt->execute(array($commId));
+    $res = $stmt->fetch();
+    
+    $stmt = $db->prepare('update news set count = count + 1 where id = ?'); //rever isso
+    $stmt->execute(array($res['news_id']));
+
+  }
   
   function insertPost($title, $tags, $username, $text, $picUrl) {
     global $db;

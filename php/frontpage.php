@@ -69,13 +69,18 @@ else{
   
 } 
 
-for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { ?>
+for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { 
+    if($articles[$i]['imageUrl'])
+        $postUrl = $articles[$i]['imageUrl']; 
+    else
+        $postUrl = 'https://s.imgur.com/images/logo-1200-630.jpg';
+    ?>
     
     <article>
             <header>
                 <h1><a href="item?id=<?=$articles[$i]['id']?>"><?=$articles[$i]['title']?></a></h1>
             </header>
-            <a href="item?id=<?=$articles[$i]['id']?>"><img src=<?=$articles[$i]['imageUrl']?> alt=""></a>
+            <a href="item?id=<?=$articles[$i]['id']?>"><img src=<?=$postUrl?> alt=""></a>
             <footer>
                 <span class="author"> <a href="../php/profile?user=<?= $articles[$i]['username']?>"> <?= $articles[$i]['username']?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 

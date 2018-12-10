@@ -61,7 +61,8 @@ body > header {
   }
   
   #news a img {
-    height: 600px;
+    max-height: 600px;
+    margin-top: 0px;
   }
 
   #news img {
@@ -416,4 +417,28 @@ article .dislikes{
 
 .containerbox button:hover {
     background-color: green;
+}
+
+.hiddenBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-75%,-50%);
+    border-style: double;
+    background-color: white;
+}
+
+.hiddenBox form {
+    padding-right: 300px;
+    background-color: #046dd5;
+}
+
+.hiddenBox form input{
+    margin-left: 30px;
+}
+.hiddenBox form textarea{
+    margin-left: 30px;
+}
+.hiddenBox form label{
+    margin-left: 30px;
 }
