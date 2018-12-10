@@ -194,8 +194,8 @@ if (loginForm) {
 
 /* replys */
 
-let replys = document.querySelector('.fa-reply');
-if(replys){
+let replys = document.querySelectorAll('.fa-reply');
+if(replys.length != 0){
     
     let hiddenBox = document.querySelector('.hiddenBox');
     let handlerfunction = function (e) {
@@ -224,14 +224,30 @@ if(btnsChange.length != 0){
     let ajaxRequestNameBox = document.querySelector('#realnameChange');   
     
     let handlerfunction = function (e) {
-        if(e.target.parentElement.parentElement.id == 'name')  
-            ajaxRequestNameBox.style.display = 'flex';  
-        else if(e.target.parentElement.parentElement.id == 'email')
+        if(e.target.parentElement.parentElement.id == 'name') {
+            ajaxRequestEmailBox.style.display = 'none';
+            ajaxRequestPasswordBox.style.display = 'none';
+            ajaxRequestPicBox.style.display = 'none';
+            ajaxRequestNameBox.style.display = 'flex';
+        }               
+        else if(e.target.parentElement.parentElement.id == 'email'){
+            ajaxRequestNameBox.style.display = 'none';
             ajaxRequestEmailBox.style.display = 'flex';
-        else if(e.target.parentElement.parentElement.id == 'password')
+            ajaxRequestPasswordBox.style.display = 'none';
+            ajaxRequestPicBox.style.display = 'none';
+        }
+        else if(e.target.parentElement.parentElement.id == 'password'){
+            ajaxRequestNameBox.style.display = 'none';
+            ajaxRequestEmailBox.style.display = 'none';
             ajaxRequestPasswordBox.style.display = 'flex';
-        else if(e.target.parentElement.parentElement.id == 'pic')
-            ajaxRequestPicBox.style.display = 'flex'; 
+            ajaxRequestPicBox.style.display = 'none';
+        }
+        else if(e.target.parentElement.parentElement.id == 'pic'){
+            ajaxRequestNameBox.style.display = 'none';
+            ajaxRequestEmailBox.style.display = 'none';
+            ajaxRequestPasswordBox.style.display = 'none';
+            ajaxRequestPicBox.style.display = 'flex';
+        }
     }
 
     for(let btn of btnsChange){

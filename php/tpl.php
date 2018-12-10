@@ -10,8 +10,8 @@ function draw_header() {
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Super LTW News 2018</title>
-    <!-- <link rel="icon" href="../assets/favicon.ico"> -->
+    <title>LTW News</title>
+    <link rel="icon" href="../favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/style.css" rel="stylesheet">
@@ -25,29 +25,23 @@ function draw_header() {
   </head>
   <body>
     <header>
-      <h1><a href="frontpage">Super Legit News</a></h1>
-      <h2><a href="frontpage">Where fake news are born!</a></h2>
-      <div id="signup">
-        <?php
-        
-
-if (isset($_SESSION['username'])) {
-    echo '<a href="../php/profile?user=' . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a>';
-    echo '<a href="../php/profile?user=' . $_SESSION['username'] . '"><img class="avatar" style=" margin-left: 10px; " src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
-    echo '<a href="../php/action_logout"><i class="fas fa-sign-out-alt"></i></a>';
-} else { ?>
-    <a href="../php/register"><i class="fas fa-user-plus"></i></a>
-    <a href="../php/login"> <i class="fas fa-sign-in-alt"></i></a>
-<?php }?>
-</div>
+        <div>
+            <a style="position: absolute;" href="frontpage"><i style="font-size: -webkit-xxx-large;padding-bottom: 15px;padding-right: 166px;" class="fas fa-newspaper"></i></a>
+            <h1 style="padding-left: 70px;"><a href="frontpage"> LTW News</a></h1>
+            <h2><a style="position: absolute; padding: 0px 12px 0px 12px; margin-top: 10px;" href="frontpage">Where fake news are born!</a></h2>
+        </div>
+        <div id="signup">
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo '<a href="../php/profile?user=' . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a>';
+                echo '<a href="../php/profile?user=' . $_SESSION['username'] . '"><img class="avatar" style=" margin-left: 10px; " src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
+                echo '<a href="../php/action_logout"><i class="fas fa-sign-out-alt"></i></a>';
+            } else { ?>
+                <a href="../php/register"><i class="fas fa-user-plus"></i></a>
+                <a href="../php/login"> <i class="fas fa-sign-in-alt"></i></a>
+            <?php }?>
+        </div>
 </header>
-      <!-- <?php if (isset($_SESSION['messages'])) {?>
-        <section id="messages">
-          <?php foreach($_SESSION['messages'] as $message) { ?>
-            <div class="<?=$message['type']?>"><?=$message['content']?></div>
-          <?php } ?>
-        </section>
-      <?php unset($_SESSION['messages']); } ?> -->
 <?php } ?>
 
 <?php 
@@ -104,14 +98,14 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
     if($imageUrl)
         $img = $imageUrl; 
     else
-        $img = $imageUrl;
+        $img = 'https://s.imgur.com/images/logo-1200-630.jpg';
     ?>
     
     <article>
             <header>
                 <h1><a href="item?id=<?=$id?>"><?=$title?></a></h1>
             </header>
-            <a href="item?id=<?=$id?>"><img src=<?=$img?> alt=""></a>
+            <a href="item?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
             <footer>
                 <span class="author"> <a href="../php/profile?user=<?= $username?>"> <?= $username?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 

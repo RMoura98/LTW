@@ -82,6 +82,7 @@ body > header {
   
   #news > article > p{
     padding: 0 1em;
+    word-break: break-word;
   }
   
   #news > article > p:first-of-type:first-letter{
@@ -384,7 +385,7 @@ article .dislikes{
 }
 
 .containerbox .d-flex img{
-    width: 100%;
+    max-width: 500px;
     /* padding-right: 100px; */
   }
 

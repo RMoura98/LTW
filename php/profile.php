@@ -15,12 +15,17 @@ if (!isset($_GET['user'])){
 
 $canChange = false;
 if(isset($_SESSION['username']) && $_SESSION['username'] == $_GET['user'])
-    $canChange = true;  
+    $canChange = true; 
+
+$userInfo = getUser($_GET['user']);
+if(!$userInfo){
+    header('Location: ../php/error_404');
+    exit();
+}
 
 draw_header();
 draw_aside();
 
-$userInfo = getUser($_GET['user']);
 ?>
 
 <div class="containerbox">
@@ -46,7 +51,7 @@ $userInfo = getUser($_GET['user']);
     </div>
     <div class="hiddenBox" id="emailChange" style="display:none;">
         <form action="../php/action_change_profile" style="padding-right: 0px;" method="POST">
-            <label>New Email
+            <label >New Email
                 <input type="email" name="email" placeholder="Email" required>
             </label>
             <input type="submit" style="margin-left: 30px;margin-top: 20px;margin-bottom: 20px;" value="submit">
@@ -55,7 +60,7 @@ $userInfo = getUser($_GET['user']);
     </div>
     <div class="hiddenBox" id="passwordChange" style="display:none;">
         <form action="../php/action_change_profile" style="padding-right: 0px;" method="POST">
-            <label>Reply to <a src="../php/profile?user="></a>
+            <label style="margin-left: 10px;">Change Password <a src="../php/profile?user="></a>
                 <input type="password" name="oldPassword" placeholder="Old Password" required>
                 <input type="password" name="newPassword" placeholder="New Password" required>
             </label>
@@ -90,15 +95,21 @@ $userInfo = getUser($_GET['user']);
         </div>
     </div>
 </div>
-<h1>Posts upvoted</h1>
-<section id="news">
 
 <?php
-$articles = getPostsLikedByUser($_SESSION['username']);
-for ($i = 0; $i < count($articles); $i++) 
-    draw_PostS($articles[$i]['id'], $articles[$i]['title'], $articles[$i]['username'], $articles[$i]['imageUrl'], $articles[$i]['count'], $articles[$i]['published'], $articles[$i]['tags'], $articles[$i]['upvotes'], $articles[$i]['downvotes']);
-?>
-</section>
-<?php
+if($canChange){?>
+    <h1 style="margin-left: 25px;">Posts upvoted</h1>
+    <section id="news">
+    <?php 
+    $articles = getPostsLikedByUser($_SESSION['username']);
+    shuffle($articles);
+    for ($i = 0; $i < count($articles); $i++) 
+        draw_PostS($articles[$i]['news_id'], $articles[$i]['title'], $articles[$i]['username'],
+                    $articles[$i]['imageUrl'], $articles[$i]['count'], $articles[$i]['published'], 
+                    $articles[$i]['tags'], $articles[$i]['upvotes'], $articles[$i]['downvotes']);?>
+    </section>
+<?php 
+}
+
 draw_footer();
 ?>
