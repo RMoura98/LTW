@@ -1,4 +1,6 @@
 <?php 
+include_once('../includes/session.php');
+
 /**
  * Draws the header for all pages. 
  */
@@ -27,7 +29,7 @@ function draw_header() {
       <h2><a href="frontpage">Where fake news are born!</a></h2>
       <div id="signup">
         <?php
-        include_once('../includes/session.php');
+        
 
 if (isset($_SESSION['username'])) {
     echo '<a href="../php/profile?user=' . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a>';
@@ -84,15 +86,58 @@ function draw_aside($isFrontPage = FALSE) {
             </div>
         <article>
             <h2><i class="fab fa-hotjar"></i> TOP POST <i class="fab fa-hotjar"></i></h2>
-            <?php if($topDayPost) ?>
+            <?php if($topDayPost) { ?>
             <h1><a href="../php/item?id=<?=$topDayPost['id']?>"> DAY:  <?=$topDayPost['title']?></a></h1>
-            <?php if($topWeekPost) ?>
+            <?php } if($topWeekPost) {?>
             <h1><a href="../php/item?id=<?=$topWeekPost['id']?>"> WEEK:  <?=$topWeekPost['title']?></a></h1>
-            <?php if($topMonthPost) ?>
-            <h1><a href="../php/item?id=<?=$topMonthPost['id']?>"> MONTH:  <?=$topMonthPost['title']?></a></h1>
+            <?php } if($topMonthPost) {?>
+            <h1><a href="../php/item?id=<?=$topMonthPost['id']?>"> MONTH:  <?=$topMonthPost['title']?></a></h1> <?php } ?>
         </article>
     </aside>
 <?php } ?>
+
+<?php 
+/**
+ * Draws the Post (short).
+ */
+function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags, $upvotes, $downvotes) {  
+    if($imageUrl)
+        $img = $imageUrl; 
+    else
+        $img = $imageUrl;
+    ?>
+    
+    <article>
+            <header>
+                <h1><a href="item?id=<?=$id?>"><?=$title?></a></h1>
+            </header>
+            <a href="item?id=<?=$id?>"><img src=<?=$img?> alt=""></a>
+            <footer>
+                <span class="author"> <a href="../php/profile?user=<?= $username?>"> <?= $username?>  </a></span>
+                <?php if (isset($_SESSION['username'])) { 
+                $opinion = getOpinionUserNews($id, $_SESSION['username']);
+                ?>
+                <div class="newsLikeDiv">
+                    <input type="hidden" name="id" value="<?=$id?>">
+                    <i class="fas fa-thumbs-up" <?php if ($opinion && $opinion[0]['upvote']) echo 'style="color: green;"';?>></i>                   
+                    <span class="likes"><?=$upvotes - $downvotes?></span>
+                    <i class="fas fa-thumbs-down" <?php if ($opinion && $opinion[0]['downvote']) echo 'style="color: red;"';?>></i>
+                </div>
+                <?php } ?>
+                <span class="tags">
+                    <?php
+                    $fulltags = explode(',', $tags);
+                    foreach ($fulltags as $tag) {
+                        echo "<a href='tag?id=$tag'>#$tag</a> ";
+                    }
+                    ?>              
+                </span>
+                <span class="date"><?=time_ago($published)?></span>
+                <a class="comments" href="../php/item?id=<?=$id?>#comments"><?=$count?></a>
+            </footer>
+        </article>
+<?php } ?>
+
   
 <?php 
 /**

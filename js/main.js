@@ -194,8 +194,9 @@ if (loginForm) {
 
 /* replys */
 
-let replys = document.getElementsByClassName('fa-reply');
+let replys = document.querySelector('.fa-reply');
 if(replys){
+    
     let hiddenBox = document.querySelector('.hiddenBox');
     let handlerfunction = function (e) {
         hiddenBox.querySelector('a').href = '../php/profile?user=' + e.target.parentElement.querySelector('.user').innerHTML;
@@ -212,46 +213,48 @@ if(replys){
     }  
 }
 
+
 /* profile */
-let ajaxRequestPasswordBox = document.querySelector('#passwordChange');   
-let ajaxRequestEmailBox = document.querySelector('#emailChange');   
-let ajaxRequestPicBox = document.querySelector('#picChange');   
-let ajaxRequestNameBox = document.querySelector('#realnameChange');   
 
 let btnsChange = document.querySelectorAll('.btnChange');
-
-if(btnsChange){
-    
+if(btnsChange.length != 0){
+    let ajaxRequestPasswordBox = document.querySelector('#passwordChange');   
+    let ajaxRequestEmailBox = document.querySelector('#emailChange');   
+    let ajaxRequestPicBox = document.querySelector('#picChange');   
+    let ajaxRequestNameBox = document.querySelector('#realnameChange');   
     
     let handlerfunction = function (e) {
-        e.target.parentElement;
-        if(e.target.parentElement.parentElement.id == 'name')  {ajaxRequestNameBox.style.display = 'flex';alert('1');}
-            
-        if(e.target.parentElement.parentElement.id == 'email')
+        if(e.target.parentElement.parentElement.id == 'name')  
+            ajaxRequestNameBox.style.display = 'flex';  
+        else if(e.target.parentElement.parentElement.id == 'email')
             ajaxRequestEmailBox.style.display = 'flex';
-        if(e.target.parentElement.parentElement.id == 'password')
+        else if(e.target.parentElement.parentElement.id == 'password')
             ajaxRequestPasswordBox.style.display = 'flex';
-        if(e.target.parentElement.parentElement.id == 'pic')
-            ajaxRequestPicBox.style.display = 'flex';
+        else if(e.target.parentElement.parentElement.id == 'pic')
+            ajaxRequestPicBox.style.display = 'flex'; 
     }
 
     for(let btn of btnsChange){
         btn.onclick = handlerfunction;
     }
+    
+    let xs = document.querySelectorAll('.fa-times');
+
+    for(let x of xs){
+        x.onclick = (e) => {
+            ajaxRequestNameBox.style.display = 'none';
+            ajaxRequestEmailBox.style.display = 'none';
+            ajaxRequestPasswordBox.style.display = 'none';
+            ajaxRequestPicBox.style.display = 'none';
+        };
+    }
+
+    ajaxRequestPicBox.querySelector('input').onchange = function (e) {
+        setTimeout(processImage(), 50);
+    };
 } 
 
-let btnsSubmit = document.getElementsByClassName('btnsubmit');
-if(btnsSubmit){
-    let handlerfunction = function (e) {
-        ajaxRequestNameBox.style.display = 'none';
-        ajaxRequestEmailBox.style.display = 'none';
-        ajaxRequestPasswordBox.style.display = 'none';
-        ajaxRequestPicBox.style.display = 'none';
-    }
-    for(let btn of btnsChange){
-        btn.onclick = handlerfunction;
-    }
-}
+
 
 
 
@@ -298,7 +301,7 @@ function likeEventHandler(className, action) {
                 makeHTTPRequest(action,
                     'post',
                     { id: inputField.value, upvotes: '1', downvotes: downvotestmp },
-                    (response) => { console.log(response)  });
+                    (response) => { /* console.log(response) */  });
 
             }
             else {

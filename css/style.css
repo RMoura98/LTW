@@ -384,7 +384,7 @@ article .dislikes{
 }
 
 .containerbox .d-flex img{
-    max-width: 400px;
+    width: 100%;
     /* padding-right: 100px; */
   }
 
@@ -430,7 +430,6 @@ article .dislikes{
 
 .hiddenBox form {
     padding-right: 300px;
-    background-color: #046dd5;
 }
 
 .hiddenBox form input{
@@ -441,4 +440,8 @@ article .dislikes{
 }
 .hiddenBox form label{
     margin-left: 30px;
+}
+
+.fa-cog {
+    padding-top: 10px; padding-bottom: 10px; padding-left: 10px;
 }

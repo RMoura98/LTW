@@ -228,7 +228,7 @@ function getPostsLikedByUser($username){
     global $db;
     $stmt = $db->prepare('select * from news, userlikenews where userlikenews.news_id = news.id and userlikenews.upvote = 1 and userlikenews.username = ?');
     $stmt->execute(array($username));
-    return $stmt->fetch();
+    return $stmt->fetchAll();
 }
 
 //very nice --> https://www.sitepoint.com/counting-the-ago-time-how-to-keep-publish-dates-fresh/

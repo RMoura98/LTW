@@ -54,10 +54,41 @@
     $stmt2 = $db->prepare('SELECT last_insert_rowid()');
     $stmt2->execute();
     return $stmt2->fetch()['last_insert_rowid()'];
-
-    var_dump($stmt->idlastrowid);
   }
 
+    function comparePasswords($username, $oldPassword) {
+        global $db;
+        $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->execute(array($username));
+        $user = $stmt->fetch();
+        return password_verify($oldPassword, $user['password']);
+    }   
+    function changePassword($username, $newPassword, $oldPassword) {
+        global $db;
+        $options = ['cost' => 12];
+        $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt->execute(array($username));
+        $user = $stmt->fetch();
+        if(password_verify($oldPassword, $user['password'])){
+            $stmt = $db->prepare('update users set password = ? where username = ?');
+            $stmt->execute(array(password_hash($newPassword, PASSWORD_DEFAULT, $options), $username));  
+        }
+    }   
+    function changeImg($username, $newImgUrl) {
+        global $db;
+        $stmt = $db->prepare('update users set profImgUrl = ? where username = ?');
+        $stmt->execute(array($newImgUrl, $username));
+    }   
+    function changeRealName($username, $newRealName) {
+        global $db;
+        $stmt = $db->prepare('update users set name = ? where username = ?');
+        $stmt->execute(array($newRealName, $username));
+    }   
+    function changeEmail($username, $newEmail) {
+        global $db;
+        $stmt = $db->prepare('update users set email = ? where username = ?');
+        $stmt->execute(array($newEmail, $username));
+    }   
     function getAllUsernames() {
         global $db;
         $stmt = $db->prepare('SELECT * from users');
