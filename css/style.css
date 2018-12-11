@@ -158,6 +158,7 @@ body > header {
   display: flex;
   align-content: center;
   justify-content: center;
+  padding-bottom: 15px;
 }
 
 .pagination a {
@@ -232,7 +233,7 @@ article .dislikes{
     border: none;
     cursor: pointer;
     border-radius: initial;
-    width: 180%;
+    /* width: 180%; */
 }
 
 .dropdown {
@@ -246,6 +247,7 @@ article .dislikes{
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    width: 100%;
     z-index: 1;
 }
 

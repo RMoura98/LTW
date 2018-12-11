@@ -60,10 +60,10 @@ function draw_aside($isFrontPage = FALSE) {
                     <span>Create Post <i class="fas fa-pencil-alt" style="margin-left: 10px; font-size: large;"></i></span>
                 </button>
             </a><?php } ?>
-            <div>
+            <div style="display: flex; justify-items: center; flex-wrap: wrap-reverse; align-items: center;">
                 <?php if($isFrontPage) { ?>
-                <div class="dropdown">
-                    <button class="dropbtn">Sort <i class="fas fa-sort-amount-down"style="margin-left: 10px; "></i></button>
+                <div class="dropdown" style="display: block; width: 100%;">
+                    <button class="dropbtn" style="display: block;width: 100%;">Sort By <i class="fas fa-sort-amount-down"style="margin-left: 10px; "></i></button>
                     <div class="dropdown-content">
                         <a href="../php/frontpage">New</a>
                         <a href="../php/frontpage?s=top">Top</a>
@@ -72,8 +72,8 @@ function draw_aside($isFrontPage = FALSE) {
                     </div>
                 </div>
                 <?php } ?>    
-                <a href="../php/random">
-                    <button class="dropbtn" style="max-width: 50%; margin-left: 77px;" >
+                <a href="../php/random" style="width: 100%;">
+                    <button class="dropbtn" style="width: 100%;margin-bottom: 10px;margin-left: 0px;" >
                         <span>Random <i class="fas fa-random" style="margin-left: 10px; "></i></span>
                     </button>
                 </a>
