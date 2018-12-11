@@ -117,12 +117,12 @@ if($canChange){?>
     <div id="profilePostShow" style="display:flex;">
         <?php if ($idCall == 'id'){?>
         <h1 style="margin-left:25px;">Posts Created</h1>
-        <button type="button" onclick="window.location.href='../php/profile?user=<?=$_SESSION['username']?>'"style="padding: 0px; margin-top: 25px;" value="submit">Posts Upvoted</button>
+        <button type="button" onclick="window.location.href='../php/profile?user=<?=$_SESSION['username']?>#profilePostShow'"style="padding: 0px; margin-top: 25px;" value="submit">Posts Upvoted</button>
 
         <?php } 
         else {?>
         <h1 style="margin-left:25px;">Posts Upvoted</h1>
-        <button type="button" onclick="window.location.href='../php/profile?user=<?=$_SESSION['username']?>&show=created'" style="padding: 0px; margin-top: 25px;" value="submit">Posts Created</button>
+        <button type="button" onclick="window.location.href='../php/profile?user=<?=$_SESSION['username']?>&show=created#profilePostShow'" style="padding: 0px; margin-top: 25px;" value="submit">Posts Created</button>
     <?php } ?>
     </div>
     <section id="news">
