@@ -25,11 +25,14 @@ function draw_header() {
   </head>
   <body>
     <header>
-        <div>
+        <div style="margin-left: 12px;">
             <a style="position: absolute;" href="frontpage"><i style="font-size: -webkit-xxx-large;padding-bottom: 15px;padding-right: 166px;" class="fas fa-newspaper"></i></a>
             <h1 style="padding-left: 70px;"><a href="frontpage"> LTW News</a></h1>
             <h2><a style="position: absolute; padding: 0px 12px 0px 12px; margin-top: 10px;" href="frontpage">Where fake news are born!</a></h2>
         </div>
+        
+        
+
         <div id="signup">
             <?php
             if (isset($_SESSION['username'])) {
@@ -54,6 +57,9 @@ function draw_aside($isFrontPage = FALSE) {
     $topWeekPost = getTopPostWeek();
     $topMonthPost = getTopPostMonth();?>
     <aside id="related">
+        <form id="searchBar" action="../php/search">
+            <input type="search" name="q" placeholder="Search">            
+        </form>
         <?php if($isFrontPage) { ?>
             <a href="../php/createPost">
                 <button class="buttonCreate" style="vertical-align:middle">

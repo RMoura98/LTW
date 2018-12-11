@@ -271,9 +271,6 @@ if(btnsChange.length != 0){
 } 
 
 
-
-
-
 /* Helper functions */
 function makeHTTPRequest(url, type, params, callback) {
     let request = new XMLHttpRequest();

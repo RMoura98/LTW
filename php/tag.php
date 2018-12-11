@@ -3,6 +3,12 @@ include_once('./functions.php');
 include_once('./tpl.php');
 include_once('../includes/session.php');
 
+if(!isset($_GET['id'])){
+    header('Location: ../php/error_404');
+    exit();
+}
+
+
 $tagId = $_GET['id'];
 
 $_SESSION["previousPage"] = '../php/tag?id='.$_GET['id'];

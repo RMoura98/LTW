@@ -270,6 +270,14 @@ function getCommentsByNewId($id) {
     return $stmt->fetch();
 }
 
+function getAllNewsLike($substring){
+    global $db;
+    $param = "%{$substring}%";
+    $stmt = $db->prepare('select * from news where title like ? order by published desc;');
+    $stmt->execute(array($param));
+    return $stmt->fetchAll();
+}
+
 /**
  * returns a url from the uploaded image (imgur.com)
  */
@@ -309,11 +317,12 @@ function getFilePath($filename){
     return $filename;
 } 
 
-function getFileSize($fileSize){
+function  getFileSize($fileSize){
     $fileSize = substr( $fileSize ,8, strlen($fileSize) - 1);
     $fileSize = substr( $fileSize, 0, -1);
     return intval($fileSize);
 } 
+
 
 
 
