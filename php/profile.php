@@ -4,6 +4,7 @@ include_once('../includes/session.php');
 include_once('../sql/db_user.php');
 include_once('../php/functions.php');
 
+
 if (!isset($_GET['user'])){
     if(isset($_SESSION['username'])){
         header('Location: ../php/profile?user='.$_SESSION['username']);
@@ -11,6 +12,21 @@ if (!isset($_GET['user'])){
     }
     header('Location: ../php/error_404');
     exit();
+}
+
+if(!isset($_GET['show'])){
+    $articles = getPostsLikedByUser($_SESSION['username']);
+    $idCall = 'news_id';
+}
+else {
+    if($_GET['show'] == 'created'){
+        $articles = getPostsCreatedByUser($_SESSION['username']);
+        $idCall = 'id';
+    }
+    else{
+        header('Location: ../php/error_404');
+        exit();
+    }
 }
 
 $canChange = false;
@@ -98,15 +114,26 @@ draw_aside();
 
 <?php
 if($canChange){?>
-    <h1 style="margin-left: 25px;">Posts upvoted</h1>
+    <div id="profilePostShow" style="display:flex;">
+        <?php if ($idCall == 'id'){?>
+        <h1 style="margin-left:25px;">Posts Created</h1>
+        <button type="button" onclick="window.location.href='../php/profile?user=<?=$_SESSION['username']?>'"style="padding: 0px; margin-top: 25px;" value="submit">Posts Upvoted</button>
+
+        <?php } 
+        else {?>
+        <h1 style="margin-left:25px;">Posts Upvoted</h1>
+        <button type="button" onclick="window.location.href='../php/profile?user=<?=$_SESSION['username']?>&show=created'" style="padding: 0px; margin-top: 25px;" value="submit">Posts Created</button>
+    <?php } ?>
+    </div>
     <section id="news">
     <?php 
-    $articles = getPostsLikedByUser($_SESSION['username']);
-    shuffle($articles);
     for ($i = 0; $i < count($articles); $i++) 
-        draw_PostS($articles[$i]['news_id'], $articles[$i]['title'], $articles[$i]['username'],
+        draw_PostS($articles[$i][$idCall], $articles[$i]['title'], $articles[$i]['username'],
                     $articles[$i]['imageUrl'], $articles[$i]['count'], $articles[$i]['published'], 
-                    $articles[$i]['tags'], $articles[$i]['upvotes'], $articles[$i]['downvotes']);?>
+                    $articles[$i]['tags'], $articles[$i]['upvotes'], $articles[$i]['downvotes']);
+    if (count($articles) == 0){?>
+        <h1 style="margin-left: 25px;">Nothing to see</h1>
+    <?php }    ?>
     </section>
 <?php 
 }

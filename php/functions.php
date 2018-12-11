@@ -226,7 +226,14 @@ function getTopPostMonth(){
 
 function getPostsLikedByUser($username){
     global $db;
-    $stmt = $db->prepare('select * from news, userlikenews where userlikenews.news_id = news.id and userlikenews.upvote = 1 and userlikenews.username = ?');
+    $stmt = $db->prepare('select * from news, userlikenews where userlikenews.news_id = news.id and userlikenews.upvote = 1 and userlikenews.username = ? order by published desc');
+    $stmt->execute(array($username));
+    return $stmt->fetchAll();
+}
+
+function getPostsCreatedByUser($username){
+    global $db;
+    $stmt = $db->prepare('select * from news where username = ? order by published desc');
     $stmt->execute(array($username));
     return $stmt->fetchAll();
 }

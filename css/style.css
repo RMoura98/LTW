@@ -200,7 +200,7 @@ article .dislikes{
     color: white;
   }
 
-  #related .buttonCreate {
+  #related .buttonCreate{
     display: inline-block;
     padding: 15px 25px;
     font-size: 24px;
@@ -403,7 +403,7 @@ article .dislikes{
     padding-right: 10px;  
   } 
 
-  .containerbox button {
+  .containerbox button, #profilePostShow button {
     /* background-color: #4CAF50; */
     border: none;
     color: white;
@@ -422,7 +422,12 @@ article .dislikes{
 
 }
 
-.containerbox button:hover {
+#profilePostShow button{
+    background-color: rgb(80, 121, 20);
+    width: 200px;
+}
+
+.containerbox button:hover, #profilePostShow button:hover {
     background-color: green;
 }
 
