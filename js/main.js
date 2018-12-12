@@ -175,10 +175,7 @@ if (loginForm) {
                     // Redirect user after 1.1s.
                     setTimeout(function () { window.location.replace(previousPage); }, 1100);
                 }
-                else if (response === 'fail1') {
-                    ajaxFailBox.style.display = 'flex';
-                }
-                else if (response === 'fail2') {
+                else {
                     ajaxFailBox.style.display = 'flex';
                 }
                 /* ajaxRequestBox.style.display = 'none'; */
@@ -288,9 +285,12 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
-likeEventHandler('newsLikeDiv', '/ltw/php/action_like_news.php');
-likeEventHandler('commLikeDiv', '../php/action_like_comments.php');
-likeEventHandler('replyLikeDiv', '../php/action_like_reply.php');
+let downvote = document.getElementsByClassName('fa-thumbs-down');
+if(downvote.length != 0){	
+	likeEventHandler('newsLikeDiv', '../php/action_like_news.php');
+	likeEventHandler('commLikeDiv', '../php/action_like_comments.php');
+	likeEventHandler('replyLikeDiv', '../php/action_like_reply.php');
+}
 
 function likeEventHandler(className, action) {
     let likeDiv = document.getElementsByClassName(className);
