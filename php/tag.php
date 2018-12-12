@@ -4,14 +4,14 @@ include_once('./tpl.php');
 include_once('../includes/session.php');
 
 if(!isset($_GET['id'])){
-    header('Location: ../php/error_404');
+    header('Location: ../php/error_404.php');
     exit();
 }
 
 
 $tagId = $_GET['id'];
 
-$_SESSION["previousPage"] = '../php/tag?id='.$_GET['id'];
+$_SESSION["previousPage"] = '../php/tag.php?id='.$_GET['id'];
 
 draw_header();
 draw_aside();

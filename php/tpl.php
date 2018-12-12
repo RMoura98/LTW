@@ -26,9 +26,9 @@ function draw_header() {
   <body>
     <header>
         <div style="margin-left: 12px;">
-            <a style="position: absolute;" href="frontpage"><i style="font-size: -webkit-xxx-large;padding-bottom: 15px;padding-right: 166px;" class="fas fa-newspaper"></i></a>
-            <h1 style="padding-left: 70px;"><a href="frontpage"> LTW News</a></h1>
-            <h2><a style="position: absolute; padding: 0px 12px 0px 12px; margin-top: 10px;" href="frontpage">Where fake news are born!</a></h2>
+            <a style="position: absolute;" href="frontpage.php"><i style="font-size: -webkit-xxx-large;padding-bottom: 15px;padding-right: 166px;" class="fas fa-newspaper"></i></a>
+            <h1 style="padding-left: 70px;"><a href="frontpage.php"> LTW News</a></h1>
+            <h2><a style="position: absolute; padding: 0px 12px 0px 12px; margin-top: 10px;" href="frontpage.php">Where fake news are born!</a></h2>
         </div>
         
         
@@ -36,12 +36,12 @@ function draw_header() {
         <div id="signup">
             <?php
             if (isset($_SESSION['username'])) {
-                echo '<a href="../php/profile?user=' . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a>';
-                echo '<a href="../php/profile?user=' . $_SESSION['username'] . '"><img class="avatar" style=" margin-left: 10px; " src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
-                echo '<a href="../php/action_logout"><i class="fas fa-sign-out-alt"></i></a>';
+                echo '<a href="../php/profile.php?user=' . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a>';
+                echo '<a href="../php/profile.php?user=' . $_SESSION['username'] . '"><img class="avatar" style=" margin-left: 10px; " src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
+                echo '<a href="../php/action_logout.php"><i class="fas fa-sign-out-alt"></i></a>';
             } else { ?>
-                <a href="../php/register"><i class="fas fa-user-plus"></i></a>
-                <a href="../php/login"> <i class="fas fa-sign-in-alt"></i></a>
+                <a href="../php/register.php"><i class="fas fa-user-plus"></i></a>
+                <a href="../php/login.php"> <i class="fas fa-sign-in-alt"></i></a>
             <?php }?>
         </div>
 </header>
@@ -57,11 +57,11 @@ function draw_aside($isFrontPage = FALSE) {
     $topWeekPost = getTopPostWeek();
     $topMonthPost = getTopPostMonth();?>
     <aside id="related">
-        <form id="searchBar" action="../php/search">
+        <form id="searchBar" action="../php/search.php">
             <input type="search" name="q" placeholder="Search">            
         </form>
         <?php if($isFrontPage) { ?>
-            <a href="../php/createPost">
+            <a href="../php/createPost.php">
                 <button class="buttonCreate" style="vertical-align:middle">
                     <span>Create Post <i class="fas fa-pencil-alt" style="margin-left: 10px; font-size: large;"></i></span>
                 </button>
@@ -71,14 +71,14 @@ function draw_aside($isFrontPage = FALSE) {
                 <div class="dropdown" style="display: block; width: 100%;">
                     <button class="dropbtn" style="display: block;width: 100%;">Sort By <i class="fas fa-sort-amount-down"style="margin-left: 10px; "></i></button>
                     <div class="dropdown-content">
-                        <a href="../php/frontpage">New</a>
-                        <a href="../php/frontpage?s=top">Top</a>
-                        <a href="../php/frontpage?s=controversial">Controversial</a>
-                        <a href="../php/frontpage?s=comments">Most Commented</a>
+                        <a href="../php/frontpage.php">New</a>
+                        <a href="../php/frontpage.php?s=top">Top</a>
+                        <a href="../php/frontpage.php?s=controversial">Controversial</a>
+                        <a href="../php/frontpage.php?s=comments">Most Commented</a>
                     </div>
                 </div>
                 <?php } ?>    
-                <a href="../php/random" style="width: 100%;">
+                <a href="../php/random.php" style="width: 100%;">
                     <button class="dropbtn" style="width: 100%;margin-bottom: 10px;margin-left: 0px;" >
                         <span>Random <i class="fas fa-random" style="margin-left: 10px; "></i></span>
                     </button>
@@ -87,11 +87,11 @@ function draw_aside($isFrontPage = FALSE) {
         <article>
             <h2><i class="fab fa-hotjar"></i> TOP POST <i class="fab fa-hotjar"></i></h2>
             <?php if($topDayPost) { ?>
-            <h1><a href="../php/item?id=<?=$topDayPost['id']?>"> DAY:  <?=$topDayPost['title']?></a></h1>
+            <h1><a href="../php/item.php?id=<?=$topDayPost['id']?>"> DAY:  <?=$topDayPost['title']?></a></h1>
             <?php } if($topWeekPost) {?>
-            <h1><a href="../php/item?id=<?=$topWeekPost['id']?>"> WEEK:  <?=$topWeekPost['title']?></a></h1>
+            <h1><a href="../php/item.php?id=<?=$topWeekPost['id']?>"> WEEK:  <?=$topWeekPost['title']?></a></h1>
             <?php } if($topMonthPost) {?>
-            <h1><a href="../php/item?id=<?=$topMonthPost['id']?>"> MONTH:  <?=$topMonthPost['title']?></a></h1> <?php } ?>
+            <h1><a href="../php/item.php?id=<?=$topMonthPost['id']?>"> MONTH:  <?=$topMonthPost['title']?></a></h1> <?php } ?>
         </article>
     </aside>
 <?php } ?>
@@ -109,11 +109,11 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
     
     <article>
             <header>
-                <h1><a href="item?id=<?=$id?>"><?=$title?></a></h1>
+                <h1><a href="item.php?id=<?=$id?>"><?=$title?></a></h1>
             </header>
-            <a style="height: 600px; display: block;" href="item?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
+            <a style="height: 600px; display: block;" href="item.php?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
             <footer>
-                <span class="author"> <a href="../php/profile?user=<?= $username?>"> <?= $username?>  </a></span>
+                <span class="author"> <a href="../php/profile.php?user=<?= $username?>"> <?= $username?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 
                 $opinion = getOpinionUserNews($id, $_SESSION['username']);
                 ?>
@@ -128,12 +128,12 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
                     <?php
                     $fulltags = explode(',', $tags);
                     foreach ($fulltags as $tag) {
-                        echo "<a href='tag?id=$tag'>#$tag</a> ";
+                        echo "<a href='tag.php?id=$tag'>#$tag</a> ";
                     }
                     ?>              
                 </span>
                 <span class="date"><?=time_ago($published)?></span>
-                <a class="comments" href="../php/item?id=<?=$id?>#comments"><?=$count?></a>
+                <a class="comments" href="../php/item.php?id=<?=$id?>#comments"><?=$count?></a>
             </footer>
         </article>
 <?php } ?>
@@ -148,7 +148,7 @@ function draw_pagination($page, $maxPage, $sort) {  ?>
 <?php 
 for ($i=1; $i < $maxPage + 1; $i++) { 
     $c = '';
-    $s = '../php/frontpage?p=' . $i;
+    $s = '../php/frontpage.php?p=' . $i;
     if($sort != '') 
         $s .= '&s=' . $sort;
     if($page == $i)
@@ -165,7 +165,7 @@ for ($i=1; $i < $maxPage + 1; $i++) {
 function draw_footer() {  ?>
             <footer class="_footer">
                 <p>Copyright &copy; </p>
-                <a href="fe.up.pt">FEUP</a>
+                <a href="https://sigarra.up.pt/feup/pt/web_base.gera_pagina?P_pagina=1182">FEUP</a>
                 <p> | 2018</p>
             </footer>
         </body>

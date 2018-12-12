@@ -7,10 +7,10 @@ include_once('../includes/session.php');
 $post = getNewsById($_GET['id']);
 
 if(!$post){
-    header('Location: ../php/error_404');
+    header('Location: ../php/error_404.php');
 }
 
-$_SESSION['previousPage'] = '../php/item?id='.$_GET['id'];
+$_SESSION['previousPage'] = '../php/item.php?id='.$_GET['id'];
 
 if($post['imageUrl'])
     $postImgUrl = $post['imageUrl']; 
@@ -24,12 +24,12 @@ draw_aside();
     <section id="news">
       <article>
         <header>
-          <h1><a href="item?id=<?=$post['id']?>"><?=$post['title']?></a></h1>
+          <h1><a href="item.php?id=<?=$post['id']?>"><?=$post['title']?></a></h1>
         </header>
         <img id="byId" src="<?= $postImgUrl ?>" alt="">
         <p><?=$post['fulltext']?></p>
         <footer>
-        <span class="author"> <a href="../php/profile?user=<?= $post['username']?>"> <?= $post['username']?>  </a></span>
+        <span class="author"> <a href="../php/profile.php?user=<?= $post['username']?>"> <?= $post['username']?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 
                 $opinion = getOpinionUserNews($post['id'], $_SESSION['username']);
                 ?>
@@ -44,7 +44,7 @@ draw_aside();
                 <?php
                 $fulltags = explode(',', $post['tags']);
                 foreach($fulltags as $tag) {
-                    echo "<a href='tag?id=$tag'>#$tag</a> ";
+                    echo "<a href='tag.php?id=$tag'>#$tag</a> ";
                 }
                 ?>
                 </span>
@@ -54,7 +54,7 @@ draw_aside();
             <?php if (isset($_SESSION['username'])) { ?>
             <div class="hiddenBox" style="display:none;">
                 <form action="../php/action_reply.php" style="padding-right: 0px;" method="POST">
-                    <label>Reply to <a src="../php/profile?user="></a>
+                    <label>Reply to <a src="../php/profile.php?user="></a>
                     <textarea name="reply" style="width: 430px; margin-right:10px;" required></textarea>
                     </label>
                     <input type='hidden' name='commId' /> 

@@ -18,7 +18,7 @@ $articles = getAllNews();
 if(isset($_GET['s'])){
     $sort = $_GET['s'];
     if(is_numeric($sort))
-        header('Location: ../php/PageNotFound');
+        header('Location: ../php/error_404.php');
     switch ($sort) {
         case 'top':
             $articles = getAllNewsSortedBylikes();
@@ -31,7 +31,7 @@ if(isset($_GET['s'])){
             break;
         
         default:
-            header('Location: ../php/PageNotFound');
+            header('Location: ../php/error_404.php');
             break;
     }
 }
@@ -43,7 +43,7 @@ $maxPage = ceil(count($articles)/MAXPOSTPPAGE);
 if(isset($_GET['p'])){
     $page = $_GET['p'];
     if(!is_numeric($page))
-        header('Location: ../php/PageNotFound');
+        header('Location: ../php/error_404.php');
     if($page < $maxPage && $page > 0){
         $iMax = ($page * MAXPOSTPPAGE);
         $page -= 1;
@@ -53,7 +53,7 @@ if(isset($_GET['p'])){
         $iMax = count($articles);        
     }
     else
-        header('Location: ../php/PageNotFound');
+        header('Location: ../php/error_404.php');
 }
 else{
     $page = 1; 

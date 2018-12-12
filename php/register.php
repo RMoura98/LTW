@@ -4,7 +4,7 @@ include_once('../includes/session.php');
 include_once './functions.php';
 
 if(!isset($_SESSION['previousPage']))
-    $_SESSION['previousPage'] = '../php/frontpage';
+    $_SESSION['previousPage'] = '../php/frontpage.php';
 
 draw_header();
 draw_aside();
@@ -22,7 +22,7 @@ draw_aside();
             <input type="password" placeholder="password" name="password" required/>
             <input type="password" name="passwordConfirm" placeholder="Confirm Password" required>
             <button>Register</button>
-            <p class="message">Already have an Account? <a href="../php/login">Log In</a></p>
+            <p class="message">Already have an Account? <a href="../php/login.php">Log In</a></p>
         </form>
         <div id="ajax-form-request-fill">
             <div id="loader">

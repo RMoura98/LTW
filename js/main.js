@@ -46,10 +46,10 @@ if (signupForm) {
                 if (response === 'ok') {
                     ajaxSuccessBox.style.display = 'flex';
                     // Redirect user after 1.1s.
-                    setTimeout(function () { window.location.replace('../php/frontpage'); }, 1100);
+                    setTimeout(function () { window.location.replace('../php/frontpage.php'); }, 1100);
                 }
                 else if (response === '404') {
-                    window.location.replace("./error_404");
+                    window.location.replace("./error_404.php");
                 }
                 else { // Error.
                     ajaxFailBox.style.display = 'flex';
@@ -107,10 +107,10 @@ if (createPostForm) {
                 if (response.substring(0, 2) == 'ok') {
                     ajaxSuccessBox.style.display = 'flex';
                     // Redirect user after 1.1s.
-                    setTimeout(function () { window.location.replace('../php/item?id=' + response.substring(2, response.length)); }, 1100);
+                    setTimeout(function () { window.location.replace('../php/item.php?id=' + response.substring(2, response.length)); }, 1100);
                 }
                 else if (response === '404') {
-                    window.location.replace("./error_404");
+                    window.location.replace("./error_404.php");
                 }
                 else { // Error.
                     ajaxFailBox.style.display = 'flex';
@@ -199,7 +199,7 @@ if(replys.length != 0){
     
     let hiddenBox = document.querySelector('.hiddenBox');
     let handlerfunction = function (e) {
-        hiddenBox.querySelector('a').href = '../php/profile?user=' + e.target.parentElement.querySelector('.user').innerHTML;
+        hiddenBox.querySelector('a').href = '../php/profile.php?user=' + e.target.parentElement.querySelector('.user').innerHTML;
         hiddenBox.querySelector('a').innerHTML = e.target.parentElement.querySelector('.user').innerHTML;
         hiddenBox.querySelector('input').value = e.target.parentElement.querySelector('input[name="id"]').value;
         hiddenBox.style.display = 'flex';

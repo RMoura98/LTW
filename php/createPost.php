@@ -4,8 +4,8 @@ include_once './tpl.php';
 include_once '../includes/session.php';
 
 if (!isset($_SESSION['username']) ){ 
-    $_SESSION['previousPage'] = '../php/createPost';
-    header('Location: ../php/login');
+    $_SESSION['previousPage'] = '../php/createPost.php';
+    header('Location: ../php/login.php');
     exit();
 }
 

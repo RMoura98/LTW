@@ -28,6 +28,6 @@ else if(isset($_FILES['img'])){
 
 }
 
-header('Location: ../php/profile');
+header('Location: ../php/profile.php');
 exit();
 ?>

@@ -4,13 +4,13 @@ include_once './tpl.php';
 include_once('../includes/session.php');
 
 if(!isset($_GET['q'])){
-    header('Location: ../php/error_404');
+    header('Location: ../php/error_404.php');
     exit();
 }
 
 
 draw_header();
-draw_aside(TRUE);
+draw_aside();
 ?>
     <section id="news">
 <?php
