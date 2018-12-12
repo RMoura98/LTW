@@ -165,7 +165,7 @@ for ($i=1; $i < $maxPage + 1; $i++) {
 function draw_footer() {  ?>
             <footer class="_footer">
                 <p>Copyright &copy; </p>
-                <a href="https://sigarra.up.pt/feup/pt/web_base.gera_pagina?P_pagina=1182">FEUP</a>
+                <a href="https://sigarra.up.pt/feup/pt/web_base.gera_pagina?P_pagina=1182" target="_black">FEUP</a>
                 <p> | 2018</p>
             </footer>
         </body>
