@@ -27,6 +27,19 @@ body > header {
   body > header #signup a:first-child {
     padding-left: 0;
   }
+
+  body > header #userInfo {
+    margin-top: 23px;
+  }
+  
+  body > header #userInfo a {
+    padding: 0 1em;
+  }
+  
+  body > header #userInfo a:first-child {
+    border-right: 1px solid white;
+    padding-left: 0;
+  }
   
   .avatar {
     vertical-align: middle;

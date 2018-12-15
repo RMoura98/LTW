@@ -24,10 +24,10 @@ draw_aside();
     <section id="news">
       <article>
         <header>
-          <h1><a href="item.php?id=<?=$post['id']?>"><?=$post['title']?></a></h1>
+          <h1><a href="item.php?id=<?=$post['id']?>"><?=htmlspecialchars($post['title'])?></a></h1>
         </header>
         <img id="byId" src="<?= $postImgUrl ?>" alt="">
-        <p><?=$post['fulltext']?></p>
+        <p><?=htmlspecialchars($post['fulltext'])?></p>
         <footer>
         <span class="author"> <a href="../php/profile.php?user=<?= $post['username']?>"> <?= $post['username']?>  </a></span>
                 <?php if (isset($_SESSION['username'])) { 
@@ -43,7 +43,8 @@ draw_aside();
                 <span class="tags">
                 <?php
                 $fulltags = explode(',', $post['tags']);
-                foreach($fulltags as $tag) {
+                foreach ($fulltags as $tagt) {
+                    $tag = htmlspecialchars($tagt);
                     echo "<a href='tag.php?id=$tag'>#$tag</a> ";
                 }
                 ?>
@@ -92,7 +93,7 @@ draw_aside();
                         <?php } ?>
                         <span class="date"><?=time_ago($comment['published'])?></span>
                     </div>
-                    <p><?=$comment['text']?></p>
+                    <p><?=htmlspecialchars($comment['text'])?></p>
                     <?php $replys = getReplyFromCommentId($comment['id']);
                     foreach($replys as $reply) { ?>
                         <article class="reply">
@@ -111,7 +112,7 @@ draw_aside();
                                 <?php } ?>
                                 <span class="date"><?=time_ago($reply['published'])?></span>
                             </div>
-                            <p><?=$reply['text']?></p>
+                            <p><?=htmlspecialchars($reply['text'])?></p>
                         </article>
                     <?php } ?>
                 </article>

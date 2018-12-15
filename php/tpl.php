@@ -31,17 +31,16 @@ function draw_header() {
             <h2><a style="position: absolute; padding: 0px 12px 0px 12px; margin-top: 10px;" href="frontpage.php">Where fake news are born!</a></h2>
         </div>
         
-        
-
-        <div id="signup">
             <?php
-            if (isset($_SESSION['username'])) {
-                echo '<a href="../php/profile.php?user=' . $_SESSION['username'] . '">' . $_SESSION['username'] . '</a>';
-                echo '<a href="../php/profile.php?user=' . $_SESSION['username'] . '"><img class="avatar" style=" margin-left: 10px; " src="'. $_SESSION['profilePic'] .'" alt="Avatar" ></a>';
-                echo '<a href="../php/action_logout.php"><i class="fas fa-sign-out-alt"></i></a>';
-            } else { ?>
-                <a href="../php/register.php"><i class="fas fa-user-plus"></i></a>
-                <a href="../php/login.php"> <i class="fas fa-sign-in-alt"></i></a>
+            if (isset($_SESSION['username'])) { ?>
+                <div id="userInfo">
+                    <a href="../php/profile.php?user=<?=$_SESSION['username']?>"> <?=$_SESSION['username']?> </a>
+                    <a href="../php/profile.php?user=<?=$_SESSION['username']?>"><img class="avatar" style=" margin-left: 10px; " src=" <?=$_SESSION['profilePic']?> " alt="Avatar" ></a>
+                    <a href="../php/action_logout.php"><i class="fas fa-sign-out-alt"></i></a>
+            <?php } else { ?>
+                <div id="signup">
+                    <a href="../php/register.php"><i class="fas fa-user-plus"></i></a>
+                    <a href="../php/login.php"> <i class="fas fa-sign-in-alt"></i></a>
             <?php }?>
         </div>
 </header>
@@ -87,11 +86,11 @@ function draw_aside($isFrontPage = FALSE) {
         <article>
             <h2><i class="fab fa-hotjar"></i> TOP POST <i class="fab fa-hotjar"></i></h2>
             <?php if($topDayPost) { ?>
-            <h1><a href="../php/item.php?id=<?=$topDayPost['id']?>"> DAY:  <?=$topDayPost['title']?></a></h1>
+            <h1><a href="../php/item.php?id=<?=$topDayPost['id']?>"> DAY:  <?=htmlspecialchars($topDayPost['title'])?></a></h1>
             <?php } if($topWeekPost) {?>
-            <h1><a href="../php/item.php?id=<?=$topWeekPost['id']?>"> WEEK:  <?=$topWeekPost['title']?></a></h1>
+            <h1><a href="../php/item.php?id=<?=$topWeekPost['id']?>"> WEEK:  <?=htmlspecialchars($topWeekPost['title'])?></a></h1>
             <?php } if($topMonthPost) {?>
-            <h1><a href="../php/item.php?id=<?=$topMonthPost['id']?>"> MONTH:  <?=$topMonthPost['title']?></a></h1> <?php } ?>
+            <h1><a href="../php/item.php?id=<?=$topMonthPost['id']?>"> MONTH:  <?=htmlspecialchars($topMonthPost['title'])?></a></h1> <?php } ?>
         </article>
     </aside>
 <?php } ?>
@@ -109,7 +108,7 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
     
     <article>
             <header>
-                <h1><a href="item.php?id=<?=$id?>"><?=$title?></a></h1>
+                <h1><a href="item.php?id=<?=$id?>"><?=htmlspecialchars($title)?></a></h1>
             </header>
             <a style="height: 600px; display: block;" href="item.php?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
             <footer>
@@ -127,7 +126,8 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
                 <span class="tags">
                     <?php
                     $fulltags = explode(',', $tags);
-                    foreach ($fulltags as $tag) {
+                    foreach ($fulltags as $tagt) {
+                        $tag = htmlspecialchars($tagt);
                         echo "<a href='tag.php?id=$tag'>#$tag</a> ";
                     }
                     ?>              
