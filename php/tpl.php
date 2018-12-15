@@ -107,35 +107,35 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
     ?>
     
     <article>
-            <header>
-                <h1><a href="item.php?id=<?=$id?>"><?=htmlspecialchars($title)?></a></h1>
-            </header>
-            <a style="height: 600px; display: block;" href="item.php?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
-            <footer>
-                <span class="author"> <a href="../php/profile.php?user=<?= $username?>"> <?= $username?>  </a></span>
-                <?php if (isset($_SESSION['username'])) { 
-                $opinion = getOpinionUserNews($id, $_SESSION['username']);
-                ?>
-                <div class="newsLikeDiv">
-                    <input type="hidden" name="id" value="<?=$id?>">
-                    <i class="fas fa-thumbs-up" <?php if ($opinion && $opinion[0]['upvote']) echo 'style="color: green;"';?>></i>                   
-                    <span class="likes"><?=$upvotes - $downvotes?></span>
-                    <i class="fas fa-thumbs-down" <?php if ($opinion && $opinion[0]['downvote']) echo 'style="color: red;"';?>></i>
-                </div>
-                <?php } ?>
-                <span class="tags">
-                    <?php
-                    $fulltags = explode(',', $tags);
-                    foreach ($fulltags as $tagt) {
-                        $tag = htmlspecialchars($tagt);
-                        echo "<a href='tag.php?id=$tag'>#$tag</a> ";
-                    }
-                    ?>              
-                </span>
-                <span class="date"><?=time_ago($published)?></span>
-                <a class="comments" href="../php/item.php?id=<?=$id?>#comments"><?=$count?></a>
-            </footer>
-        </article>
+        <header>
+            <h1><a href="item.php?id=<?=$id?>"><?=htmlspecialchars($title)?></a></h1>
+        </header>
+        <a style="height: 600px; display: block;" href="item.php?id=<?=$id?>"><img src="<?=$img?>" alt=""></a>
+        <footer>
+            <span class="author"> <a href="../php/profile.php?user=<?= $username?>"> <?= $username?>  </a></span>
+            <?php
+            $opinion = false;
+            if (isset($_SESSION['username'])) { 
+            $opinion = getOpinionUserNews($id, $_SESSION['username']); } ?>
+            <div class="newsLikeDiv">
+                <input type="hidden" name="id" value="<?=$id?>">
+                <i class="fas fa-thumbs-up" <?php if ($opinion && $opinion[0]['upvote']) echo 'style="color: green;"';?>></i>                   
+                <span class="likes"><?=$upvotes - $downvotes?></span>
+                <i class="fas fa-thumbs-down" <?php if ($opinion && $opinion[0]['downvote']) echo 'style="color: red;"';?>></i>
+            </div>
+            <span class="tags">
+                <?php
+                $fulltags = explode(',', $tags);
+                foreach ($fulltags as $tagt) {
+                    $tag = htmlspecialchars($tagt);
+                    echo "<a href='tag.php?id=$tag'>#$tag</a> ";
+                }
+                ?>              
+            </span>
+            <span class="date"><?=time_ago($published)?></span>
+            <a class="comments" href="../php/item.php?id=<?=$id?>#comments"><?=$count?></a>
+        </footer>
+    </article>
 <?php } ?>
 
   

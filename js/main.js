@@ -285,8 +285,9 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
+let userLogged = document.querySelectorAll('#userInfo');
 let downvote = document.getElementsByClassName('fa-thumbs-down');
-if(downvote.length != 0){	
+if(downvote.length != 0 && userLogged.length != 0){	
 	likeEventHandler('newsLikeDiv', '../php/action_like_news.php');
 	likeEventHandler('commLikeDiv', '../php/action_like_comments.php');
 	likeEventHandler('replyLikeDiv', '../php/action_like_reply.php');
