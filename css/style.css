@@ -68,9 +68,9 @@ body > header {
   }
   
   #news header a{
-      
-    color: white;
-    text-decoration: none;
+      color: white;
+      text-decoration: none;
+      word-break: break-all;
   }
   
   #news a img {

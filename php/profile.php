@@ -93,13 +93,13 @@ draw_aside();
         <div class="media-body">
             <div class="personal_text">
                 <div id="name" style="display: flex;">
-                    <h3><i class="fas fa-user" style="color:red;"></i> <?= $userInfo['name'] ?></h3>
+                    <h3><i class="fas fa-user" style="color:red;"></i> <?= htmlspecialchars($userInfo['name']) ?></h3>
                     <?php if($canChange) {?>
                     <button class="btnChange" style="padding: 0px;" type="button"><i class="fas fa-cog"></i></button><?php } ?>
                 </div>
-                <h3><i class="fas fa-user-tag" style="color:red;"></i><?= $userInfo['username'] ?></h3>
+                <h3><i class="fas fa-user-tag" style="color:red;"></i><?= $userInfo['username']?></h3>
                 <div id="email" style="display: flex;">
-                    <h3><i class="fas fa-envelope" style="color:red;"></i> <?= $userInfo['email'] ?></h3>
+                    <h3><i class="fas fa-envelope" style="color:red;"></i> <?= htmlspecialchars($userInfo['email']) ?></h3>
                     <?php if($canChange) {?>
                         <button class="btnChange" style="padding: 0px;" type="button"><i class="fas fa-cog"></i></button><?php } ?>
                 </div>

@@ -34,7 +34,7 @@ function draw_header() {
             <?php
             if (isset($_SESSION['username'])) { ?>
                 <div id="userInfo">
-                    <a href="../php/profile.php?user=<?=$_SESSION['username']?>"> <?=$_SESSION['username']?> </a>
+                    <a href="../php/profile.php?user=<?=$_SESSION['username']?>"> <?=htmlspecialchars($_SESSION['username'])?> </a>
                     <a href="../php/profile.php?user=<?=$_SESSION['username']?>"><img class="avatar" style=" margin-left: 10px; " src=" <?=$_SESSION['profilePic']?> " alt="Avatar" ></a>
                     <a href="../php/action_logout.php"><i class="fas fa-sign-out-alt"></i></a>
             <?php } else { ?>
@@ -144,22 +144,30 @@ define('MAXPAGEPAGINATION', 4); //needs to be even
 /**
  * Draws the footer for all pages.
  */
-function draw_pagination($page, $maxPage, $sort) {  ?>
-<div class="pagination">
-<?php 
-
+function draw_pagination($page, $maxPage, $sort) {  
+    
 if ($page - MAXPAGEPAGINATION/2 < 1){
     $i = 1;
-    $maxi = MAXPAGEPAGINATION + 1;
+    $maxi = MAXPAGEPAGINATION + 1 > $maxPage ? $maxPage : MAXPAGEPAGINATION + 1;
 }
 else if ($page + MAXPAGEPAGINATION/2 > $maxPage){
     $maxi = $maxPage;
-    $i = $maxPage - MAXPAGEPAGINATION;
+    $i = $maxPage - MAXPAGEPAGINATION < 1 ? 1 : $maxPage - MAXPAGEPAGINATION;
 }
 else{
     $i = $page - MAXPAGEPAGINATION/2;
     $maxi = $page + MAXPAGEPAGINATION/2;
 }
+$si = '../php/frontpage.php?p=1';
+$sf = '../php/frontpage.php?p=' . $maxPage;
+if($sort != '') 
+    $s .= '&s=' . $sort;
+?>
+
+<div class="pagination">
+    
+    <a style="padding-left: 14px; padding-right: 14px;" href="<?=$si?>"><i class="fas fa-step-backward"></i></a>
+<?php 
 
 for ($i; $i < $maxi + 1; $i++) { 
     $c = '';
@@ -170,6 +178,7 @@ for ($i; $i < $maxi + 1; $i++) {
         $c = 'class="active" ';
     echo '<a '.$c.'href="' . $s . '">' . $i . '</a>';
     } ?>
+    <a style="padding-left: 14px; padding-right: 14px;" href="<?=$sf?>"><i class="fas fa-step-forward"></i></a>
 </div>
 <?php } ?>
 
