@@ -54,7 +54,9 @@ function draw_header() {
 function draw_aside($isFrontPage = FALSE) { 
     $topDayPost = getTopPostDay();
     $topWeekPost = getTopPostWeek();
-    $topMonthPost = getTopPostMonth();?>
+    $topMonthPost = getTopPostMonth();
+    $topYearPost = getTopPostYear();
+    ?>
     <aside id="related">
         <form id="searchBar" action="../php/search.php">
             <input type="search" name="q" placeholder="Search">            
@@ -85,12 +87,15 @@ function draw_aside($isFrontPage = FALSE) {
             </div>
         <article>
             <h2><i class="fab fa-hotjar"></i> TOP POST <i class="fab fa-hotjar"></i></h2>
-            <?php if($topDayPost) { ?>
-            <h1><a href="../php/item.php?id=<?=$topDayPost['id']?>"> DAY:  <?=htmlspecialchars($topDayPost['title'])?></a></h1>
+            <?php if($topDayPost) { ?><h1 style="text-align: center;">DAY</h1>
+            <a href="../php/item.php?id=<?=$topDayPost['id']?>"><p style=" padding-left: 3px;text-align: center; "><?=htmlspecialchars($topDayPost['title'])?></p></a>
             <?php } if($topWeekPost) {?>
-            <h1><a href="../php/item.php?id=<?=$topWeekPost['id']?>"> WEEK:  <?=htmlspecialchars($topWeekPost['title'])?></a></h1>
-            <?php } if($topMonthPost) {?>
-            <h1><a href="../php/item.php?id=<?=$topMonthPost['id']?>"> MONTH:  <?=htmlspecialchars($topMonthPost['title'])?></a></h1> <?php } ?>
+            <h1 style="text-align: center;">WEEK</h1>
+            <a href="../php/item.php?id=<?=$topWeekPost['id']?>"><p style=" padding-left: 3px;text-align: center; "><?=htmlspecialchars($topWeekPost['title'])?></p></a>
+            <?php } if($topMonthPost) {?><h1 style="text-align: center;">MONTH</h1> 
+            <a href="../php/item.php?id=<?=$topMonthPost['id']?>"><p style=" padding-left: 3px;text-align: center; "><?=htmlspecialchars($topMonthPost['title'])?></p></a>
+            <?php } if($topYearPost) {?><h1 style="text-align: center;">YEAR</h1>
+            <a href="../php/item.php?id=<?=$topYearPost['id']?>"><p style=" padding-left: 3px;text-align: center; "><?=htmlspecialchars($topYearPost['title'])?></p></a> <?php } ?>
         </article>
     </aside>
 <?php } ?>

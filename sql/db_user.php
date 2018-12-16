@@ -334,6 +334,14 @@
         return $stmt->fetch();
     }
 
+    function getTopPostYear(){
+        global $db;
+        $now = time();
+        $stmt = $db->prepare('select * from news where ? - published < 31622400 order by  (upvotes-downvotes) desc limit 1');
+        $stmt->execute(array($now));
+        return $stmt->fetch();
+    }
+
     function getPostsLikedByUser($username){
         global $db;
         $stmt = $db->prepare('select * from news, userlikenews where userlikenews.news_id = news.id and userlikenews.upvote = 1 and userlikenews.username = ? order by published desc');
