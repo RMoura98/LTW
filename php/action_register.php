@@ -1,9 +1,6 @@
 <?php
-include_once('connection.php');
 include_once('../includes/session.php');
 include_once('../sql/db_user.php');
-include_once('functions.php');
-
 
     $username = $_POST['username'];
     $password = $_POST['password'];
