@@ -191,8 +191,12 @@ if (loginForm) {
 
 /* replys */
 
+let userLogged = document.querySelectorAll('#userInfo');
 let replys = document.querySelectorAll('.fa-reply');
-if(replys.length != 0){
+if(replys.length != 0 && userLogged.length != 0){
+
+    replys.classList.add('fa_active');
+    replys.classList.add('fa_hover');
     
     let hiddenBox = document.querySelector('.hiddenBox');
     let handlerfunction = function (e) {
@@ -285,7 +289,7 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
-let userLogged = document.querySelectorAll('#userInfo');
+
 let downvote = document.getElementsByClassName('fa-thumbs-down');
 if(downvote.length != 0 && userLogged.length != 0){	
 	likeEventHandler('newsLikeDiv', '../php/action_like_news.php');

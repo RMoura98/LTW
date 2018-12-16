@@ -148,14 +148,8 @@ body > header {
   .fa_hover:hover{
     color: rgb(128, 128, 128);
   }
-  .fa-reply:hover{
-    color: rgb(128, 128, 128);
-  }
   
   .fa_active:active{
-    transform: scale(1.5,1.5);
-  }
-  .fa-reply:active{
     transform: scale(1.5,1.5);
   }
   

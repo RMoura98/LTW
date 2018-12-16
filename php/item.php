@@ -30,16 +30,16 @@ draw_aside();
         <p><?=htmlspecialchars($post['fulltext'])?></p>
         <footer>
         <span class="author"> <a href="../php/profile.php?user=<?= $post['username']?>"> <?= $post['username']?>  </a></span>
-                <?php if (isset($_SESSION['username'])) { 
-                $opinion = getOpinionUserNews($post['id'], $_SESSION['username']);
-                ?>
+        <?php
+            $opinion = false;
+            if (isset($_SESSION['username'])) { 
+            $opinion = getOpinionUserNews($id, $_SESSION['username']); } ?>
                 <div class="newsLikeDiv">
                     <input type="hidden" name="id" value="<?=$post['id']?>">
                     <i class="fas fa-thumbs-up" <?php if ($opinion && $opinion[0]['upvote']) echo 'style="color: green;"';?>></i>                   
                     <span class="likes"><?=$post['upvotes'] - $post['downvotes']?></span>
                     <i class="fas fa-thumbs-down" <?php if ($opinion && $opinion[0]['downvote']) echo 'style="color: red;"';?>></i>
                 </div>
-                <?php } ?>
                 <span class="tags">
                 <?php
                 $fulltags = explode(',', $post['tags']);
@@ -79,8 +79,11 @@ draw_aside();
                 <article class="comment">
                     <div class="part">
                         <span class="user"><?=$comment['username']?></span>
-                        <?php if (isset($_SESSION['username'])) { 
-                        $opinion1 = getOpinionUserComments($comment['id'], $_SESSION['username']);
+                        <?php
+                        $opinion1 = false; 
+                        if (isset($_SESSION['username'])) { 
+                            $opinion1 = getOpinionUserComments($comment['id'], $_SESSION['username']);
+                        }
                         ?>
                         <div class="commLikeDiv">
                             <input type="hidden" name="id" value="<?=$comment['id']?>">
@@ -90,7 +93,6 @@ draw_aside();
                         </div>
                         <input type="hidden" name="id" value="<?=$comment['id']?>">
                         <i class="fas fa-reply"></i>
-                        <?php } ?>
                         <span class="date"><?=time_ago($comment['published'])?></span>
                     </div>
                     <p><?=htmlspecialchars($comment['text'])?></p>
@@ -99,8 +101,11 @@ draw_aside();
                         <article class="reply">
                             <div class="part">
                                 <span class="user"><?=$reply['username']?></span>
-                                <?php if (isset($_SESSION['username'])) { 
-                                $opinion2 = getOpinionUserReplys($reply['id'], $_SESSION['username']);
+                                <?php 
+                                $opinion2 = false;
+                                if (isset($_SESSION['username'])) { 
+                                    $opinion2 = getOpinionUserReplys($reply['id'], $_SESSION['username']);
+                                }
                                 ?>
                                 <div class="replyLikeDiv">
                                     <input type="hidden" name="id" value="<?=$reply['id']?>">
@@ -108,8 +113,6 @@ draw_aside();
                                     <span class="likes"><?=$reply['upvotes'] - $reply['downvotes']?></span>
                                     <i class="fas fa-thumbs-down" <?php if ($opinion2 && $opinion2[0]['downvote']) echo 'style="color: red;"';?>></i>
                                 </div>
-                                <!-- <i class="fas fa-reply"></i> -->
-                                <?php } ?>
                                 <span class="date"><?=time_ago($reply['published'])?></span>
                             </div>
                             <p><?=htmlspecialchars($reply['text'])?></p>
