@@ -80,7 +80,7 @@ INSERT INTO news VALUES (NULL,
     1517901652,
     'aww,dogs',
     'dominic',
-    "https://i.redd.it/g9w2q9iq3ok11.jpg",
+    "https://i.imgur.com/tBNEY5P.jpg",
     '',
     1000,6,0);
 
@@ -100,7 +100,7 @@ INSERT INTO news VALUES (NULL,
   1545210000,
   'ProgrammerHumor',
   'RMoura98',
-  "https://i.redd.it/mnghlm1xbc411.png",
+  "https://i.imgur.com/iINfZri.png",
   '',
   405,1,0);
 
@@ -120,7 +120,7 @@ INSERT INTO news VALUES (NULL,
   1543973900,
   'aww,dogs',
   'nofilmynofucky',
-  "https://i.redd.it/pzkqvsv95m421.jpg",
+  "https://i.imgur.com/nZHhGwh.jpg",
   'I don’t really have anyone to share this with right now so I’m deciding to share it here with you guys ... my little Ollie ... graduated from training class today and I couldn’t be more proud of this very good boy.',
   100,1,2);
 
@@ -180,7 +180,7 @@ INSERT INTO news VALUES (NULL,
   1541543900,
   'gaming,funny',
   'nofilmynofucky',
-  "https://i.imgur.com/DntygKq.gif",
+  "https://media.giphy.com/media/nqpLr1r5d6r18FqjAj/giphy.gif",
   '',
   50,14,0);
 
@@ -200,7 +200,7 @@ INSERT INTO news VALUES (NULL,
   1541943900,
   'cats',
   'nofilmynofucky',
-  "https://i.redd.it/47dnvj48n5421.jpg",
+  "https://i.imgur.com/Wb0qV9z.jpg",
   '',
   123,25,0);
 
@@ -220,7 +220,7 @@ INSERT INTO news VALUES (NULL,
   1544973948,
   'aww,cats',
   'RMoura98',
-  "https://i.imgur.com/ADaAy6V.jpg",
+  "https://i.imgur.com/93vVdLP.jpg",
   '',
   533,25,0);
 
@@ -240,7 +240,7 @@ INSERT INTO news VALUES (NULL,
   1544978640,
   'funny,pics',
   'abril',
-  "https://i.imgur.com/7uLELFB.jpg",
+  "https://i.imgur.com/etUpE0M.jpg",
   '',
   123,2,0);
 
@@ -250,7 +250,7 @@ INSERT INTO news VALUES (NULL,
   1544278640,
   'aww,pics',
   'abril',
-  "https://i.imgur.com/BealIHB.jpg",
+  "https://i.imgur.com/yydBFtE.jpg",
   '',
   123,2,0);
 --20
