@@ -80,7 +80,7 @@ INSERT INTO news VALUES (NULL,
     1517901652,
     'aww,dogs',
     'dominic',
-    "https://i.imgur.com/tBNEY5P.jpg",
+    "https://i.redd.it/g9w2q9iq3ok11.jpg",--https://i.imgur.com/tBNEY5P.jpg
     '',
     1000,6,0);
 
@@ -120,7 +120,7 @@ INSERT INTO news VALUES (NULL,
   1543973900,
   'aww,dogs',
   'nofilmynofucky',
-  "https://i.imgur.com/nZHhGwh.jpg",
+  "https://i.redd.it/pzkqvsv95m421.jpg",--https://i.imgur.com/nZHhGwh.jpg
   'I don’t really have anyone to share this with right now so I’m deciding to share it here with you guys ... my little Ollie ... graduated from training class today and I couldn’t be more proud of this very good boy.',
   100,1,2);
 
@@ -200,7 +200,7 @@ INSERT INTO news VALUES (NULL,
   1541943900,
   'cats',
   'nofilmynofucky',
-  "https://i.imgur.com/Wb0qV9z.jpg",
+  "https://i.redd.it/47dnvj48n5421.jpg", --https://i.imgur.com/Wb0qV9z.jpg
   '',
   123,25,0);
 
@@ -220,7 +220,7 @@ INSERT INTO news VALUES (NULL,
   1544973948,
   'aww,cats',
   'RMoura98',
-  "https://i.imgur.com/93vVdLP.jpg",
+  "https://i.imgur.com/ADaAy6V.jpg", -- https://i.imgur.com/93vVdLP.jpg
   '',
   533,25,0);
 
@@ -232,7 +232,7 @@ INSERT INTO news VALUES (NULL,
   'RMoura98',
   "https://i.imgur.com/0zbQEWC.gif",
   '',
-  333,25,0);
+  333,25,2);
 
 --19
 INSERT INTO news VALUES (NULL,

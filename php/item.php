@@ -27,8 +27,14 @@ draw_aside();
         <header>
           <h1><a href="item.php?id=<?=$post['id']?>"><?=htmlspecialchars($post['title'])?></a></h1>
         </header>
-        <img id="byId" src="<?= $postImgUrl ?>" alt="">
-        <p><?=htmlspecialchars($post['fulltext'])?></p>
+        <div style="background-color: white; height: 700px; ">
+            <img style="object-fit: contain;" id="byId" src="<?= $postImgUrl ?>" alt="">
+        </div>
+        <?php
+        if($post['fulltext'] != ''){?>
+            <p><?=htmlspecialchars($post['fulltext'])?></p>
+        <?php }        
+        ?>
         <footer>
         <span class="author"> <a href="../php/profile.php?user=<?= $post['username']?>"> <?= $post['username']?>  </a></span>
         <?php
