@@ -160,8 +160,13 @@ else{
 }
 $si = '../php/frontpage.php?p=1';
 $sf = '../php/frontpage.php?p=' . $maxPage;
-if($sort != '') 
-    $s .= '&s=' . $sort;
+$s = '../php/frontpage.php?p=' . $page;
+
+if($sort != '') {
+    $si .= '&s=' . $sort;
+    $sf .= '&s=' . $sort;
+}
+    
 ?>
 
 <div class="pagination">
@@ -177,7 +182,7 @@ for ($i; $i < $maxi + 1; $i++) {
     if($page == $i)
         $c = 'class="active" ';
     echo '<a '.$c.'href="' . $s . '">' . $i . '</a>';
-    } ?>
+} ?>
     <a style="padding-left: 14px; padding-right: 14px;" href="<?=$sf?>"><i class="fas fa-step-forward"></i></a>
 </div>
 <?php } ?>
