@@ -1,3 +1,11 @@
+Drop table if exists users
+Drop table if exists userlikenews
+Drop table if exists news
+Drop table if exists userlikecomments
+Drop table if exists comments
+Drop table if exists reply
+
+
 CREATE TABLE users (
   username VARCHAR PRIMARY KEY,
   password VARCHAR,
@@ -13,7 +21,7 @@ INSERT INTO users VALUES ("nofilmynofucky", "$2y$12$UcsUKYAqBb.4xyyQA8fHCeCjtDES
 
 -----------------------------------------------------------------------------------------------------
 
-CREATE TABLE if not exists userlikenews (
+CREATE TABLE userlikenews (
     id INTEGER PRIMARY KEY,
     username VARCHAR REFERENCES users,
     news_id INTEGER REFERENCES news,
@@ -25,14 +33,13 @@ INSERT INTO userlikenews VALUES (NULL, "dominic", 1, 1, 0);
 
 -----------------------------------------------------------------------------------------------------
 
-CREATE TABLE if not exists news (
+CREATE TABLE news (
     id INTEGER PRIMARY KEY,
     title VARCHAR,
     published INTEGER, -- date when the article was published in epoch format USAR ISTO EM PHP  (datetime('now'))
     tags VARCHAR, -- comma separated tags
     username VARCHAR REFERENCES users, -- who wrote the article
     imageUrl VARCHAR,
-    introduction VARCHAR,
     fulltext VARCHAR,
     upvotes integer,
     downvotes integer,----default ou depois inicializa
@@ -41,22 +48,22 @@ CREATE TABLE if not exists news (
 
 
 INSERT INTO news VALUES (NULL,
-  'Lorem ipsum dolor sit amet, consectetur',
-  1507901651,
-  'politics,economy',
-  'abril',
-  "https://i.redd.it/0j5y38xz2f121.jpg",
-  'Nulla sem non feugiat pharetra.',
-  'sod jiejr',1,2,2);
+    'Lorem ipsum dolor sit amet, consectetur',
+    1507901651,
+    'politics,economy',
+    'abril',
+    "https://i.redd.it/0j5y38xz2f121.jpg",
+    'Nulla sem non feugiat pharetra.',
+    1,2,2);
   
 INSERT INTO news VALUES (NULL,
-  'sei la',
-  1507901652,
-  'politics,HMMMM',
-  'dominic',
-  "https://dummyimage.com/600x300/008ebd/fff.jpg&text=business",
-  'Nulla sem non feugiat pharetra.',
-  'sod jiejr',1000,6,0);
+    'sei la',
+    1507901652,
+    'politics,HMMMM',
+    'dominic',
+    "https://dummyimage.com/600x300/008ebd/fff.jpg&text=business",
+    'Nulla sem non feugiat pharetra.',
+    1000,6,0);
 
 INSERT INTO news VALUES (NULL,
   'Macaque is huge',
@@ -64,13 +71,13 @@ INSERT INTO news VALUES (NULL,
   'WTF,HMMMM',
   'nofilmynofucky',
   "https://images.unsplash.com/photo-1516956431828-b10b67f654d0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1abfd58b74a89775f1c75a22cc8b1605&w=1000&q=80",
-  '',
-  'sod jiejr',16932,1014,0);
+  'sod jiejr',
+  16932,1014,0);
 
 
 -----------------------------------------------------------------------------------------------------
 
-CREATE TABLE if not exists userlikecomments (
+CREATE TABLE userlikecomments (
     id INTEGER PRIMARY KEY,
     username VARCHAR REFERENCES users,
     comment_id INTEGER REFERENCES comments,
@@ -82,7 +89,7 @@ INSERT INTO userlikecomments VALUES (NULL, "dominic", 1, 1, 0);
 
 -----------------------------------------------------------------------------------------------------
 
-CREATE TABLE if not exists  comments (
+CREATE TABLE comments (
     id INTEGER PRIMARY KEY,
     news_id INTEGER REFERENCES news,
     username VARCHAR REFERENCES users,
@@ -103,7 +110,7 @@ INSERT INTO comments VALUES (NULL,
 
 -----------------------------------------------------------------------------------------------------
 
-CREATE TABLE if not exists userlikereply (
+CREATE TABLE userlikereply (
     id INTEGER PRIMARY KEY,
     username VARCHAR REFERENCES users,
     reply_id INTEGER REFERENCES comments,
@@ -115,7 +122,7 @@ INSERT INTO userlikereply VALUES (NULL, "dominic", 1, 1, 0);
 
 -----------------------------------------------------------------------------------------------------
 
-CREATE TABLE if not exists  reply
+CREATE TABLE reply
 (
     id  integer primary key,
     idc integer references comments,

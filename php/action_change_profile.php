@@ -1,6 +1,7 @@
 <?php
 include_once('../sql/db_user.php');
 include_once('../includes/session.php');
+include_once '../php/functions.php';
 
 
 

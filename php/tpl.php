@@ -1,6 +1,6 @@
 <?php 
 include_once('../includes/session.php');
-
+include_once('../sql/db_user.php');
 /**
  * Draws the header for all pages. 
  */
@@ -140,13 +140,28 @@ function draw_PostS($id, $title, $username, $imageUrl, $count, $published, $tags
 
   
 <?php 
+define('MAXPAGEPAGINATION', 4); //needs to be even
 /**
  * Draws the footer for all pages.
  */
 function draw_pagination($page, $maxPage, $sort) {  ?>
 <div class="pagination">
 <?php 
-for ($i=1; $i < $maxPage + 1; $i++) { 
+
+if ($page - MAXPAGEPAGINATION/2 < 1){
+    $i = 1;
+    $maxi = MAXPAGEPAGINATION + 1;
+}
+else if ($page + MAXPAGEPAGINATION/2 > $maxPage){
+    $maxi = $maxPage;
+    $i = $maxPage - MAXPAGEPAGINATION;
+}
+else{
+    $i = $page - MAXPAGEPAGINATION/2;
+    $maxi = $page + MAXPAGEPAGINATION/2;
+}
+
+for ($i; $i < $maxi + 1; $i++) { 
     $c = '';
     $s = '../php/frontpage.php?p=' . $i;
     if($sort != '') 

@@ -1,7 +1,7 @@
 <?php
 include_once './tpl.php';
 include_once '../includes/session.php';
-include_once './functions.php';
+include_once '../php/functions.php';
 
 if(!isset($_SESSION['previousPage']))
     $_SESSION['previousPage'] = '../php/frontpage.php';
