@@ -102,8 +102,8 @@ draw_aside();
                             <div class="part">
                                 <span class="user"><?=$reply['username']?></span>
                                 <?php 
-                                $opinion2 = false;
-                                if (isset($_SESSION['username'])) { 
+                                $opinion2 = false; 
+                                if (isset($_SESSION['username'])) {
                                     $opinion2 = getOpinionUserReplys($reply['id'], $_SESSION['username']);
                                 }
                                 ?>
