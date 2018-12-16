@@ -59,7 +59,7 @@ function draw_aside($isFrontPage = FALSE) {
     ?>
     <aside id="related">
         <form id="searchBar" action="../php/search.php">
-            <input type="search" name="q" placeholder="Search">            
+            <input type="search" name="q" placeholder="Search" required>            
         </form>
         <?php if($isFrontPage) { ?>
             <a href="../php/createPost.php">
