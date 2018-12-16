@@ -4,7 +4,7 @@ include_once('./functions.php');
 include_once('./tpl.php');
 include_once('../includes/session.php');
 
-$post = getNewsById($_GET['id']);
+$post = getNewsById($_GET['id']);   
 
 if(!$post){
     header('Location: ../php/error_404.php');
@@ -33,7 +33,7 @@ draw_aside();
         <?php
             $opinion = false;
             if (isset($_SESSION['username'])) { 
-            $opinion = getOpinionUserNews($id, $_SESSION['username']); } ?>
+            $opinion = getOpinionUserNews($post['id'], $_SESSION['username']); } ?>
                 <div class="newsLikeDiv">
                     <input type="hidden" name="id" value="<?=$post['id']?>">
                     <i class="fas fa-thumbs-up" <?php if ($opinion && $opinion[0]['upvote']) echo 'style="color: green;"';?>></i>                   

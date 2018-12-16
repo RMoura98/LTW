@@ -195,9 +195,6 @@ let userLogged = document.querySelectorAll('#userInfo');
 let replys = document.querySelectorAll('.fa-reply');
 if(replys.length != 0 && userLogged.length != 0){
 
-    replys.classList.add('fa_active');
-    replys.classList.add('fa_hover');
-    
     let hiddenBox = document.querySelector('.hiddenBox');
     let handlerfunction = function (e) {
         hiddenBox.querySelector('a').href = '../php/profile.php?user=' + e.target.parentElement.querySelector('.user').innerHTML;
@@ -206,6 +203,8 @@ if(replys.length != 0 && userLogged.length != 0){
         hiddenBox.style.display = 'flex';
     }
     for(let reply of replys){
+        reply.classList.add('fa_active');
+        reply.classList.add('fa_hover');
         reply.onclick = handlerfunction;
     }
     hiddenBox.querySelector('.fa-times').onclick = (e) => {
