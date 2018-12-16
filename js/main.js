@@ -290,7 +290,7 @@ let downvote = document.getElementsByClassName('fa-thumbs-down');
 if(downvote.length != 0 && userLogged.length != 0){	
 	likeEventHandler('newsLikeDiv', '../php/action_like_news.php');
 	likeEventHandler('commLikeDiv', '../php/action_like_comments.php');
-	likeEventHandler('replyLikeDiv', '../php/action_like_reply.php');
+    likeEventHandler('replyLikeDiv', '../php/action_like_reply.php');
 }
 
 function likeEventHandler(className, action) {
@@ -300,6 +300,11 @@ function likeEventHandler(className, action) {
         let thumbsUpField = likeD.querySelector('.fa-thumbs-up');
         let thumbsDownField = likeD.querySelector('.fa-thumbs-down');
         let likesField = likeD.querySelector('span');
+        
+        thumbsUpField.classList.add('fa_active');
+        thumbsDownField.classList.add('fa_active');
+        thumbsUpField.classList.add('fa_hover');
+        thumbsDownField.classList.add('fa_hover');
 
         thumbsUpField.onclick = () => {
             /* alert(action); */

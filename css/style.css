@@ -145,20 +145,14 @@ body > header {
     margin-right: 1em;
   }
 
-  .fa-thumbs-down:hover{
-    color: rgb(128, 128, 128);
-  }
-  .fa-thumbs-up:hover{
+  .fa_hover:hover{
     color: rgb(128, 128, 128);
   }
   .fa-reply:hover{
     color: rgb(128, 128, 128);
   }
   
-  .fa-thumbs-down:active{
-    transform: scale(1.5,1.5);
-  }
-  .fa-thumbs-up:active{
+  .fa_active:active{
     transform: scale(1.5,1.5);
   }
   .fa-reply:active{
