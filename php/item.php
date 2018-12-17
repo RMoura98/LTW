@@ -27,7 +27,7 @@ draw_aside();
         <header>
           <h1><a href="item.php?id=<?=$post['id']?>"><?=htmlspecialchars($post['title'])?></a></h1>
         </header>
-        <div style="background-color: white; height: 700px; ">
+        <div style="background-color: white; height: 75vh; ">
             <img style="object-fit: contain;" id="byId" src="<?= $postImgUrl ?>" alt="">
         </div>
         <?php
