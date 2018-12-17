@@ -253,7 +253,8 @@ INSERT INTO news VALUES (NULL,
   "https://i.imgur.com/yydBFtE.jpg",
   '',
   123,2,0);
---20
+
+--21
 INSERT INTO news VALUES (NULL,
   'Trump boards Air Force One with toilet paper stuck to his shoe',
   1544278240,
