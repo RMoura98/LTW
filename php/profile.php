@@ -85,9 +85,15 @@ draw_aside();
         <i class="fas fa-times" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px;"></i>
     </div>
     
-    <?php } ?>
+    <?php } if($userInfo['profImgUrl']){
+        $profilePic = $userInfo['profImgUrl'];
+    }
+    else {
+        $profilePic = 'https://i.imgur.com/OxHKeTw.gif';
+    }
+    ?>
         <div id="pic" class="d-flex">
-            <img src="<?= $userInfo['profImgUrl'] ?>" alt="">
+            <img src="<?= $profilePic ?>" alt="">
             <?php if($canChange) {?><button class="btnChange" type="button" style="padding: 0px;position: absolute; top: 65%; left: 3%;"><i class="fas fa-cog"></i></button><?php } ?>
         </div>
         <div class="media-body">
