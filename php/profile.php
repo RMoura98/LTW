@@ -99,7 +99,7 @@ draw_aside();
         <div class="media-body">
             <div class="personal_text">
                 <div id="name" style="display: flex;">
-                    <h3 style="font-size: 0.9em;"><i class="fas fa-user" style="color:red;"></i> <?= htmlspecialchars($userInfo['name']) ?></h3s>
+                    <h3 style="font-size: 0.9em;"><i class="fas fa-user" style="color:red;"></i> <?= htmlspecialchars($userInfo['name']) ?></h3>
                     <?php if($canChange) {?>
                     <button class="btnChange" style="padding: 0px;" type="button"><i class="fas fa-cog"></i></button><?php } ?>
                 </div>
