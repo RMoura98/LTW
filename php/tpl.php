@@ -5,12 +5,6 @@ include_once('../sql/db_user.php');
  * Draws the header for all pages. 
  */
 function draw_header() { 
-    if($_SESSION['profilePic']){
-        $profilePic = $_SESSION['profilePic'];
-    }
-    else {
-        $profilePic = 'https://i.imgur.com/OxHKeTw.gif';
-    }
 ?>
 
 <!DOCTYPE html>
@@ -36,8 +30,14 @@ function draw_header() {
             <h1 style="padding-left: 70px;"><a href="frontpage.php"> LTW News</a></h1>
             <h2><a style="position: absolute; padding: 0px 12px 0px 12px; margin-top: 10px;" href="frontpage.php">Where fake news are born!</a></h2>
         </div>
-            <?php
-            if (isset($_SESSION['username'])) { ?>
+        <?php
+            if (isset($_SESSION['username'])) { 
+				if($_SESSION['profilePic']){
+					$profilePic = $_SESSION['profilePic'];
+				}
+			    else {
+				    $profilePic = 'https://i.imgur.com/OxHKeTw.gif';
+			    }?>
                 <div id="userInfo">
                     <a href="../php/profile.php?user=<?=$_SESSION['username']?>"> <?=htmlspecialchars($_SESSION['username'])?> </a>
                     <a href="../php/profile.php?user=<?=$_SESSION['username']?>"><img class="avatar" style=" margin-left: 10px; " src=" <?= $profilePic?> " alt="Avatar" ></a>
