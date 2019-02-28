@@ -112,7 +112,7 @@ if (createPostForm) {
                 else if (response === '404') {
                     window.location.replace("./error_404.php");
                 }
-                else { // Error.
+                else { // Error
                     ajaxFailBox.style.display = 'flex';
                     ajaxFailBox.querySelector('#error').innerHTML = response;
                 }
