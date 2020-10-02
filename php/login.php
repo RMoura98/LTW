@@ -1,35 +1,39 @@
 <?php
 include_once './tpl.php';
 include_once '../includes/session.php';
+include_once '../php/functions.php';
+
+if(!isset($_SESSION['previousPage']))
+    $_SESSION['previousPage'] = '../php/frontpage.php';
 
 draw_header();
 draw_aside();
 ?>
 
-
-
-<!-- <section id="login">
-    <h1>Login</h1>
-    <form action="../php/action_login.php" method="POST">
-        <label>
-            Username <input type="text" name="username">
-        </label>
-        <label>
-            Password <input type="password" name="password">
-        </label>
-        <input type="submit" value="Login">
-    </form>
-</section> -->
-
 <div class="login-page">
+
     <div class="form">
         <h1>Login</h1>
-        <form action="../php/action_login.php" method="POST">
-            <input type="text" placeholder="username" name="username"/>
-            <input type="password" placeholder="password" name="password"/>
+        <form action="../php/action_login.php" method="POST" id="loginForm">
+            <input type="text" placeholder="username" name="username" required/>
+            <input type="password" placeholder="password" name="password" required/>
+            <input type="hidden" name="previousPage" value="<?=$_SESSION['previousPage']?>"/>
             <button>login</button>
-            <p class="message">Not registered? <a href="../php/register">Create an account</a></p>
+            <p class="message">Not registered? <a href="../php/register.php">Create an account</a></p>
         </form>
+        <div id="ajax-form-request-fill">
+            <div id="loader">
+                <div id="box"></div>
+                <div id="hill"></div>
+            </div>
+        </div>
+        <div id="ajax-form-failure-fill">
+            <strong>Incorrect username or password</strong><br>
+            <button>Retry</button>
+        </div>
+        <div id="ajax-form-success-fill">
+            <div class="checkmark"></div>
+        </div>
     </div>
 </div>
 

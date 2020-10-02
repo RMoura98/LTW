@@ -1,14 +1,16 @@
 <?php
-include_once('connection.php');
 include_once('../includes/session.php');
 include_once('../sql/db_user.php');
+include_once('../php/functions.php');
 
-if(empty($_POST['title']) || empty($_POST['text']) || empty($_FILES['img']) || empty($_POST['tags']) ){
-    header('Location: ../php/createPost');
-    exit();
+if(empty($_POST['text'])){
+    $_POST['text'] = '';
 } 
 
-$picUrl = upload_img($_FILES['img']);
+$filename = getFilePath((string) $_POST['img']);
+$fileSize = getFileSize((string) $_POST['imgS']);
+
+$picUrl = upload_img('../uploads/'. $filename, $fileSize);
 
 $fulltags = str_replace(' ', '', $_POST['tags']);
 $fulltags = str_replace(';', '#', $fulltags);
@@ -24,16 +26,24 @@ foreach ($fulltags as $tag) {
     }
 }
 
-
 try {
     $lastId = insertPost($_POST['title']  , $tags, $_SESSION['username'], $_POST['text'], $picUrl);
-    header('Location: ' . '../php/item?id=' . $lastId);
-    exit();
+    echo 'ok' . $lastId;
+
+    $Pfiles = glob('../uploads/*');
+    foreach($Pfiles as $Pfile){ // iterate files
+        if(is_file($Pfile))
+            unlink($Pfile); // delete file
+    }
 
 } catch (PDOException $e) {
     die($e->getMessage());
-    $_SESSION['messages'][] = array('type' => 'error', 'content' => 'Failed to signup!');
-    header('Location: createPost');   
+    echo 'DataBase fail';   
     exit();
 } 
+
+
+
+
+
 ?>

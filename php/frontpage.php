@@ -1,9 +1,13 @@
 <?php
 include_once './functions.php';
+include_once('../sql/db_user.php');
 include_once './tpl.php';
 include_once('../includes/session.php');
 
-$_SESSION["previousPage"] = '../php/frontpage';
+define("MAXPOSTPPAGE", "4");
+
+
+$_SESSION["previousPage"] = $_SERVER['REQUEST_URI'];
 
 draw_header();
 draw_aside(TRUE);
@@ -12,45 +16,66 @@ draw_aside(TRUE);
 <?php
 
 $articles = getAllNews();
-
 if(isset($_GET['s'])){
-    switch ($_GET['s']) {
+    $sort = $_GET['s'];
+    if(is_numeric($sort))
+        header('Location: ../php/error_404.php');
+    switch ($sort) {
         case 'top':
             $articles = getAllNewsSortedBylikes();
             break;
         case 'controversial':
             $articles = getAllNewsSortedByControversial();
             break;
+        case 'comments':
+            $articles = getAllNewsSortedByComments();
+            break;
         
         default:
+            header('Location: ../php/error_404.php');
             break;
     }
 }
+else $sort = '';
 
-foreach ($articles as $article) { ?>
-        <article>
-            <header>
-                <h1><a href="item?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
-            </header>
-            <a href="item?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
-            <footer>
-                <span class="author"><?=$article['username']?></span>
-                <span class="likes"><?=$article['upvotes']?></span>
-                <span class="dislikes"><?=$article['downvotes']?></span>
-                <span class="tags">
-<?php
-$fulltags = explode(',', $article['tags']);
-foreach ($fulltags as $tag) {
-    echo "<a href='tag?id=$tag'>#$tag</a> ";
+
+$maxPage = ceil(count($articles)/MAXPOSTPPAGE);
+
+if(isset($_GET['p'])){
+    $page = $_GET['p'];
+    if(!is_numeric($page))
+        header('Location: ../php/error_404.php');
+    if($page < $maxPage && $page > 0){
+        $iMax = ($page * MAXPOSTPPAGE);
+        $page -= 1;
+    }
+    elseif($page == $maxPage){
+        $page -= 1;
+        $iMax = count($articles);        
+    }
+    else
+        header('Location: ../php/error_404.php');
 }
-?>              </span>
-                <span class="date"><?=time_ago($article['published'])?></span>
-                <a class="comments" href="item?id=<?=$article['id']?>#comments"><?=$article['comments']?></a>
-            </footer>
-        </article>
-        <?php }?>
-    </section>
+else{
+    $page = 1; 
+    if($page == $maxPage){
+        $page -= 1;
+        $iMax = count($articles);        
+    }
+    else{
+        $page -= 1;
+        $iMax = MAXPOSTPPAGE;
+    }
     
+  
+} 
+
+for ($i = $page * MAXPOSTPPAGE; $i < $iMax; $i++) { 
+    draw_PostS($articles[$i]['id'], $articles[$i]['title'], $articles[$i]['username'], $articles[$i]['imageUrl'], $articles[$i]['count'], $articles[$i]['published'], $articles[$i]['tags'], $articles[$i]['upvotes'], $articles[$i]['downvotes']);
+}?>
+</section>
+
 <?php    
+draw_pagination($page + 1, $maxPage, $sort);
 draw_footer();
 ?>

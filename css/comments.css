@@ -18,6 +18,10 @@
   #comments p {
     background-color: #edeff0;
     padding: 1em;
+    /* max-width: 100%; */
+    outline-width: medium;
+    /* overflow: hidden; */
+    word-break: break-word;
   }
   
   #comments p:before {
@@ -31,7 +35,7 @@
   #comments form {
     width: auto;
     margin: 0;
-    background-color: #edeff0;
+    background-color: #ffff;
   }
   
   #comments input {
@@ -42,6 +46,8 @@
     display: block;
     width: 100%;
     height: 6em;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
   
   #comments input[type=submit] {

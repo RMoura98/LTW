@@ -1,11 +1,18 @@
 <?php 
 include_once('./functions.php');
+include_once('../sql/db_user.php');
 include_once('./tpl.php');
 include_once('../includes/session.php');
 
+if(!isset($_GET['id'])){
+    header('Location: ../php/error_404.php');
+    exit();
+}
+
+
 $tagId = $_GET['id'];
 
-$_SESSION["previousPage"] = '../php/tag?id='.$_GET['id'];
+$_SESSION["previousPage"] = '../php/tag.php?id='.$_GET['id'];
 
 draw_header();
 draw_aside();
@@ -14,7 +21,7 @@ draw_aside();
 
     <section id="news">
     <div id="tag">
-        <h1>#<?=$tagId?></h1>
+        <h1 style="margin-left: 25px;">#<?=$tagId?></h1>
     </div>
     
     <?php 
@@ -22,29 +29,10 @@ draw_aside();
     foreach($articles as $article) { 
         $fulltags = explode(',', $article['tags']);
         foreach($fulltags as $tag) {
-            if (strcasecmp($tagId, $tag) == 0){    ?>
-                <article>
-                <header>
-                    <h1><a href="item?id=<?=$article['id']?>"><?=$article['title']?></a></h1>
-                </header>
-                <a href="item?id=<?=$article['id']?>"><img src=<?=$article['imageUrl']?> alt=""></a>
-                <footer>
-                    <span class="author"><?=$article['username']?></span>
-                    <span class="likes"><?=$article['upvotes']?></span> 
-                    <span class="dislikes"><?=$article['downvotes']?></span> 
-                    <span class="tags">
-                    <?php
-                    $fulltags = explode(',', $article['tags']);
-                    foreach($fulltags as $tag) {
-                        echo "<a href='tag?id=$tag'>#$tag</a> ";
-                    }
-                    ?>
-                    </span>
-                    <span class="date"><?=time_ago($article['published'])?></span>
-                    <a class="comments" href="item?id=<?=$article['id']?>#comments"><?=$article['comments']?></a>
-                </footer>
-            </article>
-            <?php
+            if (strcasecmp($tagId, $tag) == 0){
+                draw_PostS($article['id'], $article['title'], $article['username'],
+                $article['imageUrl'], $article['count'], $article['published'], 
+                $article['tags'], $article['upvotes'], $article['downvotes']);
             break;
             }
         }

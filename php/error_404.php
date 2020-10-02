@@ -1,5 +1,5 @@
-
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -71,7 +71,7 @@ a {
     </span>
 	  <span style="display:block">}</span>
 	  <span style="color: #777;font-style:italic;">
-		  // <a href="../php/frontpage">Go home!</a>
+		  // <a href="../php/frontpage.php">Go home!</a>
 	  </span>
   </span>
 </div>

@@ -3,7 +3,6 @@
   
   session_destroy();
   session_start();
-  $_SESSION['messages'][] = array('type' => 'success', 'content' => 'Logged out!');
-  header('Location: ./frontpage');
+  header('Location: ./frontpage.php');
   exit();
 ?>
